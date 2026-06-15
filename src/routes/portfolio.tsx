@@ -1,105 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Section } from "@/components/site/Section";
-import { PortfolioCard, type Project } from "@/components/site/PortfolioCard";
-import { CTA } from "@/components/site/CTA";
+import { Search, SlidersHorizontal } from "lucide-react";
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
     meta: [
       { title: "Portfolio — Tecaudex" },
-      { name: "description", content: "A selection of products we've designed and engineered — across AI, SaaS, mobile and e-commerce." },
+      { name: "description", content: "Explore selected Tecaudex portfolio projects." },
       { property: "og:title", content: "Portfolio — Tecaudex" },
-      { property: "og:description", content: "Selected case studies from Tecaudex Studio." },
+      { property: "og:description", content: "A grid of digital products and brand work by Tecaudex." },
     ],
   }),
   component: PortfolioPage,
 });
 
-const PROJECTS: Project[] = [
-  { title: "Lumen AI", category: "AI · SaaS", description: "AI ops platform for enterprise retail.", tags: ["LLM", "RAG", "Next.js"], year: "2025", gradient: "linear-gradient(135deg, #ff6b6b 0%, #c44569 100%)" },
-  { title: "Northwind", category: "B2B · Dashboard", description: "Realtime analytics for logistics teams.", tags: ["React", "Postgres", "tRPC"], year: "2025", gradient: "linear-gradient(135deg, #4338ca 0%, #0ea5e9 100%)" },
-  { title: "Helix Health", category: "Mobile · Health", description: "Fitness coaching app with 1M+ downloads.", tags: ["React Native", "Expo"], year: "2024", gradient: "linear-gradient(135deg, #059669 0%, #84cc16 100%)" },
-  { title: "Vertex Pay", category: "Fintech · Web", description: "Embedded payments for SMB platforms.", tags: ["Stripe", "Node.js"], year: "2024", gradient: "linear-gradient(135deg, #1e3a8a 0%, #6366f1 100%)" },
-  { title: "Atlas Studio", category: "E-commerce", description: "Headless commerce for a DTC brand.", tags: ["Shopify", "Hydrogen"], year: "2024", gradient: "linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)" },
-  { title: "Quanta", category: "AI · Tooling", description: "Vector search platform for developers.", tags: ["pgvector", "Rust"], year: "2023", gradient: "linear-gradient(135deg, #0f172a 0%, #6366f1 100%)" },
-];
-
-const CATEGORIES = ["All", "AI · SaaS", "B2B · Dashboard", "Mobile · Health", "Fintech · Web", "E-commerce", "AI · Tooling"];
+const categories = ["All", "Mobile", "Web", "Healthcare", "Cryptocurrency", "Design", "Technology", "Fintech"];
+const names = ["rocket", "success", "Alraha", "Relitech", "Saberlee", "The Wealth", "Kivva", "Memonli", "Ultrabo", "Infinity", "YTY", "Zlply", "Stock", "thevault", "LovinPark", "Tuneflow", "HDAA", "Sentinel", "Findr", "Cloudly", "Givtrade", "Leafly", "Khal Kood", "Printshop", "ynTRY", "Social Rent", "WayMoto", "BAFY STAND", "Monarch", "Chat AI", "Loca", "ProHireAI", "Activio", "ai.io", "Schramm", "Vivid", "Hybridz"];
 
 function PortfolioPage() {
   const [active, setActive] = useState("All");
-  const filtered = active === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === active);
-
   return (
     <>
-      <Section
-        eyebrow="Portfolio"
-        title={<>Work we've shipped — and the <span className="gradient-text">teams behind it</span>.</>}
-        description="A selection of recent projects across AI, SaaS, mobile and commerce. Every engagement is a partnership; every launch a measurable win."
-        align="center"
-      />
-
-      <section className="container-page -mt-6 mb-10">
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          {CATEGORIES.map((c) => (
-            <button
-              key={c}
-              onClick={() => setActive(c)}
-              className={`rounded-full px-4 py-2 text-sm font-medium border transition-all ${
-                active === c
-                  ? "bg-ink text-white border-ink"
-                  : "bg-card text-ink-soft border-border hover:text-ink hover:border-ink/30"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <section className="container-page pb-24">
-        <div className="grid gap-x-8 gap-y-14 md:grid-cols-2">
-          {filtered.map((p) => <PortfolioCard key={p.title} project={p} />)}
-        </div>
-      </section>
-
-      <CaseStudy />
-      <CTA title="Want to be our next case study?" ctaLabel="Start a project" />
-    </>
-  );
-}
-
-function CaseStudy() {
-  return (
-    <section className="bg-ink text-white relative overflow-hidden">
-      <div className="absolute -top-32 left-10 h-80 w-80 rounded-full bg-brand/30 blur-3xl" />
-      <div className="container-page relative section-pad">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <span className="eyebrow text-brand-2">Featured case study</span>
-            <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight leading-[1.05]">
-              Lumen AI: from prototype to 40k weekly users in 6 months.
-            </h2>
-            <p className="mt-5 text-white/75 text-lg max-w-xl">
-              We partnered with Lumen to design and ship an AI assistant for retail ops — replacing 3 internal tools with a single, opinionated workflow.
-            </p>
-            <div className="mt-8 grid grid-cols-3 gap-6 max-w-md">
-              {[
-                { v: "40k", l: "Weekly users" },
-                { v: "3.2x", l: "Faster ops" },
-                { v: "$1.2M", l: "ARR in Y1" },
-              ].map((s) => (
-                <div key={s.l}>
-                  <div className="text-3xl font-bold">{s.v}</div>
-                  <div className="text-xs text-white/60 mt-1">{s.l}</div>
-                </div>
-              ))}
-            </div>
+      <section className="container-page pt-12 md:pt-16">
+        <h1 className="text-5xl font-extrabold text-ink md:text-6xl">Our <span className="text-ink/35">portfolio</span></h1>
+        <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => (
+              <button key={cat} onClick={() => setActive(cat)} className={`rounded-full border px-4 py-1.5 text-xs font-bold transition ${active === cat ? "border-ink bg-ink text-primary-foreground" : "border-border bg-card text-ink hover:border-ink"}`}>{cat}</button>
+            ))}
           </div>
-          <div className="aspect-[4/3] rounded-3xl border border-white/10" style={{ background: "linear-gradient(135deg, #ff6b6b 0%, #c44569 100%)" }} />
+          <div className="flex items-center gap-5 text-ink-soft"><Search className="h-4 w-4" /><button className="inline-flex items-center gap-2 text-xs font-bold">Filter <SlidersHorizontal className="h-4 w-4" /></button></div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section className="mt-7 grid grid-cols-2 md:grid-cols-4">
+        {Array.from({ length: 56 }).map((_, i) => {
+          const name = names[i % names.length];
+          return <article key={i} className="group relative aspect-square overflow-hidden border-r border-b border-background image-tile-bg"><div className="absolute inset-0 bg-ink/20 transition group-hover:bg-ink/5" /><div className="absolute inset-0 grid place-items-center"><div className="grid min-h-20 min-w-24 place-items-center rounded-lg bg-card px-5 py-4 shadow-card transition group-hover:-translate-y-1"><span className="text-center text-sm font-black text-ink">{name}</span></div></div></article>;
+        })}
+        <div className="aspect-square border-r border-b border-background bg-surface" />
+        <div className="aspect-square border-r border-b border-background bg-surface" />
+      </section>
+    </>
   );
 }

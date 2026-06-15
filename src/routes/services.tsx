@@ -1,156 +1,116 @@
-import { createFileRoute } from "@tanstack/react-router";
-import {
-  Brain, Code2, Smartphone, LineChart, Cloud, Sparkles, ShieldCheck, Workflow,
-  Database, Search, Palette, Megaphone, CheckCircle2,
-} from "lucide-react";
-import { Section } from "@/components/site/Section";
-import { ServiceCard } from "@/components/site/ServiceCard";
-import { CTA } from "@/components/site/CTA";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Check, Code2, Lightbulb, Palette, Rocket, Settings2, Sparkles, UsersRound } from "lucide-react";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services — Tecaudex" },
-      { name: "description", content: "AI, web, mobile, cloud, design and growth — a complete product engineering studio." },
+      { name: "description", content: "Software development services from Tecaudex." },
       { property: "og:title", content: "Services — Tecaudex" },
-      { property: "og:description", content: "End-to-end product engineering for ambitious teams." },
+      { property: "og:description", content: "Software, ERP, AI, marketing, and app design services." },
     ],
   }),
   component: ServicesPage,
 });
 
-const ALL = [
-  { icon: Brain, title: "AI & Machine Learning", description: "Custom LLM applications, RAG systems, AI agents and end-to-end ML pipelines.", features: ["RAG + vector search", "AI agents & workflows", "Fine-tuning & evaluation"] },
-  { icon: Code2, title: "Web Development", description: "Production-grade web platforms built with React, TanStack and Next.js.", features: ["SaaS dashboards", "Marketing sites", "Headless commerce"] },
-  { icon: Smartphone, title: "Mobile Development", description: "React Native and native iOS/Android apps with offline-first architecture.", features: ["React Native", "Native modules", "App Store launch"] },
-  { icon: Cloud, title: "Cloud & DevOps", description: "AWS, GCP and Cloudflare edge infrastructure designed for scale and cost.", features: ["Edge & serverless", "CI/CD & IaC", "Observability"] },
-  { icon: LineChart, title: "Digital Growth", description: "Performance marketing, SEO, and conversion experimentation.", features: ["SEO strategy", "Paid acquisition", "Conversion CRO"] },
-  { icon: Palette, title: "Product Design", description: "Research, UX, design systems and high-fidelity prototypes.", features: ["UX research", "Design systems", "Prototyping"] },
-  { icon: Database, title: "Data Engineering", description: "Modern data stacks, warehousing and analytics platforms.", features: ["dbt + warehouse", "Realtime pipelines", "BI dashboards"] },
-  { icon: ShieldCheck, title: "Security & Compliance", description: "SOC2, ISO and HIPAA readiness baked into engineering from day one.", features: ["Audit prep", "Threat modeling", "Pen testing"] },
-  { icon: Megaphone, title: "Brand & Storytelling", description: "Identity systems and narrative that make your product unmistakable.", features: ["Brand systems", "Copywriting", "Launch campaigns"] },
+const process = [
+  ["01", "Discovery", "Define goals, scope, user needs, and technical direction before development begins."],
+  ["02", "UX/UI Design", "Design polished product flows, interfaces, and prototypes aligned to your business goals."],
+  ["03", "Frontend Coding", "Turn approved designs into responsive, accessible, and production-grade interfaces."],
+  ["04", "Backend Coding", "Build APIs, databases, integrations, dashboards, and secure backend workflows."],
+  ["05", "Testing & debugging", "Run quality checks across screens, devices, browsers, and core product flows."],
+  ["06", "Vendor Launch", "Deploy, monitor, and support the product after launch with a practical handover."],
 ];
 
 function ServicesPage() {
   return (
     <>
-      <Section
-        eyebrow="Services"
-        title={<>One studio. <span className="gradient-text">Every capability</span> you need to ship.</>}
-        description="We combine senior engineering, design and growth talent — so you don't have to coordinate three vendors."
-        align="center"
-      />
-
-      <section className="container-page -mt-6 mb-24">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {ALL.map((s) => <ServiceCard key={s.title} {...s} />)}
-        </div>
-      </section>
-
+      <Hero />
       <Process />
-      <Engagements />
-      <Stack />
-      <CTA title="Ready to start your project?" />
+      <SoftwareDevelopment />
+      <FeatureCards />
+      <Expectations />
+      <ServiceCTA />
     </>
   );
 }
 
-function Process() {
-  const steps = [
-    { n: "01", t: "Discovery sprint", d: "1–2 weeks of research, workshops and product framing to lock the right problem." },
-    { n: "02", t: "Design & architecture", d: "Design system, UX flows and a technical blueprint your team can extend." },
-    { n: "03", t: "Iterative build", d: "Two-week sprints with weekly demos, shared roadmap and live preview links." },
-    { n: "04", t: "Launch & scale", d: "Performance, analytics, A/B tests and a clear path to ongoing growth." },
-  ];
+function Hero() {
   return (
-    <section className="bg-surface border-y border-border">
-      <div className="container-page section-pad">
-        <div className="max-w-3xl">
-          <span className="eyebrow">How we work</span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-ink leading-[1.05]">
-            A proven process — refined over 120+ launches.
-          </h2>
-        </div>
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s) => (
-            <div key={s.n} className="rounded-2xl border border-border bg-card p-7 card-hover">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-brand">{s.n}</span>
-                <Workflow className="h-4 w-4 text-ink-soft" />
-              </div>
-              <h3 className="mt-4 text-xl font-semibold text-ink">{s.t}</h3>
-              <p className="mt-3 text-ink-soft leading-relaxed">{s.d}</p>
-            </div>
-          ))}
+    <section className="relative min-h-[360px] overflow-hidden image-tile-bg md:min-h-[430px]">
+      <div className="absolute inset-0 bg-ink/30" />
+      <div className="container-page relative flex min-h-[360px] items-center md:min-h-[430px]">
+        <div className="max-w-[390px] text-primary-foreground">
+          <h1 className="text-5xl font-extrabold leading-[0.95] md:text-6xl">Software Development Services</h1>
+          <p className="mt-5 text-sm leading-relaxed text-primary-foreground/85">Transform your ideas into scalable, secure, and user-focused software solutions.</p>
+          <div className="mt-7 flex gap-3"><a href="#start" className="btn-brand">Book a Free Call</a><Link to="/app-cost-calculator" className="inline-flex items-center rounded-full border border-primary-foreground/60 px-5 py-3 text-sm font-bold">Cost Calculator</Link></div>
         </div>
       </div>
     </section>
   );
 }
 
-function Engagements() {
-  const tiers = [
-    { name: "Sprint", price: "from $12k", desc: "Rapid prototype, proof of concept or design audit in 2–3 weeks.", features: ["Design + dev", "Working prototype", "Async + weekly call"] },
-    { name: "Project", price: "from $40k", desc: "End-to-end build for a new product or major feature set.", features: ["Cross-functional pod", "Fixed scope & price", "Production launch"], featured: true },
-    { name: "Partnership", price: "from $20k / mo", desc: "Embedded team that grows with your product over the long term.", features: ["Dedicated squad", "Roadmap & analytics", "Quarterly planning"] },
-  ];
+function Process() {
   return (
-    <Section
-      eyebrow="Engagement models"
-      title="Flexible ways to work together."
-      description="Pick the structure that matches your stage — from a quick sprint to a long-term partnership."
-    >
-      <div className="grid gap-6 md:grid-cols-3">
-        {tiers.map((t) => (
-          <div
-            key={t.name}
-            className={`relative rounded-3xl p-8 border ${
-              t.featured ? "bg-ink text-white border-ink shadow-glow" : "bg-card border-border"
-            }`}
-          >
-            {t.featured && (
-              <span className="absolute -top-3 right-6 rounded-full bg-brand text-white text-xs font-medium px-3 py-1">Most popular</span>
-            )}
-            <h3 className={`text-2xl font-semibold ${t.featured ? "text-white" : "text-ink"}`}>{t.name}</h3>
-            <div className={`mt-2 text-3xl font-bold ${t.featured ? "text-white" : "text-ink"}`}>{t.price}</div>
-            <p className={`mt-4 ${t.featured ? "text-white/75" : "text-ink-soft"}`}>{t.desc}</p>
-            <ul className="mt-6 space-y-3">
-              {t.features.map((f) => (
-                <li key={f} className={`flex items-center gap-2 text-sm ${t.featured ? "text-white/85" : "text-ink"}`}>
-                  <CheckCircle2 className={`h-4 w-4 ${t.featured ? "text-brand-2" : "text-brand"}`} />
-                  {f}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+    <section className="container-page py-28">
+      <div className="mx-auto max-w-[940px]">
+        <h2 className="text-xl font-extrabold text-ink">Our Process</h2>
+        <div className="mt-8 divide-y divide-border">
+          {process.map(([num, title, text]) => <div key={num} className="grid gap-8 py-5 md:grid-cols-[70px_230px_minmax(0,1fr)]"><span className="text-sm text-ink-soft">{num}</span><h3 className="font-semibold text-ink">{title}</h3><p className="text-sm leading-relaxed text-ink-soft">{text}</p></div>)}
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
-function Stack() {
-  const groups = [
-    { name: "Frontend", items: ["React 19", "Next.js", "TanStack", "Tailwind", "Framer Motion"] },
-    { name: "Backend", items: ["Node.js", "Postgres", "Supabase", "tRPC", "Cloudflare Workers"] },
-    { name: "AI / ML", items: ["OpenAI", "Anthropic", "LangChain", "PGVector", "Hugging Face"] },
-    { name: "Mobile", items: ["React Native", "Expo", "Swift", "Kotlin"] },
-  ];
+function SoftwareDevelopment() {
   return (
-    <Section eyebrow="Tooling" title="A modern, opinionated stack." description="We pick tools that ship quality faster and stay maintainable as your team grows.">
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {groups.map((g) => (
-          <div key={g.name} className="rounded-2xl border border-border bg-card p-6 card-hover">
-            <h4 className="text-sm font-semibold uppercase tracking-wide text-brand">{g.name}</h4>
-            <ul className="mt-4 space-y-2 text-ink">
-              {g.items.map((i) => <li key={i} className="flex items-center gap-2"><Sparkles className="h-3.5 w-3.5 text-ink-soft" />{i}</li>)}
-            </ul>
-          </div>
-        ))}
+    <section className="container-page pb-24">
+      <h2 className="text-xl font-extrabold text-ink">Software Development</h2>
+      <div className="mt-7 grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-start">
+        <aside className="border-l border-border pl-5">
+          <p className="max-w-[290px] text-sm leading-relaxed text-ink-soft">Build reliable applications through a structured, collaborative development process.</p>
+          <div className="mt-16 border-l-2 border-brand pl-4"><h3 className="text-base font-extrabold text-brand">Mobile App Development</h3><p className="mt-2 max-w-[260px] text-sm leading-relaxed text-ink-soft">Native and cross-platform mobile apps that feel smooth, fast, and easy to use.</p></div>
+          <div className="mt-16 space-y-5 text-sm text-ink-soft"><p>Web App Development</p><p>Enterprise Software</p><p>AI Product Development</p></div>
+        </aside>
+        <div className="grid min-h-[410px] place-items-center bg-illustration-blue p-12"><img src="/placeholder.svg" alt="Placeholder software service" className="max-h-[330px] w-full max-w-[480px] object-contain" /></div>
       </div>
-    </Section>
+    </section>
   );
 }
 
-// guard unused imports
-void Search;
+function FeatureCards() {
+  return (
+    <section className="container-page space-y-12 pb-28">
+      <article className="mx-auto max-w-[1040px] overflow-hidden rounded-xl bg-ink shadow-card"><div className="aspect-[16/7] image-tile-bg" /></article>
+      <article className="mx-auto grid max-w-[1040px] overflow-hidden rounded-xl shadow-card md:grid-cols-2"><div className="bg-brand p-9 text-primary-foreground"><h3 className="text-2xl font-extrabold">Agile Software Development Services</h3><p className="mt-5 text-sm leading-relaxed text-primary-foreground/85">We build software in practical phases so teams can review progress, reduce risk, and launch confidently.</p></div><div className="min-h-[270px] image-tile-bg" /></article>
+      <article className="mx-auto grid max-w-[1040px] gap-px overflow-hidden rounded-xl bg-deep-blue p-8 text-primary-foreground shadow-card md:grid-cols-2"><TextBlock title="Adaptive Software Development Services for Dynamic Business Needs" /><TextBlock title="Custom Enterprise Software Development for Optimized Workflows" /></article>
+    </section>
+  );
+}
+
+function TextBlock({ title }: { title: string }) {
+  return <div className="p-6"><h3 className="text-xl font-extrabold leading-tight">{title}</h3><p className="mt-4 text-sm leading-relaxed text-primary-foreground/85">Our development team turns complex requirements into secure, maintainable systems that support growth and simplify daily operations.</p><button className="mt-6 rounded-full border border-primary-foreground/60 px-5 py-2 text-xs font-bold">Read More</button></div>;
+}
+
+function Expectations() {
+  const items = [{ label: "Strategy", icon: Lightbulb }, { label: "Execution", icon: Code2 }, { label: "Creativity", icon: Palette }];
+  return (
+    <section className="container-page pb-28">
+      <h2 className="text-xl font-extrabold text-ink">What you can expect from us</h2>
+      <div className="relative mx-auto mt-20 min-h-[720px] max-w-[780px]">
+        {items.map((item, i) => <div key={item.label} className={`absolute ${i === 0 ? "left-0 top-0" : i === 1 ? "left-0 top-[280px]" : "left-0 top-[560px]"}`}><h3 className="font-extrabold text-ink">{item.label}</h3></div>)}
+        {[Settings2, Sparkles, Rocket, UsersRound, Check].map((Icon, i) => <div key={i} className={`absolute grid h-28 w-28 place-items-center image-tile-bg ${["left-[45%] top-0", "right-0 top-28", "left-[45%] top-[260px]", "right-0 top-[390px]", "left-[45%] top-[560px]"][i]}`}><span className="grid h-12 w-12 place-items-center rounded bg-card text-ink"><Icon className="h-5 w-5" /></span></div>)}
+      </div>
+    </section>
+  );
+}
+
+function ServiceCTA() {
+  return (
+    <section id="start" className="container-page pb-24">
+      <div className="max-w-[360px]"><p className="text-sm leading-relaxed text-ink-soft">Want to know what your software could cost? Start with a simple estimate or reach out directly.</p><a href="#contact" className="btn-brand mt-4">Book Now <ArrowRight className="h-4 w-4" /></a></div>
+      <div className="mt-10 grid gap-4 md:grid-cols-2"><Link to="/app-cost-calculator" className="group relative min-h-[150px] overflow-hidden p-6 text-primary-foreground image-tile-bg"><h3 className="text-lg font-extrabold">App Cost Calculator</h3><p className="absolute bottom-5 left-6 inline-flex items-center gap-2 font-bold">Start calculating <ArrowRight className="h-4 w-4" /></p></Link><a href="#contact" className="group relative min-h-[150px] overflow-hidden p-6 text-primary-foreground image-tile-bg"><h3 className="text-lg font-extrabold">Contact Us</h3><p className="absolute bottom-5 left-6 inline-flex items-center gap-2 font-bold">Get a custom proposal <ArrowRight className="h-4 w-4" /></p></a></div>
+    </section>
+  );
+}

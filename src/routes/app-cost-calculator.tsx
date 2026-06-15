@@ -1,222 +1,168 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { Section } from "@/components/site/Section";
-import { CTA } from "@/components/site/CTA";
-import {
-  Smartphone, Globe, Brain, ShoppingCart, Layers, Zap, Shield, Sparkles, CheckCircle2,
-} from "lucide-react";
+import { ArrowRight, Check, ChevronDown, Circle, Globe, Layers, Smartphone, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/app-cost-calculator")({
   head: () => ({
     meta: [
       { title: "App Cost Calculator — Tecaudex" },
-      { name: "description", content: "Estimate the cost of your web or mobile app in seconds with our interactive calculator." },
+      { name: "description", content: "Estimate the cost to build an app with Tecaudex." },
       { property: "og:title", content: "App Cost Calculator — Tecaudex" },
-      { property: "og:description", content: "Get an instant budget estimate for your next project." },
+      { property: "og:description", content: "Get a personalised app development estimate." },
     ],
   }),
   component: CalculatorPage,
 });
 
-type Option = { id: string; label: string; icon?: any; price: number; desc?: string };
+const appTypes = [
+  { icon: Smartphone, title: "Mobile Apps", subtitle: "iOS, Android, cross-platform", price: "£8,000 – £80,000+" },
+  { icon: Globe, title: "Web Apps", subtitle: "SaaS, PWAs, portals", price: "£6,000 – £95,000+" },
+  { icon: Sparkles, title: "AI / ML", subtitle: "ML, agents, automations", price: "£12,000 – £100,000+" },
+  { icon: Layers, title: "Blockchain", subtitle: "Smart contracts, DeFi, Web3", price: "£16,000 – £120,000+" },
+];
 
-const STEPS: { key: string; title: string; subtitle: string; multi?: boolean; options: Option[] }[] = [
-  {
-    key: "type",
-    title: "What kind of app are you building?",
-    subtitle: "Pick the primary product surface.",
-    options: [
-      { id: "mobile", label: "Mobile app", icon: Smartphone, price: 18000, desc: "iOS + Android" },
-      { id: "web", label: "Web platform", icon: Globe, price: 15000, desc: "Dashboards, SaaS" },
-      { id: "ai", label: "AI / LLM app", icon: Brain, price: 22000, desc: "LLM, RAG, agents" },
-      { id: "ecom", label: "E-commerce", icon: ShoppingCart, price: 14000, desc: "DTC & marketplace" },
-    ],
-  },
-  {
-    key: "features",
-    title: "Which features do you need?",
-    subtitle: "Select all that apply.",
-    multi: true,
-    options: [
-      { id: "auth", label: "Authentication", icon: Shield, price: 1500 },
-      { id: "payments", label: "Payments", icon: Zap, price: 3000 },
-      { id: "chat", label: "Realtime chat", icon: Sparkles, price: 3500 },
-      { id: "ai-feat", label: "AI features", icon: Brain, price: 5000 },
-      { id: "dash", label: "Admin dashboard", icon: Layers, price: 4000 },
-      { id: "push", label: "Push notifications", icon: Smartphone, price: 1200 },
-    ],
-  },
-  {
-    key: "design",
-    title: "Design fidelity",
-    subtitle: "Choose how custom the UX should feel.",
-    options: [
-      { id: "starter", label: "Template-based", price: 0, desc: "Fast, polished baseline" },
-      { id: "custom", label: "Custom design", price: 5000, desc: "Tailored UX & components" },
-      { id: "premium", label: "Premium brand", price: 12000, desc: "Bespoke art direction" },
-    ],
-  },
-  {
-    key: "timeline",
-    title: "When do you need to launch?",
-    subtitle: "Faster timelines need a larger team.",
-    options: [
-      { id: "asap", label: "ASAP (4–6 weeks)", price: 8000 },
-      { id: "normal", label: "Standard (2–3 months)", price: 0 },
-      { id: "long", label: "Long-term (4+ months)", price: -3000 },
-    ],
-  },
+const factors = [
+  "App type and platform",
+  "Features and complexity",
+  "Design requirements",
+  "Team location",
+  "Ongoing maintenance",
+];
+
+const faqs = [
+  "How much does it cost to make an app in the United Kingdom?",
+  "How accurate is this cost calculator?",
+  "How long does it take to build an app?",
+  "Is my data secure?",
+  "What happens after I get my estimate?",
 ];
 
 function CalculatorPage() {
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string[]>>({});
-
-  const total = useMemo(() => {
-    let sum = 0;
-    for (const s of STEPS) {
-      const picked = answers[s.key] ?? [];
-      for (const id of picked) {
-        const opt = s.options.find((o) => o.id === id);
-        if (opt) sum += opt.price;
-      }
-    }
-    return sum;
-  }, [answers]);
-
-  const current = STEPS[step];
-  const progress = ((step + 1) / STEPS.length) * 100;
-
-  const toggle = (id: string) => {
-    setAnswers((prev) => {
-      const cur = prev[current.key] ?? [];
-      if (current.multi) {
-        const next = cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id];
-        return { ...prev, [current.key]: next };
-      }
-      return { ...prev, [current.key]: [id] };
-    });
-  };
-
-  const selectedSummary = STEPS.flatMap((s) =>
-    (answers[s.key] ?? []).map((id) => {
-      const opt = s.options.find((o) => o.id === id)!;
-      return { step: s.title, label: opt.label, price: opt.price };
-    })
-  );
-
   return (
     <>
-      <Section
-        eyebrow="App cost calculator"
-        title={<>Estimate your project, in <span className="gradient-text">under 60 seconds</span>.</>}
-        description="Answer four quick questions and get a transparent ballpark for your build. We'll share a detailed proposal afterwards."
-        align="center"
-      />
-
-      <section className="container-page -mt-6 pb-24">
-        <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8">
-          {/* Steps panel */}
-          <div className="rounded-3xl border border-border bg-card p-6 md:p-10 shadow-soft">
-            <div className="flex items-center justify-between">
-              <div className="text-sm font-medium text-ink-soft">
-                Step {step + 1} of {STEPS.length}
-              </div>
-              <div className="text-sm font-medium text-ink-soft">{Math.round(progress)}%</div>
+      <section className="relative overflow-hidden pt-16 md:pt-28">
+        <div className="absolute left-1/2 top-8 h-56 w-[520px] -translate-x-1/2 rounded-full bg-brand/10 blur-3xl" />
+        <div className="container-page relative pb-16">
+          <div className="mx-auto max-w-[850px]">
+            <p className="text-[12px] font-extrabold uppercase tracking-[0.22em] text-brand">App development cost calculator</p>
+            <h1 className="mt-5 max-w-[650px] text-5xl font-extrabold leading-[0.98] text-ink md:text-[64px]">
+              How Much Does It Cost to Build an App?
+            </h1>
+            <p className="mt-6 max-w-[760px] text-[17px] leading-relaxed text-ink">
+              Get a free, personalised cost report for iOS, Android, or web apps — delivered to your email and WhatsApp in minutes.
+            </p>
+            <p className="mt-6 max-w-[830px] text-sm leading-relaxed text-ink-soft">
+              Building an app in the United Kingdom typically costs between £4,000 and £120,000+ depending on the type, platform, and features. The cost to develop an app varies based on design quality, backend complexity, integrations, and your development company’s location.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <button className="btn-brand">Calculate Your App Cost <ArrowRight className="h-4 w-4" /></button>
+              <span className="text-xs font-medium text-ink-soft">Free · 2 minutes · No signup</span>
             </div>
-            <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
-              <div className="h-full bg-brand transition-all duration-500" style={{ width: `${progress}%` }} />
+            <div className="mt-7 flex flex-wrap gap-3">
+              {["Instant detailed report", "Sent to email & WhatsApp", "370+ estimates generated"].map((item) => (
+                <span key={item} className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-semibold text-ink-soft">
+                  <Check className="h-3.5 w-3.5 text-brand" /> {item}
+                </span>
+              ))}
             </div>
-
-            <div key={current.key} className="rise mt-8">
-              <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-ink">{current.title}</h3>
-              <p className="mt-2 text-ink-soft">{current.subtitle}</p>
-
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {current.options.map((opt) => {
-                  const picked = (answers[current.key] ?? []).includes(opt.id);
-                  const Icon = opt.icon;
-                  return (
-                    <button
-                      key={opt.id}
-                      onClick={() => toggle(opt.id)}
-                      className={`group flex items-start gap-4 rounded-2xl border p-5 text-left transition-all ${
-                        picked
-                          ? "border-ink bg-ink text-white shadow-card"
-                          : "border-border bg-card hover:border-ink/30 hover:-translate-y-0.5"
-                      }`}
-                    >
-                      {Icon && (
-                        <span className={`grid h-11 w-11 place-items-center rounded-xl ${
-                          picked ? "bg-white/10" : "bg-surface group-hover:bg-brand/10"
-                        }`}>
-                          <Icon className={`h-5 w-5 ${picked ? "text-white" : "text-ink"}`} />
-                        </span>
-                      )}
-                      <div className="flex-1 min-w-0">
-                        <div className={`font-semibold ${picked ? "text-white" : "text-ink"}`}>{opt.label}</div>
-                        {opt.desc && <div className={`text-sm mt-0.5 ${picked ? "text-white/70" : "text-ink-soft"}`}>{opt.desc}</div>}
-                      </div>
-                      {picked && <CheckCircle2 className="h-5 w-5 text-brand-2 shrink-0" />}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
-                <button
-                  onClick={() => setStep((s) => Math.max(0, s - 1))}
-                  disabled={step === 0}
-                  className="btn-ghost disabled:opacity-40"
-                >
-                  Back
-                </button>
-                <button
-                  onClick={() => setStep((s) => Math.min(STEPS.length - 1, s + 1))}
-                  disabled={step === STEPS.length - 1}
-                  className="btn-primary disabled:opacity-40"
-                >
-                  Continue
-                </button>
-              </div>
+            <p className="mt-12 text-[11px] font-bold uppercase tracking-[0.18em] text-ink-soft">Explore unique app development cost ranges</p>
+            <div className="mt-4 grid gap-5 md:grid-cols-4">
+              {appTypes.map((type) => (
+                <article key={type.title} className="rounded-xl bg-surface p-5 transition hover:-translate-y-1 hover:shadow-soft">
+                  <span className="grid h-9 w-9 place-items-center rounded-lg bg-card text-ink-soft"><type.icon className="h-4 w-4" /></span>
+                  <h3 className="mt-4 text-sm font-extrabold text-ink">{type.title}</h3>
+                  <p className="mt-1 text-xs text-ink-soft">{type.subtitle}</p>
+                  <p className="mt-5 text-sm font-extrabold text-ink">{type.price}</p>
+                </article>
+              ))}
             </div>
           </div>
-
-          {/* Summary */}
-          <aside className="lg:sticky lg:top-28 self-start">
-            <div className="rounded-3xl border border-border bg-card p-8 shadow-soft">
-              <span className="eyebrow">Estimate</span>
-              <div className="mt-3 text-5xl font-bold tracking-tight text-ink">
-                ${total.toLocaleString()}
-              </div>
-              <p className="mt-2 text-ink-soft text-sm">
-                Ballpark range — your final proposal includes timeline, team and milestones.
-              </p>
-
-              <div className="mt-6 border-t border-border pt-5">
-                <h4 className="text-sm font-semibold text-ink uppercase tracking-wide">Your selections</h4>
-                {selectedSummary.length === 0 ? (
-                  <p className="mt-3 text-sm text-ink-soft">No selections yet — start with step one.</p>
-                ) : (
-                  <ul className="mt-3 space-y-2 text-sm">
-                    {selectedSummary.map((s, i) => (
-                      <li key={i} className="flex items-center justify-between gap-3">
-                        <span className="text-ink">{s.label}</span>
-                        <span className="text-ink-soft tabular-nums">{s.price >= 0 ? "+" : "-"}${Math.abs(s.price).toLocaleString()}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-
-              <button className="btn-brand mt-6 w-full">Get detailed proposal</button>
-              <p className="mt-3 text-xs text-ink-soft text-center">We respond within 24 hours.</p>
-            </div>
-          </aside>
         </div>
       </section>
 
-      <CTA title="Prefer to talk it through?" description="Book a free 30-minute consult with one of our product strategists." ctaLabel="Book a call" />
+      <Stats />
+      <Steps />
+      <Factors />
+      <FAQ />
+      <FinalCTA />
     </>
+  );
+}
+
+function Stats() {
+  return (
+    <section className="bg-surface py-12">
+      <div className="container-page mx-auto grid max-w-[850px] grid-cols-2 gap-8 text-center md:grid-cols-4">
+        {["80+|Projects delivered", "10+|Countries served", "370+|Estimates generated", "£2M+|Estimated via calculator"].map((item) => {
+          const [value, label] = item.split("|");
+          return <div key={item}><div className="text-4xl font-extrabold text-ink">{value}</div><p className="mt-1 text-sm text-ink-soft">{label}</p></div>;
+        })}
+      </div>
+    </section>
+  );
+}
+
+function Steps() {
+  return (
+    <section className="py-24 text-center">
+      <div className="container-page mx-auto max-w-[820px]">
+        <h2 className="text-2xl font-extrabold text-ink">Get your estimate in 3 simple steps</h2>
+        <div className="mt-12 grid gap-10 md:grid-cols-3">
+          {["Pick your app type|Select the platforms and technology for your project", "Describe your project|Tell our AI about your idea and specific requirements", "Get your personalised report|Receive a detailed cost breakdown and roadmap"].map((item, index) => {
+            const [title, text] = item.split("|");
+            return <div key={item}><span className="mx-auto grid h-10 w-10 place-items-center rounded-full bg-ink text-sm font-bold text-primary-foreground">{index + 1}</span><h3 className="mt-5 font-extrabold text-ink">{title}</h3><p className="mx-auto mt-2 max-w-[210px] text-sm text-ink-soft">{text}</p></div>;
+          })}
+        </div>
+        <button className="btn-brand mt-12">Get Your Personalised Report <ArrowRight className="h-4 w-4" /></button>
+        <p className="mt-3 text-xs text-ink-soft">Takes less than 2 minutes</p>
+      </div>
+    </section>
+  );
+}
+
+function Factors() {
+  return (
+    <section className="bg-surface py-24">
+      <div className="container-page mx-auto max-w-[850px]">
+        <p className="text-sm text-ink-soft">What you should know</p>
+        <h2 className="mt-3 max-w-[720px] text-4xl font-extrabold leading-tight text-ink md:text-5xl">What Affects the Cost to Build an App in the United Kingdom?</h2>
+        <p className="mt-5 max-w-[580px] text-sm leading-relaxed text-ink-soft">Every project is unique. Here are the key factors that determine your final development cost.</p>
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {factors.map((factor) => (
+            <article key={factor} className="min-h-[160px] rounded-xl bg-card p-7 shadow-soft">
+              <h3 className="font-extrabold text-ink">{factor}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-ink-soft">A simple MVP with 3–5 screens costs far less than a full-featured marketplace or enterprise product.</p>
+            </article>
+          ))}
+        </div>
+        <div className="mt-12 text-center"><button className="inline-flex items-center gap-2 text-sm font-extrabold text-brand">Get your personalised cost report <ArrowRight className="h-4 w-4" /></button></div>
+      </div>
+    </section>
+  );
+}
+
+function FAQ() {
+  return (
+    <section className="py-24">
+      <div className="container-page mx-auto max-w-[760px]">
+        <p className="text-sm text-ink-soft">Common questions</p>
+        <h2 className="mt-2 text-4xl font-extrabold text-ink">Frequently asked questions</h2>
+        <div className="mt-12 divide-y divide-border">
+          {faqs.map((q) => <button key={q} className="flex w-full items-center justify-between py-6 text-left text-sm font-semibold text-ink"><span>{q}</span><ChevronDown className="h-4 w-4 text-ink-soft" /></button>)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FinalCTA() {
+  return (
+    <section className="bg-surface py-20 text-center">
+      <div className="container-page">
+        <Circle className="mx-auto h-3 w-3 fill-brand text-brand" />
+        <h2 className="mt-4 text-2xl font-extrabold text-ink">Ready for your free estimate?</h2>
+        <p className="mt-2 text-sm text-ink-soft">Join 370+ businesses who’ve received their personalised report.</p>
+        <div className="mt-8 flex flex-wrap justify-center gap-4"><button className="btn-brand">Get Your Personalised Report <ArrowRight className="h-4 w-4" /></button><button className="btn-ghost">Talk to Our Team</button></div>
+      </div>
+    </section>
   );
 }

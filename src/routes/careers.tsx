@@ -1,138 +1,112 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Section } from "@/components/site/Section";
-import { CTA } from "@/components/site/CTA";
-import { ArrowUpRight, Heart, Globe, Coffee, Sparkles, Users, Rocket, GraduationCap, Wallet, Shield } from "lucide-react";
+import { ArrowRight, BadgeDollarSign, BriefcaseBusiness, CalendarClock, GraduationCap, HeartHandshake, Home, MonitorPlay, ShieldPlus, UsersRound } from "lucide-react";
 
 export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
       { title: "Careers — Tecaudex" },
-      { name: "description", content: "Join Tecaudex Studio. We're a small, senior team building category-defining software with ambitious teams." },
+      { name: "description", content: "Join the crew building future-ready digital products at Tecaudex." },
       { property: "og:title", content: "Careers — Tecaudex" },
-      { property: "og:description", content: "Open roles at Tecaudex Studio." },
+      { property: "og:description", content: "Open positions and life at Tecaudex." },
     ],
   }),
   component: CareersPage,
 });
 
-const VALUES = [
-  { icon: Heart, t: "Craft over noise", d: "We sweat the details — pixels, copy, performance and the boring stuff in between." },
-  { icon: Users, t: "Senior by default", d: "Tiny, opinionated teams. No layers, no babysitting, no busywork." },
-  { icon: Rocket, t: "Bias to ship", d: "We'd rather learn in production than perfect in a Figma file." },
-  { icon: Globe, t: "Remote-first", d: "Work from anywhere in compatible timezones. Quarterly in-person retreats." },
-];
-
-const BENEFITS = [
-  { icon: Wallet, t: "Above-market salary", d: "Top of band + meaningful equity." },
-  { icon: Coffee, t: "Unlimited PTO", d: "With a 4-week minimum, actually taken." },
-  { icon: GraduationCap, t: "$3,000 learning budget", d: "Books, courses, conferences — your call." },
-  { icon: Shield, t: "Premium health cover", d: "Medical, dental and vision — for you and family." },
-  { icon: Sparkles, t: "Home-office stipend", d: "$2,500 to set up the workspace you deserve." },
-  { icon: Globe, t: "Workation friendly", d: "Work from another country for up to 90 days a year." },
-];
-
-const ROLES = [
-  { title: "Senior Product Engineer", team: "Engineering", loc: "Remote · EU/US", type: "Full-time" },
-  { title: "AI/ML Engineer", team: "AI", loc: "Remote · EU", type: "Full-time" },
-  { title: "Senior Product Designer", team: "Design", loc: "Remote · Worldwide", type: "Full-time" },
-  { title: "Growth Strategist", team: "Growth", loc: "Remote · EU/US", type: "Full-time" },
-  { title: "Engineering Manager", team: "Engineering", loc: "Remote · EU", type: "Full-time" },
-  { title: "Mobile Engineer (React Native)", team: "Engineering", loc: "Remote · Worldwide", type: "Contract" },
+const benefits = [
+  { icon: CalendarClock, title: "Flexible Work Schedules", text: "We trust our squad to own their time, work hard, vibe harder, and keep that work-life balance on point!", cls: "benefit-blue" },
+  { icon: HeartHandshake, title: "Paid Leaves", text: "Need a break? We got you. Take paid time off, recharge, and come back ready to slay!", cls: "benefit-cream" },
+  { icon: Home, title: "Work From Home", text: "Work from anywhere, anytime. Flexibility + productivity = the perfect balance.", cls: "benefit-pink" },
+  { icon: MonitorPlay, title: "Free Online Development Courses", text: "Get access to top online courses and stay ahead in tech and trends.", cls: "benefit-lime" },
+  { icon: ShieldPlus, title: "Health Insurance Benefits (IPD + OPD)", text: "Your health, our priority! We’ve got you covered with comprehensive health insurance.", cls: "benefit-violet" },
+  { icon: UsersRound, title: "Team Development Allowance", text: "Team bonding just got better with a dedicated allowance for epic activities.", cls: "benefit-mint" },
+  { icon: GraduationCap, title: "Development & Learning Allowance", text: "Enjoy a dedicated allowance for certifications, workshops, and skill boosts.", cls: "benefit-sky" },
+  { icon: BadgeDollarSign, title: "Provident Fund", text: "Both you and the company pitch in to a fund that grows your future.", cls: "benefit-peach" },
 ];
 
 function CareersPage() {
   return (
     <>
       <Hero />
-      <Section
-        eyebrow="Culture"
-        title={<>Small team. Big <span className="gradient-text">ambitions</span>.</>}
-        description="We're a fully remote studio of 28 designers, engineers and strategists. We work with companies we admire on problems that matter."
-      >
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {VALUES.map((v) => (
-            <div key={v.t} className="rounded-2xl border border-border bg-card p-7 card-hover">
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-brand/10 text-brand">
-                <v.icon className="h-5 w-5" />
-              </span>
-              <h3 className="mt-5 text-lg font-semibold text-ink">{v.t}</h3>
-              <p className="mt-2 text-ink-soft leading-relaxed">{v.d}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <section className="bg-surface border-y border-border">
-        <div className="container-page section-pad">
-          <div className="max-w-3xl">
-            <span className="eyebrow">Benefits</span>
-            <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-ink leading-[1.05]">
-              Treating people like the adults they are.
-            </h2>
-          </div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {BENEFITS.map((b) => (
-              <div key={b.t} className="flex gap-4 rounded-2xl border border-border bg-card p-6 card-hover">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink text-white">
-                  <b.icon className="h-5 w-5" />
-                </span>
-                <div>
-                  <h3 className="font-semibold text-ink">{b.t}</h3>
-                  <p className="text-sm text-ink-soft mt-1">{b.d}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Section
-        eyebrow="Open positions"
-        title={<>{ROLES.length} open roles. Let's <span className="gradient-text">build something</span>.</>}
-        description="Don't see an exact fit? Send us a thoughtful note — we hire great people whenever we meet them."
-      >
-        <div className="rounded-3xl border border-border bg-card overflow-hidden divide-y divide-border">
-          {ROLES.map((r) => (
-            <a key={r.title} href="#" className="group flex flex-col md:flex-row md:items-center justify-between gap-3 p-6 md:p-8 hover:bg-surface transition">
-              <div className="flex-1 min-w-0">
-                <h3 className="text-xl font-semibold text-ink group-hover:text-brand transition-colors">{r.title}</h3>
-                <div className="mt-2 flex flex-wrap gap-3 text-sm text-ink-soft">
-                  <span>{r.team}</span><span>·</span><span>{r.loc}</span><span>·</span><span>{r.type}</span>
-                </div>
-              </div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-ink group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all">
-                Apply now <ArrowUpRight className="h-4 w-4" />
-              </span>
-            </a>
-          ))}
-        </div>
-      </Section>
-
-      <CTA eyebrow="Don't see your role?" title="Introduce yourself anyway." description="We always make time for talented humans. Send a note and a few links to your best work." ctaLabel="Send an intro" />
+      <GalleryStrip />
+      <Benefits />
+      <OpenPositions />
     </>
   );
 }
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="hero-blob h-[420px] w-[420px] bg-brand/40 -top-20 -left-32" />
-      <div className="hero-blob h-[460px] w-[460px] bg-brand-2/30 top-20 -right-32" />
-      <div className="container-page relative pt-16 md:pt-24 pb-12 md:pb-16">
-        <div className="max-w-3xl rise">
-          <span className="eyebrow">Careers</span>
-          <h1 className="mt-5 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.02] text-ink">
-            Make work you'll be <span className="gradient-text">proud of</span>.
-          </h1>
-          <p className="mt-6 text-lg md:text-xl text-ink-soft max-w-2xl leading-relaxed">
-            Tecaudex is a fully remote studio of senior product engineers, designers and strategists. We hire slowly, treat people well, and ship work we'd brag about for years.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#roles" className="btn-brand">See open roles <ArrowUpRight className="h-4 w-4" /></a>
-            <a href="#" className="btn-ghost">Read our handbook</a>
-          </div>
-        </div>
+    <section className="relative overflow-hidden pt-16 md:pt-24">
+      <div className="absolute left-1/2 top-8 h-52 w-[520px] -translate-x-1/2 rounded-full bg-brand/12 blur-3xl" />
+      <div className="container-page relative pb-20 text-center">
+        <h1 className="mx-auto max-w-[610px] text-5xl font-extrabold leading-[1.02] text-ink md:text-[70px]">
+          Join the crew that&apos;s building the future.
+        </h1>
+        <p className="mx-auto mt-8 max-w-[580px] text-[15px] leading-relaxed text-ink">
+          We build apps that actually work and make life easier for everyone who uses them. Join us if you love turning crazy ideas into real products, experimenting boldly, and leaving your mark on every pixel and line of code.
+        </p>
+        <a href="#positions" className="btn-brand mt-8"><BriefcaseBusiness className="h-4 w-4" /> Job openings</a>
+        <Timeline />
       </div>
+    </section>
+  );
+}
+
+function Timeline() {
+  return (
+    <div className="mx-auto mt-16 max-w-[560px]">
+      <div className="grid grid-cols-6 text-xs text-ink-soft"><span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2026</span></div>
+      <div className="mt-3 grid grid-cols-[repeat(31,minmax(0,1fr))] gap-1 px-1">
+        {Array.from({ length: 31 }).map((_, i) => <span key={i} className={`h-9 border-l ${i === 12 ? "border-brand" : "border-border"}`} />)}
+      </div>
+      <div className="mx-auto mt-3 grid max-w-[440px] grid-cols-6 place-items-center text-ink-soft"><span>👥</span><span>⌘</span><span className="text-brand">🚀</span><span>▣</span><span>✕</span><span>∞</span></div>
+      <div className="mx-auto mt-8 max-w-[150px] text-center"><div className="text-2xl">🚀</div><p className="mt-4 text-sm font-extrabold text-ink">Launch</p><p className="mt-2 text-xs leading-tight text-ink-soft">Tecaudex went official and got a spot to call home.</p></div>
+    </div>
+  );
+}
+
+function GalleryStrip() {
+  return (
+    <section className="overflow-hidden py-10">
+      <div className="flex w-[120vw] -translate-x-[10vw] gap-6">
+        {["aspect-[4/3] w-[360px]", "aspect-[4/3] w-[450px]", "aspect-[16/9] w-[520px]", "aspect-[4/3] w-[380px]"].map((cls, index) => (
+          <div key={index} className={`${cls} shrink-0 image-tile-bg`} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Benefits() {
+  return (
+    <section className="container-page py-16">
+      <h2 className="text-4xl font-extrabold text-ink">What we value at tecaudex</h2>
+      <p className="mt-3 max-w-[540px] text-sm text-ink-soft">A closer look at the principles and perks that shape everyday life at Tecaudex.</p>
+      <div className="mt-12 grid border border-border md:grid-cols-4">
+        {benefits.map((item) => (
+          <article key={item.title} className={`${item.cls} min-h-[285px] border-b border-r border-border p-7 md:min-h-[330px]`}>
+            <item.icon className="h-9 w-9 text-ink" />
+            <h3 className="mt-6 max-w-[230px] text-base font-extrabold leading-snug text-ink">{item.title}</h3>
+            <p className="mt-24 text-sm leading-relaxed text-ink md:mt-28">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function OpenPositions() {
+  return (
+    <section id="positions" className="container-page py-20 md:pb-28">
+      <h2 className="text-4xl font-extrabold text-ink">Open positions</h2>
+      <p className="mt-3 max-w-[650px] text-sm text-ink-soft">A closer look at the core features and technologies that shape this project designed for efficiency, innovation, and impact.</p>
+      <article className="mt-12 border-t border-border py-8">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
+          <div><h3 className="text-lg font-extrabold text-ink">Business Development Executive</h3><p className="mt-14 text-sm text-ink">Upwork Bidder</p><p className="mt-2 text-sm text-ink">Full Time</p></div>
+          <a href="#" className="group inline-flex items-center gap-4 text-xs font-extrabold uppercase text-ink">Apply <span className="grid h-9 w-9 place-items-center rounded-full border border-brand text-brand transition group-hover:bg-brand group-hover:text-primary-foreground"><ArrowRight className="h-4 w-4" /></span></a>
+        </div>
+      </article>
     </section>
   );
 }

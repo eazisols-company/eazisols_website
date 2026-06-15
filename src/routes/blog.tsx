@@ -1,110 +1,71 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Section } from "@/components/site/Section";
+import { ArrowRight, Search } from "lucide-react";
 import { BlogCard, type BlogPost } from "@/components/site/BlogCard";
-import { CTA } from "@/components/site/CTA";
-import { ArrowUpRight, Search } from "lucide-react";
 
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
       { title: "Blog — Tecaudex" },
-      { name: "description", content: "Essays, tutorials and case studies on AI, product engineering and digital growth." },
+      { name: "description", content: "Tecaudex articles on software, AI, design, and digital growth." },
       { property: "og:title", content: "Blog — Tecaudex" },
-      { property: "og:description", content: "Notes from the studio on building modern software." },
+      { property: "og:description", content: "Latest thinking from the Tecaudex team." },
     ],
   }),
   component: BlogPage,
 });
 
-const FEATURED: BlogPost = {
-  title: "Building production-grade RAG: lessons from 12 deployments",
-  excerpt: "A field guide to retrieval, evaluation and the unsexy details that decide whether your AI app ships — or stalls in a demo.",
-  category: "AI Engineering",
-  date: "Jun 12, 2026",
-  readTime: "9 min read",
-  author: "Sarah Chen",
-  gradient: "linear-gradient(135deg, #4338ca 0%, #ec4899 100%)",
-};
-
-const POSTS: BlogPost[] = [
-  { title: "Why we ship in two-week sprints", excerpt: "How short cycles keep momentum, reduce risk and surface signal earlier.", category: "Process", date: "Jun 6, 2026", readTime: "5 min", author: "James Okafor", gradient: "linear-gradient(135deg, #ff6b6b, #c44569)" },
-  { title: "Design systems that scale with your team", excerpt: "Tokens, primitives and the missing layer most teams skip.", category: "Design", date: "May 28, 2026", readTime: "7 min", author: "Maya Patel", gradient: "linear-gradient(135deg, #059669, #84cc16)" },
-  { title: "TanStack Start in production", excerpt: "Patterns, pitfalls and performance from real-world apps.", category: "Engineering", date: "May 18, 2026", readTime: "8 min", author: "Liam Park", gradient: "linear-gradient(135deg, #1e3a8a, #6366f1)" },
-  { title: "Conversion experiments that actually moved revenue", excerpt: "Five A/B tests from last quarter and the framing behind them.", category: "Growth", date: "May 7, 2026", readTime: "6 min", author: "Aïcha Diop", gradient: "linear-gradient(135deg, #f59e0b, #ef4444)" },
-  { title: "From idea to App Store in 9 weeks", excerpt: "A case study on shipping a polished mobile app on a tight timeline.", category: "Case Study", date: "Apr 22, 2026", readTime: "10 min", author: "Sarah Chen", gradient: "linear-gradient(135deg, #0ea5e9, #10b981)" },
-  { title: "Edge-first architecture with Cloudflare Workers", excerpt: "When to push logic to the edge — and when not to.", category: "Engineering", date: "Apr 11, 2026", readTime: "6 min", author: "Liam Park", gradient: "linear-gradient(135deg, #0f172a, #6366f1)" },
+const posts: BlogPost[] = [
+  { title: "How to plan a custom web app before development starts", excerpt: "A practical breakdown of scope, features, timelines, and design decisions that shape a successful launch.", category: "Software", date: "Jun 12, 2026", readTime: "7 min read", author: "Tecaudex Team", gradient: "" },
+  { title: "What makes a mobile app feel premium?", excerpt: "Performance, flows, visual polish, and the subtle details that separate good apps from forgettable ones.", category: "Mobile", date: "Jun 4, 2026", readTime: "5 min read", author: "Design Team", gradient: "" },
+  { title: "AI products need workflows, not just prompts", excerpt: "Why useful AI products are built around business processes, data quality, and clear user outcomes.", category: "AI/ML", date: "May 28, 2026", readTime: "8 min read", author: "AI Team", gradient: "" },
+  { title: "ERP migration mistakes to avoid", excerpt: "A closer look at planning data, integrations, staff adoption, and risk during ERP modernization.", category: "ERP", date: "May 15, 2026", readTime: "6 min read", author: "ERP Team", gradient: "" },
+  { title: "Design systems for fast-moving teams", excerpt: "Reusable components and tokens help teams ship faster without losing consistency across screens.", category: "Design", date: "Apr 29, 2026", readTime: "6 min read", author: "Design Team", gradient: "" },
+  { title: "How marketing websites convert better", excerpt: "Messaging, structure, proof, and performance tips for turning traffic into qualified leads.", category: "Marketing", date: "Apr 10, 2026", readTime: "5 min read", author: "Growth Team", gradient: "" },
 ];
 
-const CATEGORIES = ["All", "AI Engineering", "Engineering", "Design", "Process", "Growth", "Case Study"];
+const categories = ["All", "Software", "Mobile", "AI/ML", "ERP", "Design", "Marketing"];
 
 function BlogPage() {
-  const [cat, setCat] = useState("All");
-  const filtered = cat === "All" ? POSTS : POSTS.filter((p) => p.category === cat);
+  const [active, setActive] = useState("All");
+  const filtered = active === "All" ? posts : posts.filter((post) => post.category === active);
+
   return (
     <>
-      <Section
-        eyebrow="The Tecaudex journal"
-        title={<>Notes from the studio on <span className="gradient-text">building software</span>.</>}
-        description="Deep dives, tutorials and case studies on AI, product engineering, design and growth."
-        align="center"
-      />
-
-      {/* Featured */}
-      <section className="container-page -mt-6 mb-20">
-        <article className="group grid lg:grid-cols-2 gap-0 rounded-3xl border border-border overflow-hidden bg-card card-hover">
-          <div className="aspect-[16/10] lg:aspect-auto" style={{ background: FEATURED.gradient }} />
-          <div className="p-8 md:p-12 flex flex-col justify-center">
-            <span className="eyebrow">Featured</span>
-            <h2 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight group-hover:text-brand transition-colors">
-              {FEATURED.title}
-            </h2>
-            <p className="mt-4 text-ink-soft leading-relaxed">{FEATURED.excerpt}</p>
-            <div className="mt-6 flex items-center gap-4 text-sm text-ink-soft">
-              <span className="rounded-full bg-surface px-3 py-1 font-medium text-ink">{FEATURED.category}</span>
-              <span>{FEATURED.date}</span>
-              <span>· {FEATURED.readTime}</span>
-            </div>
-            <button className="mt-8 inline-flex w-fit items-center gap-2 font-medium text-ink">
-              Read article <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </button>
+      <section className="relative overflow-hidden pt-14 md:pt-24">
+        <div className="absolute left-1/2 top-8 h-52 w-[560px] -translate-x-1/2 rounded-full bg-brand/10 blur-3xl" />
+        <div className="container-page relative pb-16">
+          <div className="max-w-[760px]">
+            <p className="text-[12px] font-extrabold uppercase tracking-[0.22em] text-brand">Tecaudex blog</p>
+            <h1 className="mt-5 text-5xl font-extrabold leading-[1.02] text-ink md:text-[64px]">Ideas, guides, and updates from our team.</h1>
+            <p className="mt-6 max-w-[680px] text-base leading-relaxed text-ink-soft">Practical articles about software development, AI/ML, ERP solutions, product design, and digital growth.</p>
           </div>
-        </article>
+        </div>
       </section>
 
-      {/* Categories + search */}
-      <section className="container-page mb-10">
-        <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
+      <section className="container-page pb-12">
+        <div className="flex flex-col gap-5 border-y border-border py-5 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((c) => (
-              <button
-                key={c}
-                onClick={() => setCat(c)}
-                className={`rounded-full px-4 py-2 text-sm font-medium border transition-all ${
-                  cat === c ? "bg-ink text-white border-ink" : "bg-card text-ink-soft border-border hover:text-ink hover:border-ink/30"
-                }`}
-              >
-                {c}
-              </button>
-            ))}
+            {categories.map((cat) => <button key={cat} onClick={() => setActive(cat)} className={`rounded-full border px-4 py-2 text-xs font-extrabold transition ${active === cat ? "border-ink bg-ink text-primary-foreground" : "border-border bg-card text-ink hover:border-ink"}`}>{cat}</button>)}
           </div>
-          <div className="relative w-full lg:w-80">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-soft" />
-            <input
-              placeholder="Search articles"
-              className="w-full rounded-full border border-border bg-card pl-10 pr-4 py-2.5 text-sm outline-none focus:border-ink transition"
-            />
-          </div>
+          <label className="relative block w-full md:w-72"><Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-soft" /><input className="w-full rounded-full border border-border bg-card py-2.5 pl-11 pr-4 text-sm outline-none focus:border-ink" placeholder="Search articles" /></label>
         </div>
       </section>
 
       <section className="container-page pb-24">
+        <article className="mb-12 grid overflow-hidden rounded-xl border border-border bg-card md:grid-cols-2">
+          <div className="min-h-[320px] image-tile-bg" />
+          <div className="flex flex-col justify-center p-8 md:p-12">
+            <span className="text-sm font-extrabold uppercase tracking-[0.18em] text-brand">Featured</span>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-ink">How much does it cost to build modern software?</h2>
+            <p className="mt-5 leading-relaxed text-ink-soft">A clear guide to the major cost factors behind app development, web platforms, AI tools, and enterprise software.</p>
+            <button className="mt-8 inline-flex w-fit items-center gap-2 text-sm font-extrabold text-brand">Read article <ArrowRight className="h-4 w-4" /></button>
+          </div>
+        </article>
         <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((p) => <BlogCard key={p.title} post={p} />)}
+          {filtered.map((post) => <BlogCard key={post.title} post={post} />)}
         </div>
       </section>
-
-      <CTA eyebrow="Newsletter" title="Get the best of the journal, monthly." description="One email a month. No spam, no fluff — only the essays our readers loved most." ctaLabel="Subscribe" />
     </>
   );
 }
