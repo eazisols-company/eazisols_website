@@ -69,8 +69,8 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.16 0.02 260);
 
-  --brand: oklch(0.64 0.24 20);
-  --brand-2: oklch(0.7 0.17 28);
+  --brand: oklch(0.64 0.18 256);
+  --brand-2: oklch(0.74 0.14 250);
   --footer: oklch(0 0 0);
   --footer-foreground: oklch(0.98 0 0);
   --linkedin: oklch(0.52 0.18 255);
