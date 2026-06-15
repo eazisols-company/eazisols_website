@@ -95,9 +95,108 @@ function Landing({ onStart }: { onStart: () => void }) {
           <p className="mt-3 text-xs text-ink-soft">Takes less than 2 minutes</p>
         </div>
       </section>
+
+      {/* STATS */}
+      <section className="bg-surface py-16">
+        <div className="container-page">
+          <div className="mx-auto grid max-w-[900px] grid-cols-2 gap-8 md:grid-cols-4">
+            {[
+              { v: "80+", l: "Projects delivered" },
+              { v: "10+", l: "Countries served" },
+              { v: "370+", l: "Estimates generated" },
+              { v: "£2M+", l: "Estimated via calculator" },
+            ].map((s) => (
+              <div key={s.l} className="text-center">
+                <p className="text-3xl font-extrabold text-ink md:text-4xl">{s.v}</p>
+                <p className="mt-2 text-xs text-ink-soft">{s.l}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-center text-xs text-ink-soft">Trusted by startups and enterprise across the United Kingdom and beyond</p>
+        </div>
+      </section>
+
+      {/* AFFECT */}
+      <section className="bg-surface/60 py-24">
+        <div className="container-page">
+          <div className="mx-auto max-w-[1100px]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-ink-soft">What you should know</p>
+            <h2 className="mt-3 max-w-[760px] text-3xl font-extrabold leading-tight text-ink md:text-[40px]">
+              What Affects the Cost to Build an App in the United Kingdom?
+            </h2>
+            <p className="mt-4 max-w-[640px] text-[15px] text-brand">
+              Every project is unique. Here are the key factors that determine your final development cost.
+            </p>
+
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
+              {[
+                { t: "App type and platform", d: "iOS, Android, or cross-platform (Flutter/React Native) apps each have different cost profiles. A cross-platform app typically costs 30–40% less than building native iOS and Android separately." },
+                { t: "Features and complexity", d: "A simple MVP with 3–5 screens costs far less than a full feature marketplace or fintech platform. Every feature adds development time." },
+                { t: "Design requirements", d: "Custom UI/UX design adds to the budget but significantly improves user retention. Basic apps use templates, complex products need bespoke design." },
+                { t: "Team location", d: "Agencies in the United Kingdom typically charge premium rates. Offshore teams with United Kingdom timezone alignment (like Tecaudex) deliver the same quality at significantly lower rates." },
+                { t: "Ongoing maintenance", d: "Factor in 15–20% of your build cost annually for updates, hosting, and bug fixes." },
+              ].map((c) => (
+                <article key={c.t} className="rounded-xl bg-card p-6">
+                  <h3 className="text-sm font-extrabold text-brand">{c.t}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">{c.d}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <button onClick={onStart} className="inline-flex items-center gap-2 text-sm font-bold text-brand hover:underline">
+                Get your personalised cost report <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24">
+        <div className="container-page mx-auto max-w-[760px]">
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-ink-soft">Common questions</p>
+          <h2 className="mt-3 text-3xl font-extrabold text-ink md:text-[40px]">Frequently asked questions</h2>
+          <div className="mt-10 divide-y divide-border border-y border-border">
+            {[
+              { q: "How much does it cost to make an app in the United Kingdom?", a: "Typical costs range from £8,000 for a simple MVP to £120,000+ for complex enterprise platforms. Most projects fall between £20,000 and £60,000." },
+              { q: "How accurate is this cost calculator?", a: "Our calculator uses real project data from 370+ delivered apps. Estimates are typically within 10–15% of the final quote." },
+              { q: "How long does it take to build an app?", a: "MVPs take 2–4 months. Growth-ready apps take 4–8 months depending on scope and integrations." },
+              { q: "Is my data secure?", a: "Yes. Your information is never sold or shared. Reports are delivered only to your email and WhatsApp." },
+              { q: "What happens after I get my estimate?", a: "Our team will reach out within 24 hours to discuss your project, refine the scope, and answer any questions." },
+            ].map((f) => (
+              <details key={f.q} className="group py-5">
+                <summary className="flex cursor-pointer items-center justify-between text-[15px] font-semibold text-ink">
+                  {f.q}
+                  <ChevronDown className="h-4 w-4 text-ink-soft transition group-open:rotate-180" />
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="bg-surface py-20">
+        <div className="container-page mx-auto max-w-[760px] text-center">
+          <h2 className="text-2xl font-extrabold text-ink md:text-3xl">Ready for your free estimate?</h2>
+          <p className="mt-3 text-sm text-ink-soft">Join 370+ businesses who've received their personalised report.</p>
+          <p className="mt-1 text-xs text-ink-soft">Takes 2 minutes · report sent to your email and WhatsApp</p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <button onClick={onStart} className="inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[var(--brand-2)]">
+              Get Your Personalised Report <ArrowRight className="h-4 w-4" />
+            </button>
+            <a href="/contact" className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-bold text-ink transition hover:bg-surface">
+              Talk to Our Team
+            </a>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
+
 
 /* ===================== WIZARD ===================== */
 
