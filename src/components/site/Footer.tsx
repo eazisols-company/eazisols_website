@@ -1,94 +1,94 @@
 import { Link } from "@tanstack/react-router";
-import { Linkedin, Twitter, Github, Mail, ArrowUpRight } from "lucide-react";
+import { ArrowUp } from "lucide-react";
+import { Logo } from "./Logo";
+
+const COMPANY = [
+  { label: "Contact us", to: "/#contact" },
+  { label: "About Us", to: "/" },
+  { label: "Portfolio", to: "/portfolio" },
+  { label: "App Cost Calculator", to: "/app-cost-calculator" },
+  { label: "Privacy Policy", to: "/" },
+];
+const SERVICES = [
+  "Software Development",
+  "ERP Solutions",
+  "AI/ML Services",
+  "Kick-Off Marketing",
+  "App Designing",
+];
+const SOCIAL = ["Facebook", "Instagram", "LinkedIn", "YouTube", "Twitter"];
 
 export function Footer() {
   return (
-    <footer className="relative bg-ink text-white overflow-hidden">
-      <div className="absolute -top-32 -left-20 h-80 w-80 rounded-full bg-brand/30 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 -right-20 h-80 w-80 rounded-full bg-brand-2/20 blur-3xl pointer-events-none" />
-
-      <div className="container-page relative py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <footer className="relative bg-[#0a0a0a] text-white">
+      <div className="container-page py-20">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr_0.9fr]">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="grid h-10 w-10 place-items-center rounded-lg bg-white text-ink font-black text-base">
-                N<span className="text-brand">.</span>
-              </span>
-              <span className="font-semibold tracking-tight text-lg">nordex</span>
-            </div>
-            <p className="mt-5 text-white/70 max-w-sm leading-relaxed">
-              Your technology partner for AI products, web platforms, and digital growth — built by a senior product team.
+            <Logo variant="light" />
+            <p className="mt-6 text-white/65 max-w-xs leading-relaxed">
+              Ready to transform your brand's digital presence? Our expert team is here to help you achieve.
             </p>
-            <div className="mt-6 flex gap-3">
-              {[Linkedin, Twitter, Github, Mail].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="grid h-10 w-10 place-items-center rounded-full border border-white/15 hover:border-brand hover:text-brand transition-colors"
-                  aria-label="social"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
+            <a href="#contact" className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand text-white px-6 py-3 font-medium hover:brightness-110 transition">
+              Book a Free Call
+            </a>
+          </div>
+
+          <Col title="Company">
+            {COMPANY.map((l) => (
+              <li key={l.label}><Link to={l.to} className="text-white/70 hover:text-white transition">{l.label}</Link></li>
+            ))}
+          </Col>
+
+          <Col title="Services">
+            {SERVICES.map((s) => (
+              <li key={s}><Link to="/services" className="text-white/70 hover:text-white transition">{s}</Link></li>
+            ))}
+          </Col>
+
+          <div>
+            <h4 className="font-semibold text-white">Contact</h4>
+            <div className="mt-5 space-y-5 text-sm">
+              <div>
+                <p className="font-medium text-white">Our Email</p>
+                <a href="mailto:sales@tecaudex.com" className="text-white/70 underline underline-offset-4 hover:text-white">sales@tecaudex.com</a>
+              </div>
+              <div>
+                <p className="font-medium text-white">Our Phone</p>
+                <p className="text-white/70 underline underline-offset-4">+1 6562700320</p>
+                <p className="text-white/70 underline underline-offset-4">+44 7897021964</p>
+                <p className="text-white/70 underline underline-offset-4">+61 483910820</p>
+              </div>
+              <div>
+                <p className="font-medium text-white">Our Address</p>
+                <p className="text-white/70 leading-relaxed">2nd Floor, 7 - B OPF, Main Boulevard, Lahore, Pakistan, 54770</p>
+                <p className="mt-3 text-white/70 leading-relaxed">131 Continental Dr, Suite 305, Newark, Delaware, 19713</p>
+              </div>
             </div>
           </div>
 
-          <FooterCol
-            title="Company"
-            links={[
-              { label: "Home", to: "/" },
-              { label: "Services", to: "/services" },
-              { label: "Portfolio", to: "/portfolio" },
-              { label: "Careers", to: "/careers" },
-            ]}
-          />
-          <FooterCol
-            title="Resources"
-            links={[
-              { label: "Blog", to: "/blog" },
-              { label: "App Cost Calculator", to: "/app-cost-calculator" },
-            ]}
-          />
-
-          <div>
-            <h4 className="text-sm font-semibold tracking-wide uppercase text-white/60">
-              Get in touch
-            </h4>
-            <a href="mailto:hello@nordex.studio" className="mt-4 block text-lg font-medium hover:text-brand transition-colors">
-              hello@nordex.studio
-            </a>
-            <Link to="/app-cost-calculator" className="mt-6 inline-flex items-center gap-2 rounded-full bg-white text-ink px-5 py-3 font-medium hover:bg-brand hover:text-white transition-colors">
-              Start a project <ArrowUpRight className="h-4 w-4" />
-            </Link>
-          </div>
+          <Col title="Social">
+            {SOCIAL.map((s) => (
+              <li key={s}><a href="#" className="text-white/70 hover:text-white transition">{s}</a></li>
+            ))}
+          </Col>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm text-white/50">
-          <p>© {new Date().getFullYear()} Nordex Studio. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-white">Privacy</a>
-            <a href="#" className="hover:text-white">Terms</a>
-            <a href="#" className="hover:text-white">Cookies</a>
-          </div>
+        <div className="mt-16 pt-6 border-t border-white/10 flex items-center justify-between text-sm text-white/55">
+          <p>© {new Date().getFullYear()} Tecaudex. All rights reserved.</p>
+          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="inline-flex items-center gap-2 text-white/70 hover:text-white transition">
+            Back to the top <ArrowUp className="h-4 w-4" />
+          </button>
         </div>
       </div>
     </footer>
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: { label: string; to: string }[] }) {
+function Col({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h4 className="text-sm font-semibold tracking-wide uppercase text-white/60">{title}</h4>
-      <ul className="mt-4 space-y-3">
-        {links.map((l) => (
-          <li key={l.to}>
-            <Link to={l.to} className="text-white/85 hover:text-brand transition-colors">
-              {l.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <h4 className="font-semibold text-white">{title}</h4>
+      <ul className="mt-5 space-y-3 text-sm">{children}</ul>
     </div>
   );
 }
