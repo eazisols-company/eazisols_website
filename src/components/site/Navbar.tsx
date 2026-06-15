@@ -131,8 +131,8 @@ export function Navbar() {
                 key={n.to}
                 to={n.to}
                 className="px-2 py-2 text-[13px] font-semibold text-ink transition-colors hover:text-brand xl:px-3"
-                activeProps={{ className: "text-brand" }}
-                activeOptions={{ exact: n.to === "/" }}
+                activeProps={n.label === "Partnerships" || n.label === "Odoo Cost Calculator" ? undefined : { className: "text-brand" }}
+                activeOptions={{ exact: n.label === "Home" }}
               >
                 {n.label}
               </Link>
@@ -210,7 +210,7 @@ export function Navbar() {
                   <span>{n.label}</span>
                 </Link>
               ))}
-              <a href="#contact" onClick={() => setOpen(false)} className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-ink text-white px-5 py-3 text-sm font-medium">
+              <a href="#contact" onClick={() => setOpen(false)} className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-bold text-primary-foreground">
                 Contact us
               </a>
             </nav>

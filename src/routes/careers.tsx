@@ -57,7 +57,7 @@ function Timeline() {
   return (
     <div className="mx-auto mt-16 max-w-[560px]">
       <div className="grid grid-cols-6 text-xs text-ink-soft"><span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2026</span></div>
-      <div className="mt-3 grid grid-cols-31 gap-1 px-1">
+      <div className="mt-3 grid grid-cols-[repeat(31,minmax(0,1fr))] gap-1 px-1">
         {Array.from({ length: 31 }).map((_, i) => <span key={i} className={`h-9 border-l ${i === 12 ? "border-brand" : "border-border"}`} />)}
       </div>
       <div className="mx-auto mt-3 grid max-w-[440px] grid-cols-6 place-items-center text-ink-soft"><span>👥</span><span>⌘</span><span className="text-brand">🚀</span><span>▣</span><span>✕</span><span>∞</span></div>

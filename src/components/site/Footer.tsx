@@ -35,13 +35,13 @@ export function Footer() {
 
           <Col title="Company">
             {COMPANY.map((l) => (
-              <li key={l.label}><Link to={l.to} className="text-white/70 hover:text-white transition">{l.label}</Link></li>
+              <li key={l.label}><Link to={l.to} className="text-footer-foreground/45 transition hover:text-footer-foreground">{l.label}</Link></li>
             ))}
           </Col>
 
           <Col title="Services">
             {SERVICES.map((s) => (
-              <li key={s}><Link to="/services" className="text-white/70 hover:text-white transition">{s}</Link></li>
+              <li key={s}><Link to="/services" className="text-footer-foreground/45 transition hover:text-footer-foreground">{s}</Link></li>
             ))}
           </Col>
 
@@ -68,7 +68,7 @@ export function Footer() {
 
           <Col title="Social">
             {SOCIAL.map((s) => (
-              <li key={s}><a href="#" className="text-white/70 hover:text-white transition">{s}</a></li>
+              <li key={s}><a href="#" className="text-footer-foreground/45 transition hover:text-footer-foreground">{s}</a></li>
             ))}
           </Col>
         </div>
