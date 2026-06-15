@@ -7,10 +7,10 @@ import { CTA } from "@/components/site/CTA";
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
     meta: [
-      { title: "Portfolio — Nordex" },
+      { title: "Portfolio — Tecaudex" },
       { name: "description", content: "A selection of products we've designed and engineered — across AI, SaaS, mobile and e-commerce." },
-      { property: "og:title", content: "Portfolio — Nordex" },
-      { property: "og:description", content: "Selected case studies from Nordex Studio." },
+      { property: "og:title", content: "Portfolio — Tecaudex" },
+      { property: "og:description", content: "Selected case studies from Tecaudex Studio." },
     ],
   }),
   component: PortfolioPage,

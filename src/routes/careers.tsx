@@ -6,10 +6,10 @@ import { ArrowUpRight, Heart, Globe, Coffee, Sparkles, Users, Rocket, Graduation
 export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
-      { title: "Careers — Nordex" },
-      { name: "description", content: "Join Nordex Studio. We're a small, senior team building category-defining software with ambitious teams." },
-      { property: "og:title", content: "Careers — Nordex" },
-      { property: "og:description", content: "Open roles at Nordex Studio." },
+      { title: "Careers — Tecaudex" },
+      { name: "description", content: "Join Tecaudex Studio. We're a small, senior team building category-defining software with ambitious teams." },
+      { property: "og:title", content: "Careers — Tecaudex" },
+      { property: "og:description", content: "Open roles at Tecaudex Studio." },
     ],
   }),
   component: CareersPage,
@@ -125,7 +125,7 @@ function Hero() {
             Make work you'll be <span className="gradient-text">proud of</span>.
           </h1>
           <p className="mt-6 text-lg md:text-xl text-ink-soft max-w-2xl leading-relaxed">
-            Nordex is a fully remote studio of senior product engineers, designers and strategists. We hire slowly, treat people well, and ship work we'd brag about for years.
+            Tecaudex is a fully remote studio of senior product engineers, designers and strategists. We hire slowly, treat people well, and ship work we'd brag about for years.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#roles" className="btn-brand">See open roles <ArrowUpRight className="h-4 w-4" /></a>
