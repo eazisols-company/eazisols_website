@@ -114,7 +114,7 @@ export function Navbar() {
         <nav className="hidden lg:flex items-center gap-1 xl:gap-3">
           {NAV.map((n) =>
             n.to === "/services" ? (
-              <div key={n.to} onMouseEnter={openMega} onMouseLeave={closeMega} className="relative">
+              <div key={`${n.label}-${n.to}`} onMouseEnter={openMega} onMouseLeave={closeMega} className="relative">
                 <Link
                   to={n.to}
                   className={`flex items-center gap-1 rounded-full px-5 py-3 text-[13px] font-semibold transition-colors ${
@@ -128,7 +128,7 @@ export function Navbar() {
               </div>
             ) : (
               <Link
-                key={n.to}
+                key={`${n.label}-${n.to}`}
                 to={n.to}
                 className="px-2 py-2 text-[13px] font-semibold text-ink transition-colors hover:text-brand xl:px-3"
                 activeProps={n.label === "Partnerships" || n.label === "Odoo Cost Calculator" ? undefined : { className: "text-brand" }}
@@ -200,7 +200,7 @@ export function Navbar() {
             <nav className="flex flex-col">
               {NAV.map((n) => (
                 <Link
-                  key={n.to}
+                  key={`${n.label}-${n.to}`}
                   to={n.to}
                   onClick={() => setOpen(false)}
                   className="flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium text-ink hover:bg-surface transition"
