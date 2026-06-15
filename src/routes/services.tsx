@@ -73,7 +73,7 @@ function SoftwareDevelopment() {
           <div className="mt-16 border-l-2 border-brand pl-4"><h3 className="text-base font-extrabold text-brand">Mobile App Development</h3><p className="mt-2 max-w-[260px] text-sm leading-relaxed text-ink-soft">Native and cross-platform mobile apps that feel smooth, fast, and easy to use.</p></div>
           <div className="mt-16 space-y-5 text-sm text-ink-soft"><p>Web App Development</p><p>Enterprise Software</p><p>AI Product Development</p></div>
         </aside>
-        <div className="grid min-h-[410px] place-items-center bg-[#7b86ff] p-12"><img src="/placeholder.svg" alt="Placeholder software service" className="max-h-[330px] w-full max-w-[480px] object-contain" /></div>
+        <div className="grid min-h-[410px] place-items-center bg-illustration-blue p-12"><img src="/placeholder.svg" alt="Placeholder software service" className="max-h-[330px] w-full max-w-[480px] object-contain" /></div>
       </div>
     </section>
   );
