@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as CareersRouteImport } from './routes/careers'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AppCostCalculatorRouteImport } from './routes/app-cost-calculator'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -31,11 +30,6 @@ const CareersRoute = CareersRouteImport.update({
   path: '/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AppCostCalculatorRoute = AppCostCalculatorRouteImport.update({
   id: '/app-cost-calculator',
   path: '/app-cost-calculator',
@@ -50,7 +44,6 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app-cost-calculator': typeof AppCostCalculatorRoute
-  '/blog': typeof BlogRoute
   '/careers': typeof CareersRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
@@ -58,7 +51,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app-cost-calculator': typeof AppCostCalculatorRoute
-  '/blog': typeof BlogRoute
   '/careers': typeof CareersRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
@@ -67,7 +59,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app-cost-calculator': typeof AppCostCalculatorRoute
-  '/blog': typeof BlogRoute
   '/careers': typeof CareersRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
@@ -77,23 +68,15 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app-cost-calculator'
-    | '/blog'
     | '/careers'
     | '/portfolio'
     | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/app-cost-calculator'
-    | '/blog'
-    | '/careers'
-    | '/portfolio'
-    | '/services'
+  to: '/' | '/app-cost-calculator' | '/careers' | '/portfolio' | '/services'
   id:
     | '__root__'
     | '/'
     | '/app-cost-calculator'
-    | '/blog'
     | '/careers'
     | '/portfolio'
     | '/services'
@@ -102,7 +85,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppCostCalculatorRoute: typeof AppCostCalculatorRoute
-  BlogRoute: typeof BlogRoute
   CareersRoute: typeof CareersRoute
   PortfolioRoute: typeof PortfolioRoute
   ServicesRoute: typeof ServicesRoute
@@ -131,13 +113,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CareersRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/app-cost-calculator': {
       id: '/app-cost-calculator'
       path: '/app-cost-calculator'
@@ -158,7 +133,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppCostCalculatorRoute: AppCostCalculatorRoute,
-  BlogRoute: BlogRoute,
   CareersRoute: CareersRoute,
   PortfolioRoute: PortfolioRoute,
   ServicesRoute: ServicesRoute,
