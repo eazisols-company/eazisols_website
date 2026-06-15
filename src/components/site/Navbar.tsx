@@ -110,7 +110,7 @@ export function Navbar() {
 
         <nav className="hidden xl:flex items-center gap-1">
           {NAV.map((n) =>
-            n.hasMega ? (
+            n.to === "/services" ? (
               <div key={n.to} onMouseEnter={openMega} onMouseLeave={closeMega} className="relative">
                 <Link
                   to={n.to}
