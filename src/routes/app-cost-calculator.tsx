@@ -36,10 +36,10 @@ function Landing({ onStart }: { onStart: () => void }) {
   return (
     <>
       <section className="relative overflow-hidden pt-16 md:pt-28">
-        <div className="absolute left-1/2 top-8 h-56 w-[520px] -translate-x-1/2 rounded-full bg-[#ef4444]/10 blur-3xl" />
+        <div className="absolute left-1/2 top-8 h-56 w-[520px] -translate-x-1/2 rounded-full bg-[var(--brand)]/10 blur-3xl" />
         <div className="container-page relative pb-16">
           <div className="mx-auto max-w-[850px]">
-            <p className="text-[12px] font-extrabold uppercase tracking-[0.22em] text-[#ef4444]">App development cost calculator</p>
+            <p className="text-[12px] font-extrabold uppercase tracking-[0.22em] text-[var(--brand)]">App development cost calculator</p>
             <h1 className="mt-5 max-w-[650px] text-5xl font-extrabold leading-[0.98] text-ink md:text-[64px]">
               How Much Does It Cost to Build an App?
             </h1>
@@ -47,7 +47,7 @@ function Landing({ onStart }: { onStart: () => void }) {
               Get a free, personalised cost report for iOS, Android, or web apps — delivered to your email and WhatsApp in minutes.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <button onClick={onStart} className="inline-flex items-center gap-2 rounded-full bg-[#ef4444] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#dc2626]">
+              <button onClick={onStart} className="inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[var(--brand-2)]">
                 Get Your Personalised Report <ArrowRight className="h-4 w-4" />
               </button>
               <span className="text-xs font-medium text-ink-soft">Free · 2 minutes · No signup</span>
@@ -55,7 +55,7 @@ function Landing({ onStart }: { onStart: () => void }) {
             <div className="mt-7 flex flex-wrap gap-3">
               {["Instant detailed report", "Sent to email & WhatsApp", "370+ estimates generated"].map((item) => (
                 <span key={item} className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-semibold text-ink-soft">
-                  <Check className="h-3.5 w-3.5 text-[#ef4444]" /> {item}
+                  <Check className="h-3.5 w-3.5 text-[var(--brand)]" /> {item}
                 </span>
               ))}
             </div>
@@ -89,7 +89,7 @@ function Landing({ onStart }: { onStart: () => void }) {
               );
             })}
           </div>
-          <button onClick={onStart} className="mt-12 inline-flex items-center gap-2 rounded-full bg-[#ef4444] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#dc2626]">
+          <button onClick={onStart} className="mt-12 inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[var(--brand-2)]">
             Get Your Personalised Report <ArrowRight className="h-4 w-4" />
           </button>
           <p className="mt-3 text-xs text-ink-soft">Takes less than 2 minutes</p>
@@ -201,7 +201,7 @@ function Wizard({ onClose }: { onClose: () => void }) {
 
   return (
     <section className="relative overflow-hidden pt-12 pb-24 md:pt-20">
-      <div className="absolute left-1/2 top-0 h-48 w-[520px] -translate-x-1/2 rounded-full bg-[#ef4444]/15 blur-3xl" />
+      <div className="absolute left-1/2 top-0 h-48 w-[520px] -translate-x-1/2 rounded-full bg-[var(--brand)]/15 blur-3xl" />
       <div className="container-page relative">
         <Stepper current={step} />
         <div className="mx-auto mt-14 max-w-[1100px]">
@@ -222,14 +222,14 @@ function Wizard({ onClose }: { onClose: () => void }) {
               <button
                 disabled={!canNext()}
                 onClick={() => setStep(step + 1)}
-                className="inline-flex items-center gap-2 rounded-full bg-gray-400 px-6 py-2.5 text-sm font-bold text-white transition enabled:bg-[#ef4444] enabled:hover:bg-[#dc2626] disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 rounded-full bg-gray-400 px-6 py-2.5 text-sm font-bold text-white transition enabled:bg-[var(--brand)] enabled:hover:bg-[var(--brand-2)] disabled:cursor-not-allowed"
               >
                 Continue <ArrowRight className="h-4 w-4" />
               </button>
             ) : (
               <button
                 onClick={() => setDone(true)}
-                className="inline-flex items-center gap-2 rounded-full bg-[#ef4444] px-6 py-2.5 text-sm font-bold text-white transition hover:bg-[#dc2626]"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-6 py-2.5 text-sm font-bold text-white transition hover:bg-[var(--brand-2)]"
               >
                 Get My Report <ArrowRight className="h-4 w-4" />
               </button>
@@ -301,7 +301,7 @@ function StepType({ form, setForm }: { form: Form; setForm: (f: Form) => void })
               className={`relative flex items-start gap-5 rounded-2xl bg-gray-50 p-6 text-left transition hover:bg-gray-100 ${selected ? "ring-2 ring-ink" : ""}`}
             >
               {opt.popular && (
-                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-[#ef4444] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Popular</span>
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-[var(--brand)] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Popular</span>
               )}
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white text-ink"><opt.icon className="h-5 w-5" /></span>
               <div>
@@ -336,7 +336,7 @@ function StepScale({ form, setForm }: { form: Form; setForm: (f: Form) => void }
               className={`relative rounded-2xl bg-gray-50 p-7 text-left transition hover:bg-gray-100 ${selected ? "ring-2 ring-ink" : ""}`}
             >
               {opt.badge && (
-                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-[#ef4444] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">{opt.badge}</span>
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-[var(--brand)] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">{opt.badge}</span>
               )}
               <div className="flex items-center gap-4">
                 <span className="grid h-12 w-12 place-items-center rounded-xl bg-white text-ink"><opt.icon className="h-5 w-5" /></span>
@@ -494,7 +494,7 @@ function StepReport({ form, setForm, selectedCount, totalHours }: { form: Form; 
         <p className="text-sm font-semibold text-ink-soft">05 — Your Report</p>
         <h2 className="mt-3 text-4xl font-extrabold text-ink md:text-[44px]">Review your features</h2>
         <p className="mt-4 text-base text-ink-soft">Toggle the features you want included in your report</p>
-        <p className="mt-1 text-xs text-[#ef4444]">Your personalised cost breakdown will be sent to your email and WhatsApp</p>
+        <p className="mt-1 text-xs text-[var(--brand)]">Your personalised cost breakdown will be sent to your email and WhatsApp</p>
       </div>
 
       <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -502,7 +502,7 @@ function StepReport({ form, setForm, selectedCount, totalHours }: { form: Form; 
         <Metric label="Hours" value={`${totalHours}`} suffix="h" />
         <div className="rounded-2xl bg-gray-50 p-5">
           <p className="text-[10px] font-bold uppercase tracking-wider text-ink-soft">Estimate Ready</p>
-          <div className="mt-2 h-3 w-32 rounded-full bg-[#ef4444]/30 blur-[2px]" />
+          <div className="mt-2 h-3 w-32 rounded-full bg-[var(--brand)]/30 blur-[2px]" />
           <p className="mt-2 text-xs text-ink-soft">Complete next step to review</p>
         </div>
       </div>
@@ -558,7 +558,7 @@ function ThankYou({ estimate, onBack }: { estimate: number; onBack: () => void }
           <Check className="h-7 w-7" />
         </div>
         <h1 className="mt-8 text-5xl font-extrabold text-ink md:text-6xl">Thank you</h1>
-        <p className="mt-4 text-xl font-extrabold text-[#ef4444]">Estimated cost: {formatted}</p>
+        <p className="mt-4 text-xl font-extrabold text-[var(--brand)]">Estimated cost: {formatted}</p>
         <p className="mx-auto mt-3 max-w-[460px] text-base text-ink-soft">
           Your detailed cost breakdown and roadmap are on the way to your email and WhatsApp.
         </p>
@@ -579,7 +579,7 @@ function ThankYou({ estimate, onBack }: { estimate: number; onBack: () => void }
         </div>
 
         <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <button className="inline-flex items-center gap-2 rounded-full bg-[#ef4444] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#dc2626]">
+          <button className="inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-6 py-3 text-sm font-bold text-white transition hover:bg-[var(--brand-2)]">
             <Calendar className="h-4 w-4" /> Book a Discovery Call
           </button>
           <button onClick={onBack} className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-6 py-3 text-sm font-bold text-ink transition hover:bg-gray-200">
