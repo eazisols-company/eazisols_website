@@ -211,6 +211,21 @@
   pointer-events: none;
 }
 
+@utility benefit-blue { background: radial-gradient(circle at 78% 24%, oklch(0.9 0.05 250), transparent 48%), oklch(0.96 0.03 240); }
+@utility benefit-cream { background: radial-gradient(circle at 78% 20%, oklch(0.9 0.08 75), transparent 50%), oklch(0.98 0.025 80); }
+@utility benefit-pink { background: radial-gradient(circle at 78% 16%, oklch(0.74 0.17 5), transparent 52%), oklch(0.96 0.035 15); }
+@utility benefit-lime { background: radial-gradient(circle at 74% 20%, oklch(0.95 0.08 100), transparent 50%), oklch(0.99 0.02 95); }
+@utility benefit-violet { background: radial-gradient(circle at 78% 20%, oklch(0.89 0.08 305), transparent 52%), oklch(0.97 0.03 305); }
+@utility benefit-mint { background: radial-gradient(circle at 78% 20%, oklch(0.9 0.08 170), transparent 52%), oklch(0.97 0.03 165); }
+@utility benefit-sky { background: radial-gradient(circle at 78% 20%, oklch(0.88 0.06 235), transparent 52%), oklch(0.96 0.035 235); }
+@utility benefit-peach { background: radial-gradient(circle at 78% 20%, oklch(0.9 0.07 35), transparent 52%), oklch(0.98 0.035 45); }
+
+@utility image-tile-bg {
+  background-image: linear-gradient(rgb(0 0 0 / 0.42), rgb(0 0 0 / 0.42)), url('/placeholder.svg');
+  background-size: cover;
+  background-position: center;
+}
+
 @keyframes float-y {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }

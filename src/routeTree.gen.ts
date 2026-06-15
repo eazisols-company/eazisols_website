@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as AppCostCalculatorRouteImport } from './routes/app-cost-calculator'
 import { Route as IndexRouteImport } from './routes/index'
 
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppCostCalculatorRoute = AppCostCalculatorRouteImport.update({
+  id: '/app-cost-calculator',
+  path: '/app-cost-calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app-cost-calculator': typeof AppCostCalculatorRoute
   '/blog': typeof BlogRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app-cost-calculator': typeof AppCostCalculatorRoute
   '/blog': typeof BlogRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app-cost-calculator': typeof AppCostCalculatorRoute
   '/blog': typeof BlogRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog'
+  fullPaths: '/' | '/app-cost-calculator' | '/blog'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blog'
-  id: '__root__' | '/' | '/blog'
+  to: '/' | '/app-cost-calculator' | '/blog'
+  id: '__root__' | '/' | '/app-cost-calculator' | '/blog'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppCostCalculatorRoute: typeof AppCostCalculatorRoute
   BlogRoute: typeof BlogRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app-cost-calculator': {
+      id: '/app-cost-calculator'
+      path: '/app-cost-calculator'
+      fullPath: '/app-cost-calculator'
+      preLoaderRoute: typeof AppCostCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppCostCalculatorRoute: AppCostCalculatorRoute,
   BlogRoute: BlogRoute,
 }
 export const routeTree = rootRouteImport
