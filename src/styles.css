@@ -116,10 +116,17 @@
 @utility container-page {
   width: 100%;
   margin-inline: auto;
-  max-width: 81.25rem;
-  padding-inline: 1.25rem;
-  @media (min-width: 768px) { padding-inline: 2rem; }
-  @media (min-width: 1280px) { padding-inline: 3rem; }
+  max-width: 96rem;
+  padding-inline: 1rem;
+  @media (min-width: 768px) { padding-inline: 1.5rem; }
+  @media (min-width: 1280px) { padding-inline: 2.25rem; }
+}
+@utility container-narrow {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 60rem;
+  padding-inline: 1rem;
+  @media (min-width: 768px) { padding-inline: 1.5rem; }
 }
 
 @utility btn-primary {

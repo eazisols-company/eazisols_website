@@ -1,40 +1,44 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export interface BlogPost {
+  slug?: string;
   title: string;
   excerpt: string;
   category: string;
   date: string;
   readTime: string;
-  gradient: string;
-  author: string;
+  gradient?: string;
+  author?: string;
+  tags?: string[];
 }
 
 export function BlogCard({ post }: { post: BlogPost }) {
+  const slug = post.slug ?? "supply-chain-management-in-erp";
+  const tags = post.tags ?? [post.category.toLowerCase()];
   return (
-    <article className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition hover:-translate-y-1 hover:shadow-soft">
-      <div className="relative aspect-[16/10] overflow-hidden image-tile-bg">
-        <span className="absolute left-4 top-4 rounded-full bg-card px-3 py-1 text-xs font-extrabold text-brand">{post.category}</span>
+    <article className="group flex flex-col">
+      <Link to="/blog/$slug" params={{ slug }} className="block overflow-hidden rounded-md">
+        <div className="aspect-[16/9] w-full image-tile-bg transition-transform duration-500 group-hover:scale-[1.02]" />
+      </Link>
+      <div className="mt-5 flex items-center gap-4 text-[13px] text-ink-soft">
+        <span className="inline-flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" />{post.readTime}</span>
+        <span>{post.date}</span>
       </div>
-      <div className="flex flex-col flex-1 p-7">
-        <div className="flex items-center gap-3 text-xs text-ink-soft">
-          <span>{post.date}</span>
-          <span>· {post.readTime}</span>
-        </div>
-        <h3 className="mt-4 text-2xl font-extrabold leading-snug text-ink transition-colors group-hover:text-brand">
+      <Link to="/blog/$slug" params={{ slug }}>
+        <h3 className="mt-3 text-[22px] md:text-[26px] font-extrabold leading-snug text-ink transition-colors duration-200 group-hover:text-brand">
           {post.title}
         </h3>
-        <p className="mt-3 flex-1 leading-relaxed text-ink-soft">{post.excerpt}</p>
-        <div className="mt-6 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-full bg-brand" />
-            <span className="text-sm font-bold text-ink">{post.author}</span>
-          </div>
-          <span className="grid h-10 w-10 place-items-center rounded-full border border-border text-ink-soft transition-all group-hover:border-ink group-hover:bg-ink group-hover:text-primary-foreground">
-            <ArrowUpRight className="h-4 w-4" />
-          </span>
-        </div>
+      </Link>
+      <p className="mt-3 text-[15px] leading-relaxed text-ink-soft line-clamp-2">{post.excerpt}</p>
+      <div className="mt-5 flex flex-wrap gap-2">
+        {tags.map((t) => (
+          <span key={t} className="rounded-full border border-border bg-card px-3 py-1 text-[12px] text-ink-soft">{t}</span>
+        ))}
       </div>
+      <Link to="/blog/$slug" params={{ slug }} className="mt-5 inline-flex w-fit items-center gap-1.5 text-[13px] font-extrabold tracking-wide text-brand uppercase">
+        Read more <ArrowRight className="h-3.5 w-3.5" />
+      </Link>
     </article>
   );
 }
