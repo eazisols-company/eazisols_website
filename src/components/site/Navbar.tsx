@@ -3,15 +3,14 @@ import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Logo } from "./Logo";
 
-type NavItem = { to: string; label: string; hasMega?: boolean };
-const NAV: NavItem[] = [
+const NAV = [
   { to: "/", label: "Home" },
-  { to: "/services", label: "Services", hasMega: true },
+  { to: "/services", label: "Services" },
   { to: "/portfolio", label: "Portfolio" },
   { to: "/app-cost-calculator", label: "App Cost Calculator" },
   { to: "/blog", label: "Blog" },
   { to: "/careers", label: "Careers" },
-];
+] as const;
 
 const MEGA = [
   {
