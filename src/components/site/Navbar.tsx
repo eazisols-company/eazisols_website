@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Logo } from "./Logo";
 
@@ -7,7 +7,9 @@ const NAV = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
   { to: "/portfolio", label: "Portfolio" },
+  { to: "/", label: "Partnerships" },
   { to: "/app-cost-calculator", label: "App Cost Calculator" },
+  { to: "/", label: "Odoo Cost Calculator" },
   { to: "/blog", label: "Blog" },
   { to: "/careers", label: "Careers" },
 ] as const;
@@ -50,6 +52,7 @@ const MEGA = [
       "AI Consulting",
       "AI Integration Services",
       "ML Development Services",
+        "ML Consulting Services",
     ],
   },
   {
@@ -105,17 +108,17 @@ export function Navbar() {
           : "bg-background"
       }`}
     >
-      <div className="container-page flex h-16 md:h-20 items-center justify-between gap-4">
+      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-[76px]">
         <Link to="/" className="shrink-0"><Logo /></Link>
 
-        <nav className="hidden xl:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-3">
           {NAV.map((n) =>
             n.to === "/services" ? (
               <div key={n.to} onMouseEnter={openMega} onMouseLeave={closeMega} className="relative">
                 <Link
                   to={n.to}
-                  className={`flex items-center gap-1 px-3.5 py-2 text-[15px] font-medium transition-colors ${
-                    mega ? "text-brand" : "text-ink-soft hover:text-ink"
+                  className={`flex items-center gap-1 rounded-full px-5 py-3 text-[13px] font-semibold transition-colors ${
+                    mega ? "bg-brand/5 text-brand" : "text-ink hover:bg-brand/5 hover:text-brand"
                   }`}
                   activeProps={{ className: "text-brand" }}
                 >
@@ -127,7 +130,7 @@ export function Navbar() {
               <Link
                 key={n.to}
                 to={n.to}
-                className="px-3.5 py-2 text-[15px] font-medium text-ink-soft hover:text-ink transition-colors"
+                className="px-2 py-2 text-[13px] font-semibold text-ink transition-colors hover:text-brand xl:px-3"
                 activeProps={{ className: "text-brand" }}
                 activeOptions={{ exact: n.to === "/" }}
               >
@@ -137,8 +140,8 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="hidden xl:flex items-center gap-3">
-          <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-ink text-white px-5 py-2.5 text-sm font-medium hover:bg-black transition">
+        <div className="hidden lg:flex items-center gap-3">
+          <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3 text-sm font-extrabold text-primary-foreground transition hover:bg-primary">
             Contact us
           </a>
         </div>
@@ -146,7 +149,7 @@ export function Navbar() {
         <button
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
-          className="xl:hidden grid h-10 w-10 place-items-center rounded-full border border-border bg-background"
+          className="grid h-10 w-10 place-items-center rounded-full border border-border bg-background lg:hidden"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -156,24 +159,24 @@ export function Navbar() {
       <div
         onMouseEnter={openMega}
         onMouseLeave={closeMega}
-        className={`absolute left-0 right-0 top-full hidden xl:block transition-all duration-200 ${
+        className={`absolute left-0 right-0 top-full hidden lg:block transition-all duration-200 ${
           mega ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
         }`}
       >
-        <div className="container-page pb-6">
-          <div className="rounded-3xl border border-border bg-card shadow-card p-8">
-            <div className="grid grid-cols-5 gap-8">
+        <div className="container-page pb-8">
+          <div className="max-h-[78vh] overflow-y-auto rounded-[28px] border border-border bg-card p-10 shadow-[0_28px_70px_-24px_rgb(0_0_0_/_0.28)] xl:p-14">
+            <div className="grid grid-cols-5 gap-8 xl:gap-14">
               {MEGA.map((col) => (
                 <div key={col.title}>
                   <Link to="/services" className="group flex items-start justify-between gap-2">
-                    <h4 className="font-semibold text-ink leading-snug">{col.title}</h4>
-                    <ArrowRight className="h-4 w-4 text-ink-soft mt-1 transition-transform group-hover:translate-x-0.5" />
+                    <h4 className="text-[20px] font-extrabold leading-tight text-ink xl:text-[26px]">{col.title}</h4>
+                    <ChevronRight className="mt-1 h-6 w-6 text-ink-soft transition-transform group-hover:translate-x-0.5" />
                   </Link>
-                  <ul className="mt-5 space-y-2.5">
+                  <ul className="mt-8 space-y-6">
                     {col.items.map((it) => (
                       <li key={it}>
-                        <Link to="/services" className="flex items-start gap-2 text-sm text-ink-soft hover:text-brand transition-colors">
-                          <span className="text-ink-soft/60">↳</span>
+                        <Link to="/services" className="flex items-start gap-4 text-[15px] font-medium leading-tight text-ink-soft transition-colors hover:text-brand xl:text-[19px]">
+                          <span className="text-2xl leading-none text-ink-soft/70">↳</span>
                           <span>{it}</span>
                         </Link>
                       </li>
@@ -188,7 +191,7 @@ export function Navbar() {
 
       {/* Mobile sheet */}
       <div
-        className={`xl:hidden overflow-hidden transition-[max-height,opacity] duration-300 ${
+        className={`overflow-hidden transition-[max-height,opacity] duration-300 lg:hidden ${
           open ? "max-h-[700px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
