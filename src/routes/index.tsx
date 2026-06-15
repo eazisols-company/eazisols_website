@@ -10,9 +10,9 @@ import { CTA } from "@/components/site/CTA";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Nordex — Technology Partner for AI & Digital Growth" },
+      { title: "Tecaudex — Technology Partner for AI & Digital Growth" },
       { name: "description", content: "We design and engineer AI products, web platforms, and mobile apps that grow modern businesses." },
-      { property: "og:title", content: "Nordex — Technology Partner for AI & Digital Growth" },
+      { property: "og:title", content: "Tecaudex — Technology Partner for AI & Digital Growth" },
       { property: "og:description", content: "AI, web, mobile, and digital growth — engineered by a senior product team." },
     ],
   }),
@@ -234,7 +234,7 @@ function Featured() {
 
 function Testimonials() {
   const t = [
-    { q: "Nordex moved faster than our internal team and delivered a product our customers actually love. Best engineering partner we've worked with.", a: "Sarah Chen", r: "VP Product, Northwind" },
+    { q: "Tecaudex moved faster than our internal team and delivered a product our customers actually love. Best engineering partner we've worked with.", a: "Sarah Chen", r: "VP Product, Northwind" },
     { q: "From the first workshop to launch in 14 weeks. Our MRR doubled in the first quarter — they truly understand growth.", a: "James Okafor", r: "CEO, Helix Labs" },
     { q: "Senior, opinionated, and obsessed with quality. They sweat the details that competitors gloss over.", a: "Maya Patel", r: "CTO, Vertex AI" },
   ];

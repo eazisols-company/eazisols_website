@@ -9,9 +9,9 @@ import {
 export const Route = createFileRoute("/app-cost-calculator")({
   head: () => ({
     meta: [
-      { title: "App Cost Calculator — Nordex" },
+      { title: "App Cost Calculator — Tecaudex" },
       { name: "description", content: "Estimate the cost of your web or mobile app in seconds with our interactive calculator." },
-      { property: "og:title", content: "App Cost Calculator — Nordex" },
+      { property: "og:title", content: "App Cost Calculator — Tecaudex" },
       { property: "og:description", content: "Get an instant budget estimate for your next project." },
     ],
   }),

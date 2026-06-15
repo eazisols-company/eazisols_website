@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
+import { FloatingActions } from "@/components/site/FloatingActions";
 
 function NotFoundComponent() {
   return (
@@ -66,10 +67,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Nordex — Technology Partner for AI & Digital Growth" },
-      { name: "description", content: "Nordex is a product studio building AI-powered software, web platforms, and digital experiences that grow modern businesses." },
-      { name: "author", content: "Nordex" },
-      { property: "og:title", content: "Nordex — Technology Partner for AI & Digital Growth" },
+      { title: "Tecaudex — Technology Partner for AI & Digital Growth" },
+      { name: "description", content: "Tecaudex is a product studio building AI-powered software, web platforms, and digital experiences that grow modern businesses." },
+      { name: "author", content: "Tecaudex" },
+      { property: "og:title", content: "Tecaudex — Technology Partner for AI & Digital Growth" },
       { property: "og:description", content: "AI, web, mobile, and digital growth — engineered by a senior product team." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -109,6 +110,7 @@ function RootComponent() {
           <Outlet />
         </main>
         <Footer />
+        <FloatingActions />
       </div>
     </QueryClientProvider>
   );

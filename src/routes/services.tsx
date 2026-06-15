@@ -10,9 +10,9 @@ import { CTA } from "@/components/site/CTA";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Nordex" },
+      { title: "Services — Tecaudex" },
       { name: "description", content: "AI, web, mobile, cloud, design and growth — a complete product engineering studio." },
-      { property: "og:title", content: "Services — Nordex" },
+      { property: "og:title", content: "Services — Tecaudex" },
       { property: "og:description", content: "End-to-end product engineering for ambitious teams." },
     ],
   }),

@@ -8,9 +8,9 @@ import { ArrowUpRight, Search } from "lucide-react";
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
-      { title: "Blog — Nordex" },
+      { title: "Blog — Tecaudex" },
       { name: "description", content: "Essays, tutorials and case studies on AI, product engineering and digital growth." },
-      { property: "og:title", content: "Blog — Nordex" },
+      { property: "og:title", content: "Blog — Tecaudex" },
       { property: "og:description", content: "Notes from the studio on building modern software." },
     ],
   }),
@@ -44,7 +44,7 @@ function BlogPage() {
   return (
     <>
       <Section
-        eyebrow="The Nordex journal"
+        eyebrow="The Tecaudex journal"
         title={<>Notes from the studio on <span className="gradient-text">building software</span>.</>}
         description="Deep dives, tutorials and case studies on AI, product engineering, design and growth."
         align="center"
