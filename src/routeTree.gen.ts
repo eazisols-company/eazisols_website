@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AppCostCalculatorRouteImport } from './routes/app-cost-calculator'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CareersRoute = CareersRouteImport.update({
   id: '/careers',
   path: '/careers',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/app-cost-calculator': typeof AppCostCalculatorRoute
   '/blog': typeof BlogRoute
   '/careers': typeof CareersRoute
+  '/portfolio': typeof PortfolioRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app-cost-calculator': typeof AppCostCalculatorRoute
   '/blog': typeof BlogRoute
   '/careers': typeof CareersRoute
+  '/portfolio': typeof PortfolioRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,20 @@ export interface FileRoutesById {
   '/app-cost-calculator': typeof AppCostCalculatorRoute
   '/blog': typeof BlogRoute
   '/careers': typeof CareersRoute
+  '/portfolio': typeof PortfolioRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app-cost-calculator' | '/blog' | '/careers'
+  fullPaths: '/' | '/app-cost-calculator' | '/blog' | '/careers' | '/portfolio'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app-cost-calculator' | '/blog' | '/careers'
-  id: '__root__' | '/' | '/app-cost-calculator' | '/blog' | '/careers'
+  to: '/' | '/app-cost-calculator' | '/blog' | '/careers' | '/portfolio'
+  id:
+    | '__root__'
+    | '/'
+    | '/app-cost-calculator'
+    | '/blog'
+    | '/careers'
+    | '/portfolio'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,10 +82,18 @@ export interface RootRouteChildren {
   AppCostCalculatorRoute: typeof AppCostCalculatorRoute
   BlogRoute: typeof BlogRoute
   CareersRoute: typeof CareersRoute
+  PortfolioRoute: typeof PortfolioRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/careers': {
       id: '/careers'
       path: '/careers'
@@ -107,6 +130,7 @@ const rootRouteChildren: RootRouteChildren = {
   AppCostCalculatorRoute: AppCostCalculatorRoute,
   BlogRoute: BlogRoute,
   CareersRoute: CareersRoute,
+  PortfolioRoute: PortfolioRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
