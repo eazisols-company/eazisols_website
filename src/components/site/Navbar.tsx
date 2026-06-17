@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { ContactPopup } from "./ContactPopup";
 import { Logo } from "./Logo";
 
 const NAV = [
@@ -81,6 +82,7 @@ const MEGA = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mega, setMega] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -117,7 +119,7 @@ export function Navbar() {
               <div key={`${n.label}-${n.to}`} onMouseEnter={openMega} onMouseLeave={closeMega} className="relative">
                 <Link
                   to={n.to}
-                  className={`flex items-center gap-1 rounded-full px-5 py-3 text-[13px] font-semibold transition-colors ${
+                  className={`flex items-center gap-1 rounded-full px-5 py-3 text-[18px]  transition-colors ${
                     mega ? "bg-brand/5 text-brand" : "text-ink hover:bg-brand/5 hover:text-brand"
                   }`}
                   activeProps={{ className: "text-brand" }}
@@ -130,7 +132,7 @@ export function Navbar() {
               <Link
                 key={`${n.label}-${n.to}`}
                 to={n.to}
-                className="px-2 py-2 text-[13px] font-semibold text-ink transition-colors hover:text-brand xl:px-3"
+                className="px-2 py-2 text-[18px]  text-ink transition-colors hover:text-brand xl:px-3"
                 // activeProps={n.label === "Partnerships" || n.label === "Odoo Cost Calculator" ? undefined : { className: "text-brand" }}
                 activeOptions={{ exact: n.label === "Home" }}
               >
@@ -141,9 +143,13 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3 text-sm font-extrabold text-primary-foreground transition hover:bg-primary">
+          <button
+            type="button"
+            onClick={() => setContactOpen(true)}
+            className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3 text-sm font-extrabold text-primary-foreground transition hover:bg-primary"
+          >
             Contact us
-          </a>
+          </button>
         </div>
 
         <button
@@ -210,9 +216,16 @@ export function Navbar() {
                   <span>{n.label}</span>
                 </Link>
               ))}
-              <a href="#contact" onClick={() => setOpen(false)} className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-bold text-primary-foreground">
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  setContactOpen(true);
+                }}
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-bold text-primary-foreground"
+              >
                 Contact us
-              </a>
+              </button>
             </nav>
           </div>
         </div>

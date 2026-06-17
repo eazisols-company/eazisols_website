@@ -1,6 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Brain, Code2, Layers, Palette, Sparkles } from "lucide-react";
 import { Contact } from "@/components/site/Contact";
+import { DiscoveryCall } from "@/components/site/DiscoveryCall";
+import { TestimonialSection } from "@/components/site/TestimonialSection";
+import { ProcessTimeline } from "@/components/site/ProcessTimeline";
+import { ChallengesSection } from "@/components/site/ChallengesSection";
+import Statics from "@/components/site/Statics";
+import { BarChart } from "@/components/site/BarChat";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -53,6 +59,7 @@ function HomePage() {
   return (
     <>
       <Hero />
+      
 
       <section className="bg-surface py-12">
         <div className="container-page grid grid-cols-2 gap-8 text-center md:grid-cols-4">
@@ -66,6 +73,13 @@ function HomePage() {
           {services.map((service) => <Link key={service.title} to="/services" className="group min-h-[260px] bg-card p-8 transition hover:bg-surface"><service.icon className="h-9 w-9 text-ink" /><h3 className="mt-8 text-2xl font-extrabold text-ink group-hover:text-brand">{service.title}</h3><p className="mt-4 text-sm leading-relaxed text-ink-soft">{service.text}</p></Link>)}
         </div>
       </section>
+      <ProcessTimeline />
+      <ChallengesSection />
+      <Statics  />
+      <BarChart />
+      <TestimonialSection />
+
+      <DiscoveryCall />
 
       <section className="container-page pb-24">
         <div className="grid gap-5 md:grid-cols-2"><Link to="/app-cost-calculator" className="relative min-h-[180px] overflow-hidden p-7 text-primary-foreground image-tile-bg"><h3 className="text-2xl font-extrabold">App Cost Calculator</h3><p className="absolute bottom-7 left-7 inline-flex items-center gap-2 font-bold">Start calculating <ArrowRight className="h-4 w-4" /></p></Link><a href="#contact" className="relative min-h-[180px] overflow-hidden p-7 text-primary-foreground image-tile-bg"><h3 className="text-2xl font-extrabold">Contact Us</h3><p className="absolute bottom-7 left-7 inline-flex items-center gap-2 font-bold">Get a custom proposal <ArrowRight className="h-4 w-4" /></p></a></div>

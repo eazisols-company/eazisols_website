@@ -1210,7 +1210,7 @@ function ThankYou({ estimate, onBack }: { estimate: number; onBack: () => void }
           </button>
         </div>
 
-        <p className="mt-10 text-xs text-ink-soft">Questions? sales@eazisols.com</p>
+        <p className="mt-10 text-xs text-ink-soft">Questions? info@eazisols.com</p>
       </div>
     </section>
   );
