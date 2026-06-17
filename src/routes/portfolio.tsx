@@ -5,10 +5,10 @@ import { Search, SlidersHorizontal } from "lucide-react";
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
     meta: [
-      { title: "Portfolio — Tecaudex" },
-      { name: "description", content: "Explore selected Tecaudex portfolio projects." },
-      { property: "og:title", content: "Portfolio — Tecaudex" },
-      { property: "og:description", content: "A grid of digital products and brand work by Tecaudex." },
+      { title: "Portfolio — eazisols" },
+      { name: "description", content: "Explore selected eazisols portfolio projects." },
+      { property: "og:title", content: "Portfolio — eazisols" },
+      { property: "og:description", content: "A grid of digital products and brand work by eazisols." },
     ],
   }),
   component: PortfolioPage,

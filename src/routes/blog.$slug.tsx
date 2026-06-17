@@ -4,7 +4,7 @@ import { Clock, Calendar, ChevronRight } from "lucide-react";
 export const Route = createFileRoute("/blog/$slug")({
   head: () => ({
     meta: [
-      { title: "Supply Chain Management in ERP — Tecaudex" },
+      { title: "Supply Chain Management in ERP — eazisols" },
       { name: "description", content: "What ERP supply chain management actually does for your business." },
     ],
   }),

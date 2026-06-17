@@ -7,9 +7,9 @@ const NAV = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
   { to: "/portfolio", label: "Portfolio" },
-  { to: "/", label: "Partnerships" },
+  // { to: "/", label: "Partnerships" },
   { to: "/app-cost-calculator", label: "App Cost Calculator" },
-  { to: "/", label: "Odoo Cost Calculator" },
+  // { to: "/", label: "Odoo Cost Calculator" },
   { to: "/blog", label: "Blog" },
   { to: "/careers", label: "Careers" },
 ] as const;
@@ -108,7 +108,7 @@ export function Navbar() {
           : "bg-background"
       }`}
     >
-      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-[76px]">
+      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-[83px]">
         <Link to="/" className="shrink-0"><Logo /></Link>
 
         <nav className="hidden lg:flex items-center gap-1 xl:gap-3">
@@ -131,7 +131,7 @@ export function Navbar() {
                 key={`${n.label}-${n.to}`}
                 to={n.to}
                 className="px-2 py-2 text-[13px] font-semibold text-ink transition-colors hover:text-brand xl:px-3"
-                activeProps={n.label === "Partnerships" || n.label === "Odoo Cost Calculator" ? undefined : { className: "text-brand" }}
+                // activeProps={n.label === "Partnerships" || n.label === "Odoo Cost Calculator" ? undefined : { className: "text-brand" }}
                 activeOptions={{ exact: n.label === "Home" }}
               >
                 {n.label}

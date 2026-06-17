@@ -4,9 +4,9 @@ import { ServiceTemplate, type ServiceTemplateData } from "@/components/site/Ser
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Tecaudex" },
-      { name: "description", content: "Software development services from Tecaudex." },
-      { property: "og:title", content: "Services — Tecaudex" },
+      { title: "Services — eazisols" },
+      { name: "description", content: "Software development services from eazisols." },
+      { property: "og:title", content: "Services — eazisols" },
       { property: "og:description", content: "Software, ERP, AI, marketing, and app design services." },
     ],
   }),

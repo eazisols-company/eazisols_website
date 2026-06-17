@@ -1,13 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Brain, Code2, Layers, Palette, Sparkles } from "lucide-react";
+import { Contact } from "@/components/site/Contact";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Tecaudex — Software Development Agency" },
-      { name: "description", content: "Tecaudex builds software, ERP, AI, marketing, and app design solutions." },
-      { property: "og:title", content: "Tecaudex — Software Development Agency" },
-      { property: "og:description", content: "Reference-aligned digital agency website for Tecaudex." },
+      { title: "Eazisols — Software Development Agency" },
+      { name: "description", content: "Eazisols builds software, ERP, AI, marketing, and app design solutions." },
+      { property: "og:title", content: "Eazisols — Software Development Agency" },
+      { property: "og:description", content: "Reference-aligned digital agency website for Eazisols." },
     ],
   }),
   component: HomePage,
@@ -21,23 +22,37 @@ const services = [
   { icon: Palette, title: "App Designing", text: "App prototyping, design audits, illustrations, brand guidelines, and design systems." },
 ];
 
+function Hero() {
+  return (
+    <section id="contact" className="relative overflow-hidden pt-12 pl-16 pr-16 md:pt-20">
+      <div className="absolute left-1/2 top-8 h-64 w-[720px] -translate-x-1/2 rounded-full bg-[#418ed6]/8 blur-3xl" />
+      <div className="container-page relative pb-20 md:pb-28">
+        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
+          <div>
+            <h1 className="text-5xl font-extrabold leading-[0.98] text-[#418ed6] md:text-[72px]">
+              Your
+              <br />
+              Technology
+              <br />
+              <span className="text-[#418ed6]">Partner</span>{" "}
+              <span className="text-ink-soft">for AI</span>
+              <br />
+              <span className="text-ink-soft">&amp; Digital</span>
+              <br />
+              <span className="text-ink-soft">Growth</span>
+            </h1>
+          </div>
+          <Contact />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden pt-16 md:pt-28">
-        <div className="absolute left-1/2 top-8 h-64 w-[720px] -translate-x-1/2 rounded-full bg-brand/10 blur-3xl" />
-        <div className="container-page relative pb-20">
-          <div className="grid gap-12 md:grid-cols-[0.95fr_1.05fr] md:items-center">
-            <div>
-              <p className="text-[12px] font-extrabold uppercase tracking-[0.22em] text-brand">Digital product agency</p>
-              <h1 className="mt-5 text-5xl font-extrabold leading-[0.98] text-ink md:text-[72px]">Build software that works beautifully.</h1>
-              <p className="mt-7 max-w-[560px] text-base leading-relaxed text-ink-soft">We design and develop practical digital products for teams that need clean execution, strong engineering, and a premium user experience.</p>
-              <div className="mt-9 flex flex-wrap gap-4"><Link to="/app-cost-calculator" className="btn-brand">Calculate App Cost <ArrowRight className="h-4 w-4" /></Link><Link to="/portfolio" className="btn-ghost">View Portfolio</Link></div>
-            </div>
-            <div className="min-h-[420px] image-tile-bg" />
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       <section className="bg-surface py-12">
         <div className="container-page grid grid-cols-2 gap-8 text-center md:grid-cols-4">
@@ -46,7 +61,7 @@ function HomePage() {
       </section>
 
       <section className="container-page py-24">
-        <div className="max-w-[700px]"><h2 className="text-4xl font-extrabold text-ink md:text-5xl">Services built around your product goals.</h2><p className="mt-5 text-ink-soft">A closer look at the main capabilities shown across the Tecaudex reference experience.</p></div>
+        <div className="max-w-[700px]"><h2 className="text-4xl font-extrabold text-ink md:text-5xl">Services built around your product goals.</h2><p className="mt-5 text-ink-soft">A closer look at the main capabilities shown across the eazisols reference experience.</p></div>
         <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-3">
           {services.map((service) => <Link key={service.title} to="/services" className="group min-h-[260px] bg-card p-8 transition hover:bg-surface"><service.icon className="h-9 w-9 text-ink" /><h3 className="mt-8 text-2xl font-extrabold text-ink group-hover:text-brand">{service.title}</h3><p className="mt-4 text-sm leading-relaxed text-ink-soft">{service.text}</p></Link>)}
         </div>

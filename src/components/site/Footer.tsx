@@ -50,7 +50,7 @@ export function Footer() {
             <div className="mt-5 space-y-5 text-sm">
               <div>
                 <p className="font-extrabold text-footer-foreground">Our Email</p>
-                <a href="mailto:sales@tecaudex.com" className="text-footer-foreground/45 underline underline-offset-4 hover:text-footer-foreground">sales@tecaudex.com</a>
+                <a href="mailto:sales@eazisols.com" className="text-footer-foreground/45 underline underline-offset-4 hover:text-footer-foreground">sales@eazisols.com</a>
               </div>
               <div>
                 <p className="font-extrabold text-footer-foreground">Our Phone</p>
@@ -74,7 +74,7 @@ export function Footer() {
         </div>
 
         <div className="mt-20 flex items-center justify-between border-t border-footer-foreground/55 pt-14 text-base text-footer-foreground/45">
-          <p>© {new Date().getFullYear()} Tecaudex. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} eazisols. All rights reserved.</p>
           <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="inline-flex items-center gap-2 font-extrabold text-footer-foreground transition hover:text-footer-foreground/70">
             Back to the top <ArrowUp className="h-4 w-4" />
           </button>
