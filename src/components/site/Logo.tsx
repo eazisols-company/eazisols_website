@@ -8,7 +8,7 @@ export function Logo({ variant = "dark", className = "" }: Props) {
       <img
         src={LOGO_SRC}
         alt="Eazisols"
-        className={`h-9 w-auto md:h-10 ${variant === "light" ? "brightness-0 invert" : ""}`}
+       className={`h-16 w-auto md:h-18 ${variant === "light" ? "brightness-0 invert" : ""}`}
       />
     </div>
   );
