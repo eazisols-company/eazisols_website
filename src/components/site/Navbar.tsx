@@ -171,18 +171,18 @@ export function Navbar() {
       >
         <div className="container-page pb-8">
           <div className="max-h-[78vh] overflow-y-auto rounded-[28px] border border-border bg-card p-10 shadow-[0_28px_70px_-24px_rgb(0_0_0_/_0.28)] xl:p-14">
-            <div className="grid grid-cols-5 gap-8 xl:gap-14">
+            <div className="grid grid-cols-5 gap-6 xl:gap-10">
               {MEGA.map((col) => (
                 <div key={col.title}>
                   <Link to="/services" className="group flex items-start justify-between gap-2">
-                    <h4 className="text-[20px] font-extrabold leading-tight text-ink xl:text-[26px]">{col.title}</h4>
+                    <h4 className="text-[16px] font-bold leading-tight text-ink xl:text-[20px]">{col.title}</h4>
                     <ChevronRight className="mt-1 h-6 w-6 text-ink-soft transition-transform group-hover:translate-x-0.5" />
                   </Link>
                   <ul className="mt-8 space-y-6">
                     {col.items.map((it) => (
                       <li key={it}>
-                        <Link to="/services" className="flex items-start gap-4 text-[15px] font-medium leading-tight text-ink-soft transition-colors hover:text-brand xl:text-[19px]">
-                          <span className="text-2xl leading-none text-ink-soft/70">↳</span>
+                        <Link to="/services" className="flex items-start gap-4 text-[8px] leading-tight text-ink-soft transition-colors hover:text-brand xl:text-[16px]">
+                          <span className="text-1xl leading-none text-ink-soft/70">↳</span>
                           <span>{it}</span>
                         </Link>
                       </li>

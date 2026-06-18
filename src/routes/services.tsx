@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServiceTemplate, type ServiceTemplateData } from "@/components/site/ServiceTemplate";
+import { SERVICE_HERO_CONTENT, SERVICE_HERO_IMAGES } from "@/data/services-hero-slides";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -7,7 +8,10 @@ export const Route = createFileRoute("/services")({
       { title: "Services — eazisols" },
       { name: "description", content: "Software development services from eazisols." },
       { property: "og:title", content: "Services — eazisols" },
-      { property: "og:description", content: "Software, ERP, AI, marketing, and app design services." },
+      {
+        property: "og:description",
+        content: "Software, ERP, AI, marketing, and app design services.",
+      },
     ],
   }),
   component: ServicesPage,
@@ -15,8 +19,10 @@ export const Route = createFileRoute("/services")({
 
 const data: ServiceTemplateData = {
   title: "Custom ERP Development",
-  heroSubtitle:
-    "Transform your business with tailored ERP solutions designed to streamline operations, improve productivity, and deliver real measurable results.",
+  hero: {
+    content: SERVICE_HERO_CONTENT,
+    images: SERVICE_HERO_IMAGES,
+  },
   breadcrumb: ["ERP Development", "Custom ERP Development"],
   intro:
     "Our custom ERP development services are built around how your business actually works. We design and deliver ERP platforms that consolidate processes, simplify reporting, and give teams a single, reliable source of truth across departments — from finance and operations to sales and customer success.",
@@ -35,7 +41,7 @@ const data: ServiceTemplateData = {
   blueGradient: {
     left: {
       title: "ERP Software Development Services for Business Process Automation",
-      body: "We design and build ERP software that automates repetitive workflows, removes silos between teams, and keeps your data clean and connected. The result is fewer manual handoffs, faster decisions, and operations that scale without adding headcount.",
+      body: "We design and build ERP software that automates repetitive workflows, removes silos between teams, and keeps your data clean and connected. The result is fewer manual handoffs, faster decisions, and operations that scale without adding headcount. We design and build ERP software that automates repetitive workflows, removes silos between teams, and keeps your data clean and connected. The result is fewer manual handoffs, faster decisions, and operations that scale without adding headcount.We design and build ERP software that automates repetitive workflows, removes silos between teams, and keeps your data clean and connected. The result is fewer manual handoffs, faster decisions, and operations that scale without adding headcount.We design and build ERP software that automates repetitive workflows, removes silos between teams, and keeps your data clean and connected. The result is fewer manual handoffs, faster decisions, and operations that scale without adding headcount.",
     },
     right: {
       title: "Custom ERP Software Development Services for Business Solutions",

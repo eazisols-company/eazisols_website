@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Brain, Code2, Layers, Palette, Sparkles } from "lucide-react";
 import { Contact } from "@/components/site/Contact";
+import { LogoSlider } from "@/components/LogoSlider";
 import { DiscoveryCall } from "@/components/site/DiscoveryCall";
 import { TestimonialSection } from "@/components/site/TestimonialSection";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
@@ -59,13 +60,13 @@ function HomePage() {
   return (
     <>
       <Hero />
-      
+      <LogoSlider />
 
-      <section className="bg-surface py-12">
+      {/* <section className="bg-surface py-12">
         <div className="container-page grid grid-cols-2 gap-8 text-center md:grid-cols-4">
           {["80+|Projects delivered", "10+|Countries served", "370+|Estimates generated", "£2M+|Estimated via calculator"].map((item) => { const [value, label] = item.split("|"); return <div key={item}><div className="text-4xl font-extrabold text-ink">{value}</div><p className="mt-1 text-sm text-ink-soft">{label}</p></div>; })}
         </div>
-      </section>
+      </section> */}
 
       <section className="container-page py-24">
         <div className="max-w-[700px]"><h2 className="text-4xl font-extrabold text-ink md:text-5xl">Services built around your product goals.</h2><p className="mt-5 text-ink-soft">A closer look at the main capabilities shown across the eazisols reference experience.</p></div>
