@@ -14,6 +14,7 @@ import { reportClientError } from "../lib/error-reporting";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { FloatingActions } from "@/components/site/FloatingActions";
+import { ScrollToTop } from "@/components/site/ScrollToTop";
 
 function NotFoundComponent() {
   return (
@@ -105,6 +106,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
+      <ScrollToTop />
       <div className="flex min-h-screen flex-col bg-background text-foreground">
         <Navbar />
         <main className="flex-1">

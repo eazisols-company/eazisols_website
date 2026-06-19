@@ -76,10 +76,9 @@ export function TestimonialSection() {
         className="container-page"
         style={{
           backgroundColor: "#ffffffff",
-          maxWidth: "1312px",
           marginTop: "70px",
           borderRadius: "20px",
-          boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
+          // boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
         }}
       >
         <div className="mb-5 text-center">

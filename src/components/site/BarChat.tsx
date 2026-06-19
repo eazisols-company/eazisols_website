@@ -50,9 +50,17 @@ export function BarChart() {
     },
     title: {
       text: "Who is the right technology partner for you?",
+      style: {
+        color: "#3d3d3d",
+        fontWeight: "normal",
+      },
     },
     subtitle: {
       text: "Comparison of Time, Pricing, and Scalability",
+      style: {
+        color: "#5a5a5a",
+        fontWeight: "normal",
+      },
     },
     xAxis: {
       categories: [
@@ -64,7 +72,13 @@ export function BarChart() {
       title: {
         text: undefined,
       },
-      gridLineWidth: 1,
+      labels: {
+        style: {
+          color: "#4a4a4a",
+          fontWeight: "normal",
+        },
+      },
+      gridLineWidth: 0,
       lineWidth: 0,
     },
     yAxis: {
@@ -72,9 +86,17 @@ export function BarChart() {
       title: {
         text: "Relative Comparison",
         align: "high",
+        style: {
+          color: "#5a5a5a",
+          fontWeight: "normal",
+        },
       },
       labels: {
         overflow: "justify",
+        style: {
+          color: "#4a4a4a",
+          fontWeight: "normal",
+        },
       },
       gridLineWidth: 0,
     },
@@ -133,7 +155,8 @@ export function BarChart() {
       borderWidth: 1,
       shadow: true,
       itemStyle: {
-        fontWeight: "500",
+        color: "#4a4a4a",
+        fontWeight: "normal",
         fontSize: "14px",
       },
     },
@@ -163,8 +186,8 @@ export function BarChart() {
   };
 
   return (
-    <section className="bg-[#f8f8f8] py-16 md:py-20">
-      <div className="container-page mx-auto rounded-[20px] bg-white px-4 pb-6 pt-12 md:px-8">
+    <section className=" py-10 md:py-10">
+      <div className="container-page mx-auto rounded-[20px] px-4 pb-6 pt-12 md:px-8">
         <div className="mb-8 text-center">
           <p className="mb-1 text-sm uppercase tracking-[0.05em] text-ink-soft">
             COMPARISON

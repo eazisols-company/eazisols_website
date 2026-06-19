@@ -331,8 +331,9 @@ function InteractiveTimeline() {
 function GallerySlider() {
   return (
     <section className="relative overflow-hidden py-10 md:py-14">
-      <div className="[&_.slick-list]:overflow-hidden [&_.slick-slide>div]:px-2 md:[&_.slick-slide>div]:px-3">
-        <Slider {...gallerySliderSettings}>
+      <div className="container-page overflow-hidden">
+        <div className="[&_.slick-list]:overflow-hidden [&_.slick-slide>div]:px-2 md:[&_.slick-slide>div]:px-3">
+          <Slider {...gallerySliderSettings}>
           {OFFICE_IMAGES.map((src) => (
             <div key={src}>
               <div className="h-[240px] overflow-hidden sm:h-[350px] md:h-[340px] lg:h-[430px]">
@@ -340,7 +341,8 @@ function GallerySlider() {
               </div>
             </div>
           ))}
-        </Slider>
+          </Slider>
+        </div>
       </div>
     </section>
   );

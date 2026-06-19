@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import type { ServiceHeroContent } from "@/data/services-hero-slides";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { CAL_BOOKING_URL } from "@/lib/cal";
 
 const SLIDE_INTERVAL_MS = 5000;
 const FADE_MS = 1000;
@@ -53,7 +55,7 @@ export function ServicesHero({
       <div className="absolute inset-0 bg-black/55" />
 
       <div className="container-page relative flex min-h-[480px] items-center md:min-h-[640px]">
-       <div className="max-w-[540px] text-primary-foreground lg:ml-10 lg:mt-20">
+        <ScrollReveal className="max-w-[540px] text-primary-foreground lg:mt-20">
           <h1 className="text-5xl font-bold leading-[1.05] md:text-[64px] md:leading-[1.02]">
             {first}
             {second ? (
@@ -71,7 +73,12 @@ export function ServicesHero({
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a href="#start" className="btn-brand">
+            <a
+              href={CAL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-brand"
+            >
               {content.primaryBtnText}
             </a>
             <span className="text-xs font-medium text-primary-foreground/60">or</span>
@@ -82,7 +89,7 @@ export function ServicesHero({
               {content.secondaryBtnText}
             </Link>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

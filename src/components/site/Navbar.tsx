@@ -1,6 +1,7 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { SERVICE_NAV_GROUPS } from "@/data/services-data";
 import { ContactPopup } from "./ContactPopup";
 import { Logo } from "./Logo";
 
@@ -15,77 +16,18 @@ const NAV = [
   { to: "/careers", label: "Careers" },
 ] as const;
 
-const MEGA = [
-  {
-    title: "Software Development",
-    items: [
-      "Custom Web App Development",
-      "Mobile App Development",
-      "Desktop App Development",
-      "Smart Watch App Development",
-      "Marketing Website Development",
-      "No Code Development",
-      "Blockchain",
-      "NFTs",
-    ],
-  },
-  {
-    title: "ERP Solutions",
-    items: [
-      "Odoo ERP Solutions",
-      "Custom ERP Development",
-      "Oracle ERP to Odoo Migration",
-      "MS Dynamics 365 to Odoo",
-      "SAP to Odoo Migration",
-      "NetSuite ERP to Odoo",
-      "ERPNext to Odoo Migration",
-    ],
-  },
-  {
-    title: "AI/ML Services",
-    items: [
-      "Agentic AI Services",
-      "Generative AI Services",
-      "RAG Development Services",
-      "AI Chatbot Development",
-      "AI App Development",
-      "AI Automation Services",
-      "AI Consulting",
-      "AI Integration Services",
-      "ML Development Services",
-        "ML Consulting Services",
-    ],
-  },
-  {
-    title: "Kick-Off Marketing",
-    items: [
-      "Social Media Marketing",
-      "Performance Marketing",
-      "Graphic Editing",
-      "Video Editing",
-    ],
-  },
-  {
-    title: "App Designing",
-    items: [
-      "App Prototyping",
-      "Design Audit",
-      "Illustrations",
-      "Brand Guideline",
-      "Logo Design",
-      "Design systems",
-      "Pitch Deck",
-      "Presentations",
-    ],
-  },
-];
-
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mega, setMega] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
+  const closeMegaNow = useCallback(() => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setMega(false);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -93,6 +35,10 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    closeMegaNow();
+  }, [pathname, closeMegaNow]);
 
   const openMega = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -110,10 +56,12 @@ export function Navbar() {
           : "bg-background"
       }`}
     >
-      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-[83px]">
-        <Link to="/" className="shrink-0"><Logo /></Link>
+      <div className="container-page grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-4 md:h-[83px]">
+        <div className="flex items-center justify-self-start">
+          <Link to="/" className="shrink-0"><Logo /></Link>
+        </div>
 
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-3">
+        <nav className="hidden items-center justify-self-center gap-1 lg:flex xl:gap-3">
           {NAV.map((n) =>
             n.to === "/services" ? (
               <div key={`${n.label}-${n.to}`} onMouseEnter={openMega} onMouseLeave={closeMega} className="relative">
@@ -142,7 +90,7 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden items-center justify-self-end lg:flex">
           <button
             type="button"
             onClick={() => setContactOpen(true)}
@@ -155,7 +103,7 @@ export function Navbar() {
         <button
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
-          className="grid h-10 w-10 place-items-center rounded-full border border-border bg-background lg:hidden"
+          className="col-start-3 grid h-10 w-10 place-items-center justify-self-end rounded-full border border-border bg-background lg:hidden"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -172,18 +120,23 @@ export function Navbar() {
         <div className="container-page pb-8">
           <div className="max-h-[78vh] overflow-y-auto rounded-[28px] border border-border bg-card p-10 shadow-[0_28px_70px_-24px_rgb(0_0_0_/_0.28)] xl:p-14">
             <div className="grid grid-cols-5 gap-6 xl:gap-10">
-              {MEGA.map((col) => (
+              {SERVICE_NAV_GROUPS.map((col) => (
                 <div key={col.title}>
-                  <Link to="/services" className="group flex items-start justify-between gap-2">
+                  <Link to="/services" onClick={closeMegaNow} className="group flex items-start justify-between gap-2">
                     <h4 className="text-[16px] font-bold leading-tight text-ink xl:text-[20px]">{col.title}</h4>
                     <ChevronRight className="mt-1 h-6 w-6 text-ink-soft transition-transform group-hover:translate-x-0.5" />
                   </Link>
                   <ul className="mt-8 space-y-6">
                     {col.items.map((it) => (
-                      <li key={it}>
-                        <Link to="/services" className="flex items-start gap-4 text-[8px] leading-tight text-ink-soft transition-colors hover:text-brand xl:text-[16px]">
+                      <li key={it.slug}>
+                        <Link
+                          to="/services/$slug"
+                          params={{ slug: it.slug }}
+                          onClick={closeMegaNow}
+                          className="flex items-start gap-4 text-[8px] leading-tight text-ink-soft transition-colors hover:text-brand xl:text-[16px]"
+                        >
                           <span className="text-1xl leading-none text-ink-soft/70">↳</span>
-                          <span>{it}</span>
+                          <span>{it.label}</span>
                         </Link>
                       </li>
                     ))}
@@ -230,6 +183,8 @@ export function Navbar() {
           </div>
         </div>
       </div>
+
+      <ContactPopup open={contactOpen} onOpenChange={setContactOpen} />
     </header>
   );
 }

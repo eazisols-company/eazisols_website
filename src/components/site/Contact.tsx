@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import {
   COUNTRIES,
-  countryFlag,
   formatDialCodeValue,
   formatPhonePrefix,
   getCountryByCode,
@@ -39,16 +38,16 @@ export function Contact() {
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="flex overflow-hidden rounded-xl border border-border bg-white focus-within:border-ink">
-            <div className="relative shrink-0 border-r border-border">
+            <div className="relative w-[88px] shrink-0 border-r border-border sm:w-[92px]">
               <select
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
-                className="h-full max-w-[132px] appearance-none bg-transparent py-3.5 pl-4 pr-8 text-sm text-ink focus:outline-none sm:max-w-none"
+                className="h-full w-full appearance-none bg-transparent py-3.5 pl-3 pr-7 text-sm text-ink focus:outline-none"
                 aria-label="Country code"
               >
                 {COUNTRIES.map((item) => (
                   <option key={item.code} value={item.code}>
-                    {countryFlag(item.code)} {formatPhonePrefix(item)}
+                    {formatPhonePrefix(item)}
                   </option>
                 ))}
               </select>

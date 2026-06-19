@@ -1,4 +1,6 @@
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { useEffect, useRef, useState } from "react";
 
 export type ExpectationItem = {
@@ -8,20 +10,6 @@ export type ExpectationItem = {
 };
 
 const IMAGE_CLASS = "h-[200px] w-[200px] md:h-[190px] md:w-[180px]";
-
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReduced(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
-
-  return reduced;
-}
 
 function useActivePanelOnScroll(sectionRef: React.RefObject<HTMLElement | null>) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -132,10 +120,11 @@ function ExpectationPanel({
   reducedMotion: boolean;
 }) {
   return (
-    <article
-      data-expectation-panel={index}
-      className="min-h-[88vh] pb-20 md:min-h-[100vh] md:pb-28"
-    >
+    <ScrollReveal delay={index * 60}>
+      <article
+        data-expectation-panel={index}
+        className="min-h-[88vh] pb-20 md:min-h-[100vh] md:pb-28"
+      >
       <h3 className="mb-10 text-[30px] font-semibold leading-[1.1] tracking-[-0.03em] text-neutral-900 md:hidden">
         {item.label}
       </h3>
@@ -152,7 +141,8 @@ function ExpectationPanel({
           />
         </div>
       </div>
-    </article>
+      </article>
+    </ScrollReveal>
   );
 }
 
@@ -163,9 +153,11 @@ export function ExpectationsSection({ items }: { items: ExpectationItem[] }) {
 
   return (
     <section ref={sectionRef} className="container-page pb-24">
-      <h2 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.03em] text-neutral-900 sm:text-[33px] sm:leading-tight md:text-[36px]">
-        What you can expect from us
-      </h2>
+      <ScrollReveal>
+        <h2 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.03em] text-neutral-900 sm:text-[33px] sm:leading-tight md:text-[36px]">
+          What you can expect from us
+        </h2>
+      </ScrollReveal>
 
       <div className="mt-12 grid gap-30 md:grid-cols-[minmax(500px,540px)_minmax(0,1fr)] md:gap-50">
         <div className="hidden md:block">

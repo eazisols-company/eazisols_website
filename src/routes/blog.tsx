@@ -41,7 +41,7 @@ function BlogPage() {
     <>
       <section className="relative overflow-hidden pt-10 md:pt-14">
         <div className="container-page relative">
-          <h1 className="text-[44px] font-extrabold leading-[1.05] tracking-tight text-ink md:text-[64px]">
+          <h1 className="text-[36px] font-semibold tracking-[-0.72px] text-[#1B1B1B] sm:text-[48px] lg:text-[72px] lg:leading-[68px] leading-tight">
             Development <span className="text-ink-soft/70">Blog</span>
           </h1>
 
@@ -53,7 +53,7 @@ function BlogPage() {
                 className="aspect-[16/7] w-full object-cover"
               />
             </div>
-            <div className="relative z-10 mt-5 w-full max-w-[440px] md:absolute md:bottom-0 md:left-12 md:mt-0 md:w-[40%] md:max-w-[440px] md:translate-y-[40%]">
+            <div className="relative z-10 mt-5 w-full max-w-[440px] md:absolute md:bottom-0 md:left-12 md:mt-0 md:w-[40%] md:max-w-[440px] md:translate-y-[10%]">
               <div className="bg-white p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
                 <div className="flex items-center justify-between text-[12px] text-ink-soft">
                   <span className="inline-flex items-center gap-1.5"><Clock className="h-3 w-3" />{featured.readTime}</span>

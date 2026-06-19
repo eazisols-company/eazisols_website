@@ -73,7 +73,7 @@ const sliderSettings = {
 
 export function LogoSlider({ logos = CLIENT_LOGOS }: { logos?: ClientLogo[] }) {
   return (
-    <section className="bg-transparent py-6">
+    <section className="bg-[#f8fafc] py-6">
       <div className="[&_.slick-list]:overflow-hidden [&_.slick-slide>div]:flex [&_.slick-slide>div]:h-full [&_.slick-slide>div]:items-center [&_.slick-slide>div]:justify-center [&_.slick-slide>div]:px-4">
         <Slider {...sliderSettings}>
           {logos.map((logo) => (

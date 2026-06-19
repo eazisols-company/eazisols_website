@@ -20,7 +20,7 @@ export function DiscoveryCall() {
   }, []);
 
   return (
-    <section style={{ backgroundColor: "#F8F8F8" }}>
+    <section >
       <div className="container-page" style={{ marginTop: "40px" }}>
         <div style={{ textAlign: "center" }}>
           <p

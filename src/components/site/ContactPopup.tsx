@@ -64,22 +64,22 @@ export function ContactPopup({ open, onOpenChange }: Props) {
       <DialogPortal>
         <DialogOverlay className="bg-black/45 backdrop-blur-[6px]" />
         <DialogPrimitive.Content
-          className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-2xl border-0 bg-white p-8 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.28)] outline-none duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:p-10"
+          className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-2xl border-0 bg-white px-8 pb-8 pt-5 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.28)] outline-none duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:px-10 sm:pb-10 sm:pt-5"
           aria-describedby={undefined}
         >
           <DialogPrimitive.Title className="sr-only">Contact us</DialogPrimitive.Title>
 
-          <div className="flex items-start justify-between">
+          <header className="flex items-center justify-between border-b border-gray-200 pb-3">
             <Logo />
             <DialogPrimitive.Close
               aria-label="Close"
-              className="rounded-sm text-[#1a1a1a] opacity-80 transition hover:opacity-100 focus:outline-none"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm text-[#1a1a1a] opacity-80 transition hover:opacity-100 focus:outline-none"
             >
-              <X className="h-6 w-6 stroke-[1.75]" />
+              <X className="h-5 w-5 stroke-[1.75]" />
             </DialogPrimitive.Close>
-          </div>
+          </header>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-[1fr_268px] md:gap-6">
+          <div className="mt-6 grid gap-5 md:grid-cols-[1fr_268px] md:gap-6">
             <div className="flex flex-col gap-3">
               {PHONES.map((phone) => (
                 <PhoneCard key={phone.code} {...phone} />

@@ -18,35 +18,35 @@ const processSteps = [
     title: "Front-End Development",
     description:
       "Designs turn into reality as our developers code the interface. You'll see interactive previews early, giving you a chance to experience your product firsthand and share feedback before we move further.",
-    image: "/images/frontend.png",
+    image: "/images/frontend.jfif",
   },
   {
     number: "04",
     title: "Back-End Development",
     description:
       "Here's where the real engine comes alive. From databases to APIs, we code the features that power your product. Regular updates keep you in the loop so you can track progress as we build.",
-    image: "/images/backend.png",
+    image: "/images/backend.jfif",
   },
   {
     number: "05",
     title: "Testing & Refinement",
     description:
       "Before launch, we put your product through rigorous testing, functional, performance, and cross-device. Bugs are expected, but we eliminate them early so your users enjoy a smooth experience from day one.",
-    image: "/images/testing.png",
+    image: "/images/testing.jfif",
   },
   {
     number: "06",
     title: "Launch Day",
     description:
       "With everything tested and approved, it's time to go live. Mobile apps are submitted to Apple and Google for review, while websites are deployed directly to servers. We handle the technical side, you get to celebrate your first release.",
-    image: "/images/Maintenance.png",
+    image: "/images/launch.jfif",
   },
   {
     number: "07",
     title: "Growth & Support",
     description:
       "A launch is just the beginning. We provide ongoing maintenance, updates, and enhancements so your product keeps evolving with your business and your users.",
-    image: "/images/launch.png",
+    image: "/images/launch.jfif",
   },
 ];
 

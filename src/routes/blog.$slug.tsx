@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Clock, Calendar, ChevronRight } from "lucide-react";
+import { openCalBookingTab } from "@/lib/cal";
 
 export const Route = createFileRoute("/blog/$slug")({
   head: () => ({
@@ -80,7 +81,9 @@ function BlogDetail() {
         </div>
 
         <div className="mt-16 flex flex-wrap items-center justify-center gap-4">
-          <button className="btn-brand">Book a Free Call</button>
+          <button type="button" onClick={openCalBookingTab} className="btn-brand">
+            Book a Free Call
+          </button>
           <Link to="/blog" className="btn-ghost">Back to Blog</Link>
         </div>
       </div>

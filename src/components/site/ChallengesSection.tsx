@@ -19,7 +19,7 @@ const challenges = [
   },
   {
     icon: "/talk.svg",
-    title: 'You don&apos;t talk "tech"?',
+    title: 'You don\'t talk "tech"?',
     description:
       "You don't understand technical jargon and you are not sure what are best practices, or bad coding practices",
   },
@@ -27,8 +27,8 @@ const challenges = [
 
 export function ChallengesSection() {
   return (
-    <section className=" py-16 md:py-20">
-      <div className="container-page mx-auto max-w-[1312px]">
+    <section className=" py-10 md:py-10">
+      <div className="container-page">
         <div className="mb-10 text-center">
           <p className="mb-2 pt-5 text-sm uppercase tracking-[0.05em] text-ink-soft">
             YOU WANT TO START A SAAS STARTUP, BUT...
@@ -77,7 +77,7 @@ export function ChallengesSection() {
               src="/images/challange.png"
               alt="Challenges Illustration"
               width={400}
-              height={300}
+              height={400}
               className="h-auto max-w-full"
             />
           </div>
