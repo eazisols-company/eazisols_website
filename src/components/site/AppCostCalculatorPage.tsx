@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, Check, ChevronDown, Globe, Layers, Smartphone, Sparkles } from "lucide-react";
-import { CostCalculatorFlow } from "./CostCalculatorFlow";
+import { CostCalculatorFlow } from "@/components/site/CostCalculatorFlow";
 
 const appTypes = [
   {
