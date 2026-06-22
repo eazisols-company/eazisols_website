@@ -40,7 +40,7 @@ export function Footer() {
               href={CAL_BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-9 inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-extrabold text-primary-foreground transition hover:text-[#418ed6]"
+              className="mt-9 inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-extrabold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#418ED6] hover:shadow-[0_12px_28px_rgba(65,142,214,0.35)]"
             >
               Book a Free Call
             </a>

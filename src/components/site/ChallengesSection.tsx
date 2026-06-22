@@ -4,24 +4,28 @@ const challenges = [
     title: "No technical skills?",
     description:
       "You have no experience developing software and no code tools are too confusing or limited in their functionality",
+    gradient: "challenge-lavender",
   },
   {
     icon: "/price.svg",
     title: "High agency prices?",
     description:
       "Sick of big agencies treating you like numbers and trying to get as much money from you as possible",
+    gradient: "challenge-sky",
   },
   {
     icon: "/house.svg",
     title: "Slow in-house team?",
     description:
       "Hiring developers, designers, product managers, QA engineer takes months and costs way more than you can afford",
+    gradient: "challenge-teal",
   },
   {
     icon: "/talk.svg",
     title: 'You don\'t talk "tech"?',
     description:
       "You don't understand technical jargon and you are not sure what are best practices, or bad coding practices",
+    gradient: "challenge-mint",
   },
 ];
 
@@ -50,7 +54,7 @@ export function ChallengesSection() {
             {challenges.map((challenge) => (
               <div
                 key={challenge.title}
-                className="rounded-2xl border border-[#9c9fa3] bg-white p-[22px] transition duration-200 hover:-translate-y-1"
+                className={`rounded-2xl border border-[#9c9fa3]/45 p-[22px] transition duration-200 hover:-translate-y-1 ${challenge.gradient}`}
               >
                 <span className="mb-2.5 block">
                   <img

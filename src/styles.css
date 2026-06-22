@@ -236,6 +236,27 @@
 @utility benefit-sky { background: radial-gradient(circle at 78% 20%, oklch(0.88 0.06 235), transparent 52%), oklch(0.96 0.035 235); }
 @utility benefit-peach { background: radial-gradient(circle at 78% 20%, oklch(0.9 0.07 35), transparent 52%), oklch(0.98 0.035 45); }
 
+@utility challenge-lavender {
+  background:
+    radial-gradient(circle at 84% 16%, oklch(0.9 0.045 295 / 0.55), transparent 52%),
+    linear-gradient(145deg, oklch(0.98 0.018 285), oklch(0.965 0.028 300));
+}
+@utility challenge-sky {
+  background:
+    radial-gradient(circle at 82% 18%, oklch(0.91 0.04 245 / 0.5), transparent 50%),
+    linear-gradient(145deg, oklch(0.98 0.015 240), oklch(0.965 0.03 230));
+}
+@utility challenge-teal {
+  background:
+    radial-gradient(circle at 80% 20%, oklch(0.91 0.045 185 / 0.5), transparent 50%),
+    linear-gradient(145deg, oklch(0.98 0.016 175), oklch(0.966 0.028 190));
+}
+@utility challenge-mint {
+  background:
+    radial-gradient(circle at 78% 18%, oklch(0.93 0.04 145 / 0.45), transparent 50%),
+    linear-gradient(145deg, oklch(0.985 0.014 140), oklch(0.968 0.024 165));
+}
+
 @utility image-tile-bg {
   background-image: linear-gradient(rgb(0 0 0 / 0.42), rgb(0 0 0 / 0.42)), url('/placeholder.svg');
   background-size: cover;

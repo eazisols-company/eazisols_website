@@ -1,3 +1,5 @@
+import type { ServiceSectionContent } from "@/components/site/ServiceBulletList";
+
 export interface ServiceHeroContent {
   title: string;
   description: string;

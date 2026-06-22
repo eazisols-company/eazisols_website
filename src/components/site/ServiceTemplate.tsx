@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { openCalBookingTab } from "@/lib/cal";
 import type { ServiceHeroContent } from "@/data/services-hero-slides";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { ServiceBulletList, ServiceSectionBody, type ServiceSectionContent } from "@/components/site/ServiceBulletList";
 // import { ServiceCTA } from "./ServiceCTA";
 import { ServicesHero } from "./ServicesHero";
 import { ExpectationsSection } from "./ExpectationsSection";
@@ -23,7 +24,7 @@ export interface ServiceTemplateData {
   /** Black band section */
   blackBand: {
     title: string;
-    body: string;
+    body: ServiceSectionContent;
     linkLabel?: string;
     linkHref?: string;
     afterLink?: string;
@@ -33,18 +34,18 @@ export interface ServiceTemplateData {
   /** Blue block + image row */
   splitBlue: {
     title: string;
-    body: string;
+    body: ServiceSectionContent;
     image?: string;
   };
   /** Blue gradient two-column section */
   blueGradient: {
-    left: { title: string; body: string };
-    right: { title: string; body: string };
+    left: { title: string; body: ServiceSectionContent };
+    right: { title: string; body: ServiceSectionContent };
   };
   /** Expectations / Strategy-Execution-Creativity */
   expectations?: {
     label: string;
-    body: string;
+    body: ServiceSectionContent;
     images: string[];
   }[];
 }
@@ -65,17 +66,32 @@ export function ServiceTemplate({ data }: { data: ServiceTemplateData }) {
   ([
     {
       label: "Strategy",
-      body: "We start every engagement by understanding the business goals, users, and constraints so the work delivers measurable outcomes.",
+      body: [
+        "We start every engagement by understanding the business goals, users, and constraints so the work delivers measurable outcomes.",
+        "Discovery sessions define scope, priorities, and success metrics before build work begins.",
+        "Stakeholder alignment keeps delivery focused on measurable business value.",
+        "Risk areas and dependencies are surfaced early in the planning phase.",
+      ],
       images: [expectationImages[0], expectationImages[1]],
     },
     {
       label: "Execution",
-      body: "Cross-functional teams ship in short, predictable cycles, design, engineering, QA, and DevOps working together end-to-end.",
+      body: [
+        "Cross-functional teams ship in short, predictable cycles with design, engineering, QA, and DevOps coordinated end-to-end.",
+        "Staging environments and automated checks reduce release risk.",
+        "Progress is tracked through demos, tickets, and shared documentation.",
+        "Integrations with your existing tools and workflows are handled in parallel.",
+      ],
       images: [expectationImages[2], expectationImages[3]],
     },
     {
       label: "Creativity",
-      body: "We pair product thinking with craft so interfaces feel sharp, useful, and unmistakably yours, not generic templates.",
+      body: [
+        "We pair product thinking with craft so interfaces feel sharp, useful, and unmistakably yours — not generic templates.",
+        "Visual and interaction design are refined for clarity, accessibility, and brand fit.",
+        "Alternatives are explored early so the final experience feels distinctive.",
+        "Post-launch iteration is informed by user feedback and performance data.",
+      ],
       images: [expectationImages[4], expectationImages[5]],
     },
   ] as const);
@@ -112,9 +128,13 @@ export function ServiceTemplate({ data }: { data: ServiceTemplateData }) {
           <div className="overflow-hidden rounded-[20px]">
             <div className="bg-ink p-8 text-primary-foreground md:p-12">
               <h3 className="text-1xl font-bold md:text-3xl">{data.blackBand.title}</h3>
-              <p className="mt-5 max-w-[1000px] text-md leading-relaxed text-primary-foreground/85">
-                {data.blackBand.body}
-              </p>
+              <ServiceSectionBody
+                content={data.blackBand.body}
+                className="mt-5 max-w-[1000px] text-md text-primary-foreground/85"
+                paragraphClassName="text-primary-foreground/85"
+                listClassName="mt-5 max-w-[1000px] text-md text-primary-foreground/85"
+                itemClassName="text-primary-foreground/85"
+              />
             </div>
             <div className="aspect-[16/8] overflow-hidden">
               <img
@@ -140,9 +160,13 @@ export function ServiceTemplate({ data }: { data: ServiceTemplateData }) {
               <h3 className="text-3xl font-bold leading-tight md:text-2xl lg:text-[2.75rem] lg:leading-[1.15]">
                 {data.splitBlue.title}
               </h3>
-              <p className="mt-6 text-base leading-relaxed text-primary-foreground/95 md:text-lg md:leading-[1.75]">
-                {data.splitBlue.body}
-              </p>
+              <ServiceSectionBody
+                content={data.splitBlue.body}
+                className="mt-6 text-base text-primary-foreground/95 md:text-lg"
+                paragraphClassName="text-primary-foreground/95 md:leading-[1.75]"
+                listClassName="mt-6 text-base text-primary-foreground/95 md:text-lg"
+                itemClassName="text-primary-foreground/95 md:leading-[1.75]"
+              />
               <button
                 type="button"
                 onClick={openCalBookingTab}
@@ -194,7 +218,7 @@ function TwoColBlock({
   showButton = true,
 }: {
   title: string;
-  body: string;
+  body: ServiceSectionContent;
   showButton?: boolean;
 }) {
   return (
@@ -203,7 +227,13 @@ function TwoColBlock({
         {title}
       </h3>
 
-      <p className="mt-5 text-sm leading-[1.7] text-primary-foreground/90 md:text-[15px]">{body}</p>
+      <ServiceSectionBody
+        content={body}
+        className="mt-5 text-sm text-primary-foreground/90 md:text-[15px]"
+        paragraphClassName="text-primary-foreground/90 leading-[1.7]"
+        listClassName="mt-5 text-sm text-primary-foreground/90 md:text-[15px]"
+        itemClassName="text-primary-foreground/90 leading-[1.7]"
+      />
 
       {showButton ? (
         <button

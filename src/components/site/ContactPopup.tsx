@@ -5,13 +5,13 @@ import { Dialog, DialogOverlay, DialogPortal } from "@/components/ui/dialog";
 import { Logo } from "./Logo";
 
 const PHONES = [
-  { code: "US", country: "USA", number: "+92 321 8881156" },
-  { code: "GB", country: "UK", number: "+92 313 8484 008" },
-  { code: "AU", country: "AUSTRALIA", number: "+971 54 424 4629" },
+  { code: "PK", country: "PK", number: "+92 321 8881156" },
+  { code: "PK", country: "PK", number: "+92 313 8484008" },
+  { code: "UAE", country: "Dubai", number: "+971 54 4244629" },
 ] as const;
 
-const WHATSAPP_NUMBER = "+92 300 4018239";
-const WHATSAPP_LINK = "https://wa.me/923004018239";
+const WHATSAPP_NUMBER = "92 321 8881 156";
+const WHATSAPP_LINK = "https://wa.me/923218881156";
 const EMAIL = "info@eazisols.com";
 
 type Props = {

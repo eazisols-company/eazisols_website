@@ -11,11 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as JobOpeningsRouteImport } from './routes/job-openings'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AppCostCalculatorRouteImport } from './routes/app-cost-calculator'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as JobOpeningIdRouteImport } from './routes/job-opening.$id'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const ServicesRoute = ServicesRouteImport.update({
@@ -26,6 +28,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const PortfolioRoute = PortfolioRouteImport.update({
   id: '/portfolio',
   path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobOpeningsRoute = JobOpeningsRouteImport.update({
+  id: '/job-openings',
+  path: '/job-openings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CareersRoute = CareersRouteImport.update({
@@ -53,6 +60,11 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => ServicesRoute,
 } as any)
+const JobOpeningIdRoute = JobOpeningIdRouteImport.update({
+  id: '/job-opening/$id',
+  path: '/job-opening/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -64,9 +76,11 @@ export interface FileRoutesByFullPath {
   '/app-cost-calculator': typeof AppCostCalculatorRoute
   '/blog': typeof BlogRouteWithChildren
   '/careers': typeof CareersRoute
+  '/job-openings': typeof JobOpeningsRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
+  '/job-opening/$id': typeof JobOpeningIdRoute
   '/services/$slug': typeof ServicesSlugRoute
 }
 export interface FileRoutesByTo {
@@ -74,9 +88,11 @@ export interface FileRoutesByTo {
   '/app-cost-calculator': typeof AppCostCalculatorRoute
   '/blog': typeof BlogRouteWithChildren
   '/careers': typeof CareersRoute
+  '/job-openings': typeof JobOpeningsRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
+  '/job-opening/$id': typeof JobOpeningIdRoute
   '/services/$slug': typeof ServicesSlugRoute
 }
 export interface FileRoutesById {
@@ -85,9 +101,11 @@ export interface FileRoutesById {
   '/app-cost-calculator': typeof AppCostCalculatorRoute
   '/blog': typeof BlogRouteWithChildren
   '/careers': typeof CareersRoute
+  '/job-openings': typeof JobOpeningsRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
+  '/job-opening/$id': typeof JobOpeningIdRoute
   '/services/$slug': typeof ServicesSlugRoute
 }
 export interface FileRouteTypes {
@@ -97,9 +115,11 @@ export interface FileRouteTypes {
     | '/app-cost-calculator'
     | '/blog'
     | '/careers'
+    | '/job-openings'
     | '/portfolio'
     | '/services'
     | '/blog/$slug'
+    | '/job-opening/$id'
     | '/services/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -107,9 +127,11 @@ export interface FileRouteTypes {
     | '/app-cost-calculator'
     | '/blog'
     | '/careers'
+    | '/job-openings'
     | '/portfolio'
     | '/services'
     | '/blog/$slug'
+    | '/job-opening/$id'
     | '/services/$slug'
   id:
     | '__root__'
@@ -117,9 +139,11 @@ export interface FileRouteTypes {
     | '/app-cost-calculator'
     | '/blog'
     | '/careers'
+    | '/job-openings'
     | '/portfolio'
     | '/services'
     | '/blog/$slug'
+    | '/job-opening/$id'
     | '/services/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -128,8 +152,10 @@ export interface RootRouteChildren {
   AppCostCalculatorRoute: typeof AppCostCalculatorRoute
   BlogRoute: typeof BlogRouteWithChildren
   CareersRoute: typeof CareersRoute
+  JobOpeningsRoute: typeof JobOpeningsRoute
   PortfolioRoute: typeof PortfolioRoute
   ServicesRoute: typeof ServicesRouteWithChildren
+  JobOpeningIdRoute: typeof JobOpeningIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -146,6 +172,13 @@ declare module '@tanstack/react-router' {
       path: '/portfolio'
       fullPath: '/portfolio'
       preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/job-openings': {
+      id: '/job-openings'
+      path: '/job-openings'
+      fullPath: '/job-openings'
+      preLoaderRoute: typeof JobOpeningsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/careers': {
@@ -182,6 +215,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/services/$slug'
       preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof ServicesRoute
+    }
+    '/job-opening/$id': {
+      id: '/job-opening/$id'
+      path: '/job-opening/$id'
+      fullPath: '/job-opening/$id'
+      preLoaderRoute: typeof JobOpeningIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
       id: '/blog/$slug'
@@ -220,8 +260,10 @@ const rootRouteChildren: RootRouteChildren = {
   AppCostCalculatorRoute: AppCostCalculatorRoute,
   BlogRoute: BlogRouteWithChildren,
   CareersRoute: CareersRoute,
+  JobOpeningsRoute: JobOpeningsRoute,
   PortfolioRoute: PortfolioRoute,
   ServicesRoute: ServicesRouteWithChildren,
+  JobOpeningIdRoute: JobOpeningIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

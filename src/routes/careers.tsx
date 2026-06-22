@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   BadgeDollarSign,
@@ -207,15 +207,15 @@ function Hero() {
           if you love turning crazy ideas into real products, experimenting boldly, and leaving your
           mark on every pixel and line of code.
         </p>
-        <a
-          href="#positions"
+        <Link
+          to="/job-openings"
           className="btn-brand mt-8 group relative inline-flex items-center justify-center rounded-full px-5 py-3 text-sm sm:text-base font-semibold min-w-[130px] 
         sm:min-w-[140px] lg:min-w-[160px] overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 
         transition-colors duration-400 cursor-pointer text-white lg:px-7 lg:py-3.5"
         >
           <BriefcaseBusiness className="h-4 w-4" />
           Job openings
-        </a>
+        </Link>
         <InteractiveTimeline />
       </div>
     </section>
@@ -382,41 +382,28 @@ function Benefits() {
 }
 
 function OpenPositions() {
-  const jobs = [
-    { title: "Business Development Executive", role: "Upwork Bidder", type: "Full Time" },
-  ];
   return (
     <section id="positions" className="container-page py-20 md:pb-28">
-      <h2 className="text-[30px] leading-[1.1] font-semibold tracking-[-0.03em] sm:text-[33px] sm:leading-tight 
-      sm:tracking-normal md:text-[36px] lg:text-[36px] text-[#1B1B1B]">Open positions</h2>
-      <p className="mt-3 max-w-[650px] text-sm text-ink-soft">
-        A closer look at the core features and technologies that shape this project designed for
-        efficiency, innovation, and impact.
-      </p>
-      <div className="mt-10">
-        {jobs.map((j) => (
-          <article
-            key={j.title}
-            className="group py-8"
-          >
-            <div className="flex flex-col items-start gap-2 border border-[#ECECEC] bg-white p-5 pb-6 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <h3 className="text-[18px] font-semibold text-[#0D0D0D] md:text-xl">{j.title}</h3>
-                <p className="mt-14 text-[12px] font-medium text-[#4C4C4C] md:text-base">{j.role}</p>
-                <p className="mt-2 text-[12px] font-medium text-[#4C4C4C] md:text-base">{j.type}</p>
-              </div>
-              <a
-                href="#"
-                className="inline-flex items-center gap-4 text-xs font-extrabold uppercase tracking-wider text-ink"
-              >
-                Apply
-                <span className="grid h-9 w-9 place-items-center rounded-full border border-brand text-brand transition group-hover:bg-brand group-hover:text-primary-foreground">
-                  <ArrowRight className="h-4 w-4" />
-                </span>
-              </a>
-            </div>
-          </article>
-        ))}
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+        <div className="max-w-[650px]">
+          <h2 className="text-[30px] leading-[1.1] font-semibold tracking-[-0.03em] text-[#1B1B1B] sm:text-[33px] sm:leading-tight sm:tracking-normal md:text-[36px] lg:text-[36px]">
+            Open positions
+          </h2>
+          <p className="mt-3 text-sm text-ink-soft">
+            A closer look at the core features and technologies that shape this project designed for
+            efficiency, innovation, and impact.
+          </p>
+        </div>
+
+        <Link
+          to="/job-openings"
+          className="group inline-flex shrink-0 items-center gap-3 self-start text-sm font-extrabold uppercase tracking-wider text-ink transition hover:text-brand"
+        >
+          Open Positions
+          <span className="grid h-11 w-11 place-items-center rounded-full border-2 border-brand text-brand transition group-hover:bg-brand group-hover:text-white">
+            <ArrowRight className="h-5 w-5" />
+          </span>
+        </Link>
       </div>
     </section>
   );

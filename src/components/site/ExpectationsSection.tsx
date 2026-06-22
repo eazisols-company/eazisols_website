@@ -1,11 +1,12 @@
 import { cn } from "@/lib/utils";
+import type { ServiceSectionContent } from "@/components/site/ServiceBulletList";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { useEffect, useRef, useState } from "react";
 
 export type ExpectationItem = {
   label: string;
-  body: string;
+  body: ServiceSectionContent;
   images: string[];
 };
 

@@ -1,4 +1,5 @@
 import type { ServiceTemplateData } from "@/components/site/ServiceTemplate";
+import type { ServiceSectionContent } from "@/components/site/ServiceBulletList";
 
 const HERO_IMAGE_SETS = [
   ["/images/web1.jpg", "/images/web2.jpg", "/images/web3.jpg"],
@@ -75,29 +76,48 @@ interface ServiceMeta {
   category: string;
   heroDescription: string;
   intro: string;
-  blackBand: { title: string; body: string };
-  splitBlue: { title: string; body: string };
+  blackBand: { title: string; body: ServiceSectionContent };
+  splitBlue: { title: string; body: ServiceSectionContent };
   blueGradient: {
-    left: { title: string; body: string };
-    right: { title: string; body: string };
+    left: { title: string; body: ServiceSectionContent };
+    right: { title: string; body: ServiceSectionContent };
   };
 }
 
 function expectationsForService(meta: Pick<ServiceMeta, "slug" | "title" | "category">) {
+  const topic = meta.title.toLowerCase();
   return [
     {
       label: "Strategy",
-      body: `We align ${meta.title} with your ${meta.category.toLowerCase()} goals, users, and constraints so every deliverable maps to a measurable outcome.`,
+      body: [
+        `We map ${topic} goals to business outcomes before design or build begins.`,
+        `Stakeholder workshops clarify scope, priorities, and success metrics for your ${meta.category.toLowerCase()} initiative.`,
+        `User and workflow research informs what to ship first versus what to defer.`,
+        `A phased roadmap balances speed to market with long-term maintainability.`,
+        `Clear ownership, timelines, and communication cadence are agreed upfront.`,
+      ],
       images: [EXPECTATION_IMAGES[0], EXPECTATION_IMAGES[1]],
     },
     {
       label: "Execution",
-      body: `Our ${meta.title} team ships in short cycles — design, engineering, QA, and delivery coordinated end-to-end for ${meta.slug.replaceAll("-", " ")}.`,
+      body: [
+        `Cross-functional squads deliver ${topic} in short, reviewable iterations.`,
+        `Design, engineering, QA, and deployment stay coordinated through one delivery lead.`,
+        `Automated checks and staging environments reduce release risk.`,
+        `Progress is visible via demos, tickets, and shared documentation — not surprises at launch.`,
+        `We integrate with your existing tools, APIs, and approval workflows where needed.`,
+      ],
       images: [EXPECTATION_IMAGES[2], EXPECTATION_IMAGES[3]],
     },
     {
       label: "Creativity",
-      body: `We bring product thinking and craft to ${meta.title} so the experience feels sharp, useful, and unmistakably yours — not a generic template.`,
+      body: [
+        `Interfaces and experiences for ${topic} are tailored to your brand — not generic templates.`,
+        `We explore alternatives early so the final solution feels distinctive and purposeful.`,
+        `Copy, visuals, and interaction patterns are refined for clarity and conversion.`,
+        `Accessibility and responsive behavior are considered from the first wireframe.`,
+        `Post-launch, we help iterate based on user feedback and performance data.`,
+      ],
       images: [EXPECTATION_IMAGES[4], EXPECTATION_IMAGES[5]],
     },
   ] as const;
@@ -148,25 +168,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Custom Web App Development",
     category: "Software Development",
     heroDescription:
-      "Get a full custom modern web app from design concept and UI/UX to a fully functional backend.",
+      "End-to-end custom web applications from UX design through production backend, built for scale, security, and seamless third-party integrations.",
     intro:
-      "Our custom web app development services turn product ideas into scalable, secure web platforms. We handle architecture, frontend, backend, integrations, and deployment so your team gets a production-ready application built for real users and long-term growth.",
+      "We build web applications for fintech, healthcare, e-learning, e-commerce, and SaaS teams that need software tailored to their workflows and compliance requirements. Full-stack squads handle design, development, QA, and deployment under one roof, delivering browser-accessible apps that work across devices without native installs. Our architecture prioritizes maintainability and integration with CRM, ERP, and payment systems so your platform grows with the business. Ongoing support covers feature expansion, performance optimization, and security updates after launch.",
     blackBand: {
-      title: "End-to-End Web Application Development",
-      body: "From discovery and wireframes to launch and post-release support, we build web applications that align with your business workflows. Our teams ship performant, maintainable code with clear documentation and predictable delivery cycles.",
+      title: "Why Choose Our Web App Development Services",
+      body: [
+        "Six-plus years delivering web apps that connect CRM, ERP, and payment systems.",
+        "Scalable, browser-accessible solutions designed around your operational workflows.",
+        "Workflow automation and real-time data processing reduce manual overhead.",
+        "Smooth data flow between systems improves team productivity and decision speed.",
+        "Architecture choices prioritize maintainability and future feature velocity.",
+      ],
     },
     splitBlue: {
-      title: "Modern Tech Stacks for Scalable Web Products",
-      body: "We choose frameworks and infrastructure that match your scale, security, and speed requirements — whether you need a customer portal, internal tool, or full SaaS platform.",
+      title: "Types of Web App Development",
+      body:
+        "Custom web applications span B2B SaaS products, internal portals, learning management systems, point-of-sale tools, and CRM platforms — each engineered around how your teams actually work.\n\nProgressive web apps deliver offline support and near-native performance in the browser, while multi-tenant SaaS builds include subscription billing and role-based access from day one. Single-page applications using React or Angular provide seamless, reload-free experiences, and API-first backends power web, mobile, and partner integrations from a single core.",
     },
     blueGradient: {
       left: {
-        title: "Custom Features Built Around Your Users",
-        body: "Role-based access, real-time dashboards, payment flows, and third-party integrations are designed around how your users actually work — not generic templates.",
+        title: "Who We Serve",
+        body:
+          "Startups launching MVPs and SaaS products rely on us for budget-conscious, agile delivery that validates ideas before scaling investment. Product companies growing user-centric software need robust, testable architecture that supports rapid feature velocity without accumulating technical debt.\n\nEnterprises replacing spreadsheets and legacy tools with modern web platforms benefit from integrated ERP, CRM, supply chain, and knowledge management capabilities. Organizations with strict compliance requirements receive role-based access, audit trails, and enterprise SSO support built into the foundation rather than bolted on later.",
       },
       right: {
-        title: "Launch, Monitor, and Iterate with Confidence",
-        body: "We deploy with CI/CD, monitoring, and analytics baked in so you can ship updates safely and measure adoption from day one.",
+        title: "Our Pricing for Web Application Development",
+        body:
+          "MVP web app development typically ranges from $5,000 to $38,000 USD, covering core features, authentication, and essential integrations for early market validation. Full-scale web applications generally fall between $50,000 and $150,000 USD depending on complexity, third-party connectors, and compliance requirements.\n\nHourly engagement is available at $30 USD per hour for flexible scope or ongoing enhancement work. Every quote is based on documented features, integration points, and timeline requirements — transparent scoping ensures you understand cost drivers before development begins.",
       },
     },
   },
@@ -175,25 +204,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Mobile App Development",
     category: "Software Development",
     heroDescription:
-      "Native and cross-platform mobile apps designed, built, and shipped for iOS and Android.",
+      "Native and cross-platform mobile apps for iOS and Android with high-performance UI/UX, secure integrations, and App Store deployment from concept to launch.",
     intro:
-      "Our mobile app development services cover the full product lifecycle — UX research, UI design, native or cross-platform engineering, QA, and store submission. We build apps that feel fast, polished, and aligned with your brand on every device.",
+      "Full-cycle mobile development covers design, coding, QA, deployment, and post-launch updates under one delivery team. We build native iOS and Android or cross-platform apps with React Native and Flutter based on your budget, timeline, and performance requirements. Wireframing and prototyping validate user flows before development investment, while API integration connects apps to CRM, databases, and third-party services. Post-launch optimization is driven by real usage data, crash reports, and user feedback.",
     blackBand: {
-      title: "iOS and Android Apps That Users Keep Opening",
-      body: "We design mobile experiences around real usage patterns: onboarding, offline support, push notifications, and performance on mid-range devices. Every release is tested across form factors before it hits the stores.",
+      title: "What to Expect in Our Mobile App Development Services",
+      body:
+        "Our mobile engagements begin with platform strategy — native builds when device-specific hardware matters, cross-platform when speed and shared codebases deliver better ROI. UI/UX design includes wireframes and interactive prototypes so stakeholders approve flows before engineering starts.\n\nEvery build includes secure authentication, REST or GraphQL API integration, push notifications, and offline modes tuned for daily active use. Performance profiling, crash reporting, and analytics are standard, giving product teams visibility into retention and stability from the first release.",
     },
     splitBlue: {
-      title: "Native, Cross-Platform, or Hybrid — Chosen for Your Roadmap",
-      body: "Swift, Kotlin, React Native, or Flutter — we recommend the stack that balances time-to-market, maintenance cost, and the features your product needs today and next year.",
+      title: "How to Find the Right Partner",
+      body: [
+        "Evaluate agencies on portfolio depth, technical stack, and industry experience.",
+        "Use B2B review platforms like Clutch and Trustpilot for verified client feedback.",
+        "Request case studies showing similar app complexity and scale to your project.",
+        "Confirm post-launch support, SLA terms, and knowledge transfer practices.",
+        "Align on communication cadence, sprint demos, and ownership of app store accounts.",
+      ],
     },
     blueGradient: {
       left: {
-        title: "Mobile UX That Converts and Retains",
-        body: "Clear navigation, accessible touch targets, and thoughtful micro-interactions help users complete tasks quickly and come back without friction.",
+        title: "Custom Mobile App Development for iOS and Android Platforms",
+        body:
+          "Custom mobile apps are tailored to your business goals, user behavior patterns, and industry-specific requirements — whether customer-facing products or internal field tools. We design intuitive, on-brand interfaces that perform smoothly across phones and tablets without sacrificing platform conventions.\n\nScalable architecture supports feature growth without full rewrites, and end-to-end delivery spans concept validation through App Store submission and iterative post-launch releases. Your app ships with the operational depth investors and enterprise procurement teams expect.",
       },
       right: {
-        title: "Backend, APIs, and Analytics Connected",
-        body: "Your app ships with secure auth, REST or GraphQL APIs, crash reporting, and product analytics so you can improve with real data.",
+        title: "Cross-Platform Mobile App Development Using Modern Frameworks",
+        body:
+          "React Native and Flutter enable single-codebase deployment to iOS and Android, reducing time-to-market and ongoing maintenance cost while maintaining near-native performance. Secure authentication, API integration, crash reporting, and product analytics are included in every cross-platform build.\n\nShared testing pipelines and CI/CD workflows accelerate release cycles, so your team ships updates to both platforms simultaneously. Framework selection is based on your feature requirements, not vendor preference — we recommend the stack that fits your product roadmap.",
       },
     },
   },
@@ -202,25 +240,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Desktop App Development",
     category: "Software Development",
     heroDescription:
-      "Cross-platform desktop software for Windows, macOS, and Linux with offline-first capabilities.",
+      "High-performance desktop software for Windows, macOS, and Linux with deep system integration, security-first architecture, and enterprise-grade deployment support.",
     intro:
-      "Our desktop app development services deliver installable applications for teams that need power, offline access, and deep OS integration. We build Electron, Tauri, or native desktop clients that sync cleanly with your cloud services.",
+      "Custom desktop software is engineered for speed, reliability, and adoption in environments where web apps cannot meet performance or integration requirements. Applications handle complex business logic and high-volume data processing with stable performance under demanding workloads. Cross-platform builds using Electron, .NET, Python, and JavaScript deliver consistent experiences across operating systems. Automation features reduce manual effort, while enterprise installers, auto-update mechanisms, and IT deployment support keep rollouts manageable.",
     blackBand: {
-      title: "Desktop Software for Power Users and Field Teams",
-      body: "Whether you need a internal operations console or a customer-facing desktop client, we ship installers, auto-update flows, and enterprise deployment options that IT teams can trust.",
+      title: "Custom Desktop Application Development with System Integration and Automation",
+      body: [
+        "Desktop apps that integrate with ERP, databases, cloud platforms, and third-party tools.",
+        "Workflow automation and real-time data synchronization across connected systems.",
+        "Reduced manual effort through scripted tasks and intelligent data handling.",
+        "Complex business logic handled with stable performance under heavy workloads.",
+        "Custom connectors for legacy systems that web apps cannot easily replace.",
+      ],
     },
     splitBlue: {
-      title: "Offline-First When Connectivity Is Unreliable",
-      body: "Local data caches, background sync, and conflict resolution keep work moving when networks drop — critical for manufacturing floors, retail, and remote sites.",
+      title: "High-Performance Desktop Applications with Advanced Security Architecture",
+      body:
+        "Desktop applications are engineered for speed and reliability under demanding workloads — batch processing, local file access, and hardware peripheral integration that cloud-only tools cannot match. Secure authentication, encrypted storage, and vulnerability-resistant architecture protect sensitive customer data in regulated industries.\n\nIntuitive interfaces accelerate adoption across technical and non-technical users, while optimized resource usage ensures consistent performance on end-user machines without excessive memory or CPU overhead.",
     },
     blueGradient: {
       left: {
-        title: "OS Integration Done Right",
-        body: "System tray, file associations, hardware peripherals, and secure credential storage are built in where your workflow needs them.",
+        title: "Desktop App Development Services for High Performance Applications",
+        body:
+          "Robust desktop applications for Windows, macOS, and Linux environments integrate seamlessly with existing enterprise systems, databases, and infrastructure your IT team already manages. Responsive interfaces and smooth functionality support daily power-user workflows in manufacturing, finance, healthcare, and field operations.\n\nCustom enterprise tools and standalone applications address niche use cases where off-the-shelf software falls short. Solutions enhance productivity, reduce manual data entry, and improve long-term software reliability through modular, documented codebases.",
       },
       right: {
-        title: "Maintainable Codebases for Long Product Lifecycles",
-        body: "Modular architecture and automated updates reduce the cost of supporting desktop software over years, not just the first launch.",
+        title: "Cross-Platform Desktop App Development Services for Multi-OS Solutions",
+        body:
+          "Cross-platform frameworks like Electron and .NET reduce duplicate development effort while delivering applications that run consistently across Windows, macOS, and Linux. Shared codebases lower maintenance costs through unified release cycles and single testing pipelines.\n\nScalable architecture with responsive interfaces ensures a consistent user experience regardless of employee device preferences — critical for distributed teams and BYOD policies. Platform-specific optimizations are applied where they matter without maintaining entirely separate codebases.",
       },
     },
   },
@@ -229,25 +276,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Smart Watch App Development",
     category: "Software Development",
     heroDescription:
-      "Companion apps and standalone experiences for Apple Watch, Wear OS, and fitness wearables.",
+      "Wearable apps for Apple Watch and Wear OS optimized for battery life, glanceable interactions, and real-time sync with mobile apps and cloud backends.",
     intro:
-      "Our smart watch app development services extend your product to the wrist with glanceable UI, health integrations, and low-latency sync. We design for tiny screens, battery constraints, and the moments when users need information in seconds.",
+      "Smartwatch applications are designed for small screens and short interaction sessions where every tap and glance must deliver value quickly. We build iOS and Android wearable apps with intuitive, thumb-friendly navigation and UI crafted for real-time connectivity, alerts, and health data display. Companion mobile app integration ensures unified user experiences across wrist and phone. From MVP validation to scalable product roadmaps, we help brands extend engagement into the growing wearable market.",
     blackBand: {
-      title: "Wearable Experiences That Feel Instant",
-      body: "Complications, tiles, and quick actions are designed for one-tap access. We optimize payloads, background tasks, and Bluetooth sync so the watch app stays responsive all day.",
+      title: "Smart Watch App Development with IoT and Mobile Integration",
+      body:
+        "Wearable apps sync with mobile applications and cloud platforms in real time, flowing health data, alerts, and sensor readings securely between devices. IoT integration enables smart home, fitness, and enterprise monitoring use cases where wrist-based access improves response times.\n\nEfficient background processes preserve battery without sacrificing reliability, and unified digital ecosystems ensure watches extend — not duplicate — mobile functionality. Your users get contextual information at a glance without reaching for their phone.",
     },
     splitBlue: {
-      title: "Health, Fitness, and Productivity on the Wrist",
-      body: "Heart rate, step counts, workout sessions, reminders, and approvals — we integrate platform APIs and your backend so data flows securely between phone, watch, and cloud.",
+      title: "Custom Smartwatch Applications Optimized for Performance and Battery Efficiency",
+      body: [
+        "Lightweight code and optimized data handling to minimize power consumption.",
+        "Smooth performance on resource-constrained wearable hardware.",
+        "Secure data transmission and device-level protections for user privacy.",
+        "Glanceable content and quick actions suited to wrist-based interaction.",
+        "Reliable daily usability without draining the watch before end of day.",
+      ],
     },
     blueGradient: {
       left: {
-        title: "Platform Guidelines, Your Brand",
-        body: "We follow Apple Watch and Wear OS HIG while keeping typography, color, and tone unmistakably yours.",
+        title: "Smart Watch App Development Services for Wearable Technology",
+        body:
+          "We develop apps for Apple Watch, Wear OS, and emerging wearable platforms covering health, fitness, notifications, and custom utility applications. Lightweight, responsive builds are tuned for wearable constraints — limited screen space, intermittent connectivity, and strict battery budgets.\n\nBrand extensions deepen engagement in the growing wearable market, and end-to-end delivery spans concept validation through app store submission and post-launch iteration based on usage analytics.",
       },
       right: {
-        title: "Tested on Real Devices, Not Just Simulators",
-        body: "Battery drain, wrist detection, and notification timing are validated on hardware before release.",
+        title: "Apple Watch and Wear OS App Development for Enhanced User Engagement",
+        body:
+          "Platform-native experiences follow Apple and Google design guidelines, with glanceable content and interactive complications that drive frequent re-engagement. Health monitoring, alerts, and productivity tools are optimized for wrist-based interaction patterns.\n\nPersonalized experiences keep users connected without phone dependency, and wearable apps strengthen loyalty across your broader digital ecosystem — turning the watch into a daily touchpoint for your brand.",
       },
     },
   },
@@ -256,25 +312,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Marketing Website Development",
     category: "Software Development",
     heroDescription:
-      "High-converting marketing sites with CMS, SEO, and performance tuned for lead generation.",
+      "Conversion-focused marketing websites and landing pages built for lead generation, SEO visibility, and seamless CRM and marketing automation integration.",
     intro:
-      "Our marketing website development services combine sharp design with fast, crawlable frontends. We build landing pages, product sites, and content hubs that load quickly, rank well, and turn visitors into qualified leads.",
+      "Marketing websites are aligned with brand identity and measurable business goals — not just visual polish without performance data behind them. We deliver landing pages, product showcases, and campaign microsites for growth teams that need fast iteration and clear attribution. Lead capture forms, chat widgets, and nurture workflow connections turn traffic into pipeline, while technical SEO foundations support organic visibility from day one. Iterative improvements based on traffic data and conversion analytics keep your site compounding value over time.",
     blackBand: {
-      title: "Websites Built to Rank, Load, and Convert",
-      body: "Semantic HTML, structured data, Core Web Vitals, and clear CTAs are standard — not add-ons. We integrate your CRM, analytics, and A/B testing stack so marketing can iterate without developer bottlenecks.",
+      title: "Marketing Website Development with CRM Integration and Automation",
+      body: [
+        "Websites connected to CRM, email marketing, and analytics platforms.",
+        "Automated lead capture, email workflows, and real-time campaign tracking.",
+        "Data-driven design decisions that improve conversion rates over time.",
+        "Streamlined marketing processes reducing manual handoffs between tools.",
+        "Centralized lead data flowing directly into sales and nurture pipelines.",
+      ],
     },
     splitBlue: {
-      title: "CMS Flexibility for Growing Marketing Teams",
-      body: "Headless or traditional CMS setups let content editors publish campaigns, case studies, and blog posts without breaking layout or performance budgets.",
+      title: "User-Centric Marketing Website Design and Development",
+      body:
+        "Intuitive layouts and clear messaging guide visitors toward action at every funnel stage, with interactive features and compelling visuals that reinforce brand credibility. Mobile responsiveness and fast load times are non-negotiable — the majority of marketing traffic arrives on phones, and slow pages kill conversion before your value proposition is read.\n\nNavigation is structured around user intent rather than internal org charts, creating experiences that strengthen brand perception and support long-term growth through repeat visits and referrals.",
     },
     blueGradient: {
       left: {
-        title: "Design Systems for Consistent Campaigns",
-        body: "Reusable sections and components keep every page on-brand while speeding up new landing page launches.",
+        title: "Custom Website Development Services for Marketing Campaigns",
+        body:
+          "Websites tailored for lead generation, conversions, and campaign ROI include responsive, fast, SEO-friendly builds aligned with your marketing strategy. Landing pages and product showcases are optimized for engagement with clear CTAs, social proof, and message-match between ad copy and page headlines.\n\nAnalytics and marketing automation integrations provide measurable outcomes — you see which campaigns drive traffic, which pages convert, and where prospects drop off. Solutions drive qualified leads into sales pipelines with attribution your leadership can trust.",
       },
       right: {
-        title: "Hosting and CDN Configured for Global Audiences",
-        body: "Edge caching, image optimization, and security headers ship with every site so traffic spikes and international visitors stay covered.",
+        title: "SEO-Optimized Marketing Websites for Better Visibility",
+        body:
+          "Technical SEO includes meta tags, schema markup, page speed optimization, and keyword-informed content hierarchy with internal linking structure that search engines reward. Search-engine-friendly code supports higher organic rankings without sacrificing design quality or conversion focus.\n\nImproved visibility brings more qualified inbound traffic over time, and marketing strategy combined with SEO architecture creates sustained lead growth — not one-time traffic spikes from paid campaigns alone.",
       },
     },
   },
@@ -283,25 +348,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "No Code Development",
     category: "Software Development",
     heroDescription:
-      "Rapid prototypes and internal tools using no-code and low-code platforms — without sacrificing governance.",
+      "Rapid application delivery on Webflow, Framer, and leading no-code platforms — functional apps launched in weeks with workflow automation and third-party integrations.",
     intro:
-      "Our no-code development services help you validate ideas and automate workflows quickly using platforms like Bubble, Webflow, Airtable, and Make. We add structure, security review, and handoff paths when you outgrow the platform.",
+      "No-code development serves teams that need speed, flexibility, and lower upfront cost without sacrificing operational reliability. We build custom apps, dashboards, and customer-facing sites on proven platforms with integrations to CRMs, databases, payment systems, and automation tools. Iterative launches validate ideas before committing to full custom builds, and managed deployments include documentation so non-technical teams can own day-to-day updates confidently.",
     blackBand: {
-      title: "Speed to Value Without Shadow IT",
-      body: "We document data models, access controls, and integration points so no-code solutions stay auditable and maintainable as they spread across teams.",
+      title: "No-Code Application Development with Integration and Scalable Deployment",
+      body:
+        "No-code apps connect to CRMs, databases, APIs, and cloud platforms through integration layers that keep data flowing without manual exports. Scalable deployment models grow with user demand and feature scope, and real-time updates support fast business pivots without lengthy development cycles.\n\nReduced development complexity does not mean reduced reliability — we build connected digital ecosystems that launch faster than traditional code cycles while maintaining the operational standards your team depends on.",
     },
     splitBlue: {
-      title: "When to Stay No-Code — and When to Graduate",
-      body: "We help you decide where visual builders excel and where custom code will save money long term, then execute either path cleanly.",
+      title: "No Code Development Solutions Focused on Automation and Efficiency",
+      body: [
+        "Applications that automate repetitive tasks and streamline data flows.",
+        "Security, reliability, and performance built into every no-code project.",
+        "User-centric design that improves team productivity and adoption rates.",
+        "Business-critical workflows handled with confidence at scale.",
+        "Measurable impact through reduced manual effort and faster turnaround.",
+      ],
     },
     blueGradient: {
       left: {
-        title: "Automations That Connect Your Stack",
-        body: "CRM updates, Slack alerts, form routing, and approval flows wired together with error handling and monitoring.",
+        title: "No-Code Application Development Services for Rapid Solutions",
+        body:
+          "Fully functional applications built quickly on Webflow, Framer, Bubble, and similar tools enable rapid prototyping and workflow automation for fast time-to-market. MVPs, internal tools, and customer-facing apps ship without lengthy dev cycles, and third-party integrations enable connected, end-to-end workflows.\n\nFaster launches validate ideas and reduce upfront investment risk — you learn what users need before scaling into full custom development. No-code is a strategic starting point, not a permanent ceiling.",
       },
       right: {
-        title: "Training and Playbooks for Your Team",
-        body: "Editors and ops staff get guides and guardrails so they can extend workflows safely after launch.",
+        title: "Custom No Code Applications for Agile Business Growth",
+        body:
+          "No-code solutions adapt as business requirements and markets evolve, making them ideal for startups, SMBs, and enterprises pursuing rapid innovation. Seamless integration with existing systems and approval workflows ensures no-code apps fit into your operational stack rather than creating another silo.\n\nDashboards, marketplaces, and portals are designed for efficiency at scale, delivering agility and competitiveness without heavy traditional development overhead.",
       },
     },
   },
@@ -310,25 +384,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Blockchain",
     category: "Software Development",
     heroDescription:
-      "Smart contracts, dApps, and blockchain integrations built with security and auditability first.",
+      "Secure decentralized applications and smart contracts for enterprise and startup use cases, with private and public network deployments tailored to compliance requirements.",
     intro:
-      "Our blockchain development services cover smart contract design, wallet integration, token economics, and on-chain/off-chain architecture. We focus on use cases where decentralization adds real trust or efficiency — not hype.",
+      "Blockchain solutions enhance trust, traceability, and operational transparency across finance, supply chain, healthcare, and digital asset markets. We deliver smart contracts, dApps, and distributed ledger integrations using Solidity, Rust, Python, and JavaScript stacks with security-first engineering. Enterprise blockchain connects to existing ERP, CRM, and cloud infrastructure rather than operating in isolation. Ongoing maintenance, upgrades, and security monitoring keep deployments audit-ready after launch.",
     blackBand: {
-      title: "Secure Smart Contract Development and Audits",
-      body: "Solidity, Rust, or Move — we write tested, documented contracts and coordinate third-party audits before mainnet deployment.",
+      title: "Enterprise Blockchain Integration Services for Connected Systems",
+      body: [
+        "Blockchain solutions integrated with ERP, CRM, and cloud business platforms.",
+        "Real-time data sharing and secure transactions across decentralized and legacy systems.",
+        "Improved traceability and transparency across supply chain and financial workflows.",
+        "Architecture designed for enterprise performance, compliance, and uptime requirements.",
+        "Seamless connectivity that makes blockchain a practical part of daily operations.",
+      ],
     },
     splitBlue: {
-      title: "dApps with UX That Feels Familiar",
-      body: "Wallet connect, gas abstraction, and clear transaction states help non-crypto users complete actions without getting lost.",
+      title: "Decentralized Application (DApp) Development for Digital Innovation",
+      body:
+        "DApps run on distributed networks with censorship-resistant reliability, serving use cases across finance, healthcare, identity verification, and supply chain management. Scalable, user-friendly interfaces sit atop robust blockchain protocols without exposing users to unnecessary complexity.\n\nSecure data handling and optimized performance across platforms ensure innovative digital services build user trust through decentralization — not hype-driven experiments that fail in production.",
     },
     blueGradient: {
       left: {
-        title: "Enterprise Blockchain Integrations",
-        body: "Private chains, Hyperledger, and hybrid models when you need permissioned ledgers with existing ERP or supply chain systems.",
+        title: "Blockchain Development Services for Secure and Scalable Solutions",
+        body:
+          "We build smart contracts, dApps, NFT platforms, and private or public blockchain networks for finance, supply chain, healthcare, and emerging digital markets. Security, transparency, and performance are core engineering priorities — not afterthoughts added before launch.\n\nEnd-to-end delivery spans architecture design, development, testing, and deployment. Decentralized technology improves trust and efficiency across industries when implemented with clear business logic and maintainable codebases your team can extend.",
       },
       right: {
-        title: "Monitoring and Upgrade Strategies",
-        body: "Event indexing, alerting, and proxy patterns planned upfront so live networks stay observable and evolvable.",
+        title: "Blockchain Security and Testing Services for Safe and Reliable Solutions",
+        body:
+          "Smart contract auditing and vulnerability assessment happen before mainnet deployment, with functional, performance, and penetration testing for dApps and networks. Compliance checks align with industry standards and regulatory expectations your legal team can review.\n\nRisk mitigation protects data integrity and user assets, and confident launches are backed by thorough security validation processes — not rushed deployments that become expensive incidents later.",
       },
     },
   },
@@ -337,25 +420,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "NFTs",
     category: "Software Development",
     heroDescription:
-      "NFT platforms, minting flows, and marketplace features with royalty and metadata handled correctly.",
+      "NFT marketplaces, minting platforms, and tokenized asset ecosystems with secure smart contracts supporting ERC-721, ERC-1155, and utility-driven membership models.",
     intro:
-      "Our NFT development services span collection sites, minting engines, marketplaces, and utility tied to membership or access. We handle metadata standards, storage (IPFS/Arweave), and compliance considerations for your jurisdiction.",
+      "NFT development serves artists, brands, gaming studios, and digital collectibles markets that need more than a one-time drop. We build marketplaces with secure minting, trading, and royalty distribution mechanics, plus tokenized assets that unlock new revenue streams and ownership models. Design and development align with blockchain compatibility and collector appeal, and scalable platforms support drops, auctions, and secondary market activity at growing transaction volumes.",
     blackBand: {
-      title: "Minting, Metadata, and Marketplaces",
-      body: "Generative art pipelines, allowlists, reveal mechanics, and secondary royalty enforcement — built and tested before public launch.",
+      title: "NFT Platform Integration and Utility Development Services",
+      body:
+        "NFT platforms integrate with wallets, payment gateways, and metaverse environments so collectors experience seamless onboarding and trading. Utility NFTs enable memberships, rewards, access control, and in-app features that sustain engagement beyond initial sales.\n\nInteroperability across marketplaces and external applications, combined with scalable architecture for growing user bases, creates sustainable digital ecosystems — not speculative launches that fade after the first mint.",
     },
     splitBlue: {
-      title: "Utility Beyond the JPEG",
-      body: "Token-gated content, event access, and loyalty programs connected to your existing product so holders get ongoing value.",
+      title: "NFT Smart Contracts and Token Standards Implementation",
+      body: [
+        "Smart contracts managing ownership, transfers, royalties, and scarcity rules.",
+        "Compliance with ERC-721, ERC-1155, and other standards for broad compatibility.",
+        "Thorough testing preventing vulnerabilities and ensuring reliable execution.",
+        "Automated royalty distribution and ownership enforcement on-chain.",
+        "Trust-building infrastructure that streamlines creator and business operations.",
+      ],
     },
     blueGradient: {
       left: {
-        title: "Multi-Chain Support Where It Matters",
-        body: "Ethereum, Polygon, Solana, or L2s — we recommend chains based on fees, audience, and your treasury model.",
+        title: "NFT Development Services for Digital Collectibles and Assets",
+        body:
+          "Minting platforms and marketplaces for art, gaming, music, and brand collectibles include blockchain smart contracts ensuring authenticity and verifiable ownership. User experience and platform performance are optimized for collector engagement across primary drops and secondary trading.\n\nCustom drops and full marketplace builds are tailored to project goals, enabling secure monetization of digital content and community-driven asset economies that grow with your audience.",
       },
       right: {
-        title: "Analytics and Community Tools",
-        body: "Holder dashboards, airdrop tooling, and CRM sync so marketing and support know who owns what.",
+        title: "NFT Design Services for Unique Digital Assets",
+        body:
+          "Custom artwork, 3D designs, motion graphics, and generative art for NFT drops create visually distinctive assets that stand out in competitive digital marketplaces. Designs meet technical requirements for minting, metadata, and trading without rework during development.\n\nConcept-to-final-asset workflows are optimized for collector appeal, delivering market-ready visuals that capture attention and drive perceived value at launch.",
       },
     },
   },
@@ -364,25 +456,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Odoo ERP Solutions",
     category: "ERP Solutions",
     heroDescription:
-      "Odoo implementation, customization, and managed services for finance, inventory, CRM, and more.",
+      "Comprehensive Odoo ERP implementation covering finance, CRM, inventory, HR, and manufacturing — with custom modules, integrations, and AI-powered automation.",
     intro:
-      "Our Odoo ERP solutions help you deploy and extend Odoo across sales, inventory, accounting, HR, and manufacturing. We configure modules, build custom apps, and integrate Odoo with the rest of your stack.",
+      "Odoo ERP solutions unify accounting, sales, inventory, and HR in one open-source platform that scales from SMB to enterprise without licensing lock-in. Implementation, customization, and migration services minimize disruption while workflow automation improves real-time data visibility across departments. Integrations with e-commerce, payment gateways, and existing business tools connect Odoo to your operational stack. Ongoing support, training, and optimization keep the platform aligned as your organization grows.",
     blackBand: {
-      title: "Odoo Implementation Tailored to Your Operations",
-      body: "We map your processes to Odoo modules, migrate master data, train users, and stand up staging and production environments with clear rollback plans.",
+      title: "Custom Module Development and Third-Party Integrations",
+      body: [
+        "Custom Odoo modules when standard functionality does not fit your workflows.",
+        "Integrations with Shopify, Magento, QuickBooks, Salesforce, and payment gateways.",
+        "API and third-party connectors ensuring seamless data flow across systems.",
+        "Version migration and legacy system upgrades with validated data transfer.",
+        "Odoo as a central hub connecting all business operations and automations.",
+      ],
     },
     splitBlue: {
-      title: "Custom Odoo Modules and Integrations",
-      body: "When standard modules fall short, we ship Python/XML customizations and REST integrations that stay upgrade-friendly.",
+      title: "Key Benefits of Open-Source ERP Solutions with Odoo",
+      body:
+        "Odoo's open-source foundation enables full customization of CRM, accounting, inventory, and HR modules without vendor lock-in or per-user licensing fees that escalate with growth. A strong global developer community and continuous platform updates keep your ERP current.\n\nEasy integrations, automation, and real-time insights support better operational decisions, reducing costs and increasing productivity through tailored ERP that fits how your teams actually work.",
     },
     blueGradient: {
       left: {
-        title: "Reporting and Dashboards Leaders Actually Use",
-        body: "Pivot views, automated PDFs, and executive dashboards wired to live Odoo data — no more spreadsheet exports.",
+        title: "Odoo ERP Solutions for Businesses",
+        body:
+          "A centralized Odoo platform covers accounting, sales, CRM, inventory, and manufacturing with tailored workflows ensuring ERP fits your specific operational needs. E-commerce and POS modules unify retail and online operations under one database.\n\nScalable architecture supports growth from SMB to enterprise scale, replacing fragmented spreadsheets and siloed tools with a single source of truth your leadership can trust for reporting and planning.",
       },
       right: {
-        title: "Ongoing Support and Version Upgrades",
-        body: "Managed services keep your instance patched, backed up, and ready for each Odoo release cycle.",
+        title: "Odoo AI Integrations",
+        body:
+          "AI-powered data analysis and reporting across departments surface patterns that manual review misses, while customer engagement tools leverage predictive insights and automation. Inventory forecasting and operational efficiency improvements via AI reduce stockouts and over-ordering.\n\nAI-driven quality assurance and financial management capabilities deliver actionable insights that enhance decision-making and reduce manual analysis overhead across finance and operations teams.",
       },
     },
   },
@@ -391,25 +492,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Custom ERP Development",
     category: "ERP Solutions",
     heroDescription:
-      "Bespoke ERP platforms when off-the-shelf products cannot match your workflows.",
+      "Tailored ERP systems unifying finance, HR, inventory, CRM, and supply chain — built around your workflows with cloud deployment and process automation.",
     intro:
-      "Our custom ERP development services are built around how your business actually works. We design and deliver ERP platforms that consolidate processes, simplify reporting, and give teams a single, reliable source of truth across departments.",
+      "Custom ERP development serves companies outgrowing off-the-shelf software limitations and needing platforms shaped around unique operational requirements. Enterprise software combines automation tools and cloud-native infrastructure with industry-specific modules for manufacturing, retail, healthcare, and logistics. Migration from legacy systems includes validated data transfer and user training, and long-term partnership covers enhancements, integrations, and performance tuning as organizational complexity grows.",
     blackBand: {
       title: "ERP Implementation, Migration and Cloud Deployment Services",
-      body: "We deliver end-to-end ERP implementation, migration, and cloud deployment programs that move your business from legacy systems to modern, scalable platforms with minimal disruption.",
+      body:
+        "Smooth transition from legacy systems to modern, scalable ERP platforms includes data migration, process alignment, and deployment with minimal business disruption. Cloud ERP enables real-time access, scalability, and lower infrastructure costs compared to on-premise maintenance.\n\nSecure integration with existing tools maintains performance standards while delivering future-ready digital infrastructure that supports organizational modernization goals your leadership can plan around.",
     },
     splitBlue: {
       title: "Industry-Specific ERP Solutions for Enhanced Efficiency",
-      body: "Every industry has its own workflows, regulations, and KPIs. We build ERP solutions tailored to manufacturing, retail, logistics, healthcare, and professional services.",
+      body: [
+        "Modules tailored for manufacturing, retail, healthcare, logistics, and more.",
+        "Automated reporting, real-time analytics, and inventory management built in.",
+        "Compliance features aligned with industry regulations and audit requirements.",
+        "Security, scalability, and usability prioritized throughout development.",
+        "ERP systems that reduce errors and strengthen operational decision-making.",
+      ],
     },
     blueGradient: {
       left: {
         title: "ERP Software Development Services for Business Process Automation",
-        body: "We design and build ERP software that automates repetitive workflows, removes silos between teams, and keeps your data clean and connected.",
+        body:
+          "Centralized ERP systems integrate finance, HR, inventory, sales, and supply chain with workflow automation that reduces manual tasks and improves data visibility across departments. Scalable architecture supports seamless third-party system integration as your stack evolves.\n\nUser-friendly interfaces accelerate adoption across departments, and operational cost reduction comes through unified process management rather than reconciling data across disconnected tools.",
       },
       right: {
         title: "Custom ERP Software Development Services for Business Solutions",
-        body: "Whether you need a full ERP suite or a focused module that plugs into existing systems, our team ships secure, maintainable, and well-documented software designed around your business.",
+        body:
+          "ERP platforms designed around unique workflows rather than generic templates give your organization greater control over how teams work day to day. Finance, HR, inventory, CRM, and supply chain unify in one solution with process automation tailored to actual operational patterns.\n\nFlexible architecture adapts as organizational needs evolve, delivering greater efficiency and smarter decision-making through custom ERP your internal teams can extend and maintain.",
       },
     },
   },
@@ -418,25 +528,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Oracle ERP to Odoo Migration",
     category: "ERP Solutions",
     heroDescription:
-      "Move from Oracle ERP to Odoo with data integrity, parallel runs, and cutover planning.",
+      "Structured migration from Oracle ERP to flexible, cost-efficient Odoo with secure data transfer, phased rollout, and post-migration optimization.",
     intro:
-      "Our Oracle ERP to Odoo migration services de-risk moving off Oracle with field mapping, historical data loads, reconciliation, and phased module rollout so finance and ops stay confident through cutover.",
+      "Oracle to Odoo migration serves organizations seeking agility and lower total cost of ownership without sacrificing critical business functionality. Comprehensive planning covers data mapping, customizations, and integrations, with validated migration of accounts, inventory, HR, and transactional history. User training and change management support smooth adoption across departments, and ongoing hypercare during stabilization after go-live catches issues before they impact operations.",
     blackBand: {
-      title: "Structured Migration from Oracle to Odoo",
-      body: "We inventory customizations, extract GL/AP/AR/inventory history, and validate balances in Odoo before users switch systems.",
+      title: "Why Migrate from Oracle ERP to Odoo?",
+      body: [
+        "Lower licensing fees and simpler deployment compared to Oracle complexity.",
+        "Modular Odoo functionality adaptable to CRM, accounting, inventory, and HR.",
+        "Open-source flexibility enabling customization without vendor lock-in.",
+        "User-friendly interfaces that accelerate adoption across the organization.",
+        "Streamlined operations with better cost control and scalable growth paths.",
+      ],
     },
     splitBlue: {
-      title: "Minimize Downtime with Parallel Operations",
-      body: "Dual-run periods and automated reconciliation reports catch discrepancies early instead of on go-live weekend.",
+      title: "ERP Data Migration Best Practices",
+      body:
+        "Data cleansing and normalization happen before migration begins, with accurate mapping of Oracle data structures to Odoo modules and staged migrations supported by rollback strategies. Backup procedures and integrity validation through structured testing ensure error-free outcomes backed by finance and operations sign-off.\n\nEvery checkpoint produces reconciliation reports your teams can audit, reducing operational risk during cutover and giving leadership confidence that historical data continuity is preserved.",
     },
     blueGradient: {
       left: {
-        title: "Replace Expensive Oracle Footprint",
-        body: "License savings and simpler ops are modeled upfront so stakeholders see the business case clearly.",
+        title: "Key Challenges in Oracle ERP System Migration",
+        body:
+          "Complex Oracle data structures require careful extraction and transformation — extensions, custom fields, and historical transactions cannot be moved with simple exports. Compatibility issues with Oracle extensions and custom tooling must be identified early in planning.\n\nData loss risks during transfer are mitigated through validation checkpoints, and minimizing downtime while maintaining business continuity throughout cutover requires phased rollout strategies tailored to your operational calendar.",
       },
       right: {
-        title: "Training and Change Management Included",
-        body: "Role-based guides and super-user programs help teams adopt Odoo workflows without reverting to spreadsheets.",
+        title: "Our Oracle ERP Migration to Odoo Services",
+        body:
+          "Detailed system analysis and migration planning precede execution, with secure, accurate data migration and reconciliation reports finance teams can audit line by line. Custom development and third-party integrations are recreated in Odoo with functional parity verified before Oracle decommissioning.\n\nTesting, validation, and performance optimization happen before go-live, and ongoing post-deployment support ensures seamless operational transition into your new ERP environment.",
       },
     },
   },
@@ -445,25 +564,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "MS Dynamics 365 to Odoo",
     category: "ERP Solutions",
     heroDescription:
-      "Migrate CRM and ERP workloads from Microsoft Dynamics 365 to Odoo with full traceability.",
+      "Full CRM and ERP migration from Microsoft Dynamics 365 to Odoo with validated data transfer, integration replacement, and unified sales, invoicing, and inventory.",
     intro:
-      "Our MS Dynamics 365 to Odoo migration services transfer accounts, opportunities, orders, and financial history into Odoo with validated mappings and integration replacements for Power Platform dependencies.",
+      "Dynamics 365 to Odoo migration includes validated entity and workflow mappings with security roles, automations, and integrations reimplemented for Odoo architecture. Azure AD, Office 365, and third-party connector replacements are planned upfront so nothing breaks at cutover. Process documentation captures before-and-after workflows for stakeholder clarity, and post-migration tuning based on real team usage patterns refines Odoo into a system people actually adopt.",
     blackBand: {
       title: "Dynamics Data and Process Migration",
-      body: "Entities, workflows, and security roles are translated into Odoo models with audit logs showing record-level lineage.",
+      body:
+        "Entities, workflows, and security roles are translated into Odoo data models with audit logs providing record-level lineage for compliance and verification. Validated mappings ensure CRM and ERP data integrity after transfer, and staged cutover plans reduce risk during the transition window.\n\nFinance and operations sign-off at each migration checkpoint gives leadership confidence that customer records, open orders, and financial history arrive in Odoo complete and reconciled.",
     },
     splitBlue: {
       title: "Integrations That Survive the Move",
-      body: "Azure AD, Office 365, and third-party connectors are reimplemented or replaced so email, SSO, and ecommerce keep working.",
+      body: [
+        "Azure AD and Office 365 integrations reimplemented or replaced in Odoo.",
+        "E-commerce and third-party connectors maintained through migration planning.",
+        "SSO and email workflows restored before go-live deadline.",
+        "API replacements documented for internal IT and vendor teams.",
+        "Business-critical integrations tested end-to-end before production cutover.",
+      ],
     },
     blueGradient: {
       left: {
         title: "CRM + ERP Unified in Odoo",
-        body: "Sales pipelines, invoicing, and inventory finally share one database — fewer sync jobs, fewer broken reports.",
+        body:
+          "Sales pipelines, invoicing, and inventory share one unified Odoo database — eliminating sync jobs and broken reports from disconnected Dynamics modules. Real-time visibility spans customer-facing and back-office operations in a single interface.\n\nSimplified licensing and administration compared to the Dynamics stack reduces IT overhead, and teams work from a single source of truth for customer and order data that finance and sales both trust.",
       },
       right: {
         title: "Post-Migration Optimization",
-        body: "We tune Odoo automations and reports after go-live based on how teams actually work in the new system.",
+        body:
+          "Odoo automations are tuned based on how teams actually work post go-live, with reports and dashboards refined for finance and operations leadership. User feedback is incorporated during a dedicated hypercare support window.\n\nPerformance optimization for high-volume transactional workflows and a continuous improvement roadmap beyond initial migration completion ensure Odoo delivers lasting value — not just a successful cutover weekend.",
       },
     },
   },
@@ -472,25 +600,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "SAP to Odoo Migration",
     category: "ERP Solutions",
     heroDescription:
-      "Exit SAP complexity with a phased Odoo rollout and proven data migration tooling.",
+      "Phased SAP to Odoo migration preserving transactional history, reimplementing ABAP customizations, and supporting multi-company governance with localized tax configurations.",
     intro:
-      "Our SAP to Odoo migration services help mid-market companies leave SAP ECC or Business One for Odoo without losing years of transactional history or custom logic that still matters.",
+      "SAP to Odoo migration serves organizations seeking simpler ERP operations without losing years of transactional history. Critical SAP custom logic is recreated with tests and documentation in Odoo, and finance and operations sign-off happens at every extraction and load checkpoint. Faster month-end close cycles come from integrated CRM and inventory in Odoo, and auditor-ready consolidations with inter-company rules are validated before go-live.",
     blackBand: {
       title: "SAP Extraction, Transformation, and Load",
-      body: "Chart of accounts, materials, BOMs, and open documents are migrated with sign-off checkpoints from finance and operations leads.",
+      body: [
+        "Chart of accounts, materials, BOMs, and open documents migrated systematically.",
+        "Sign-off checkpoints from finance and operations leads at each ETL stage.",
+        "Data reconciliation reports finance teams can audit with confidence.",
+        "Staged loads reducing risk of business disruption during cutover.",
+        "Validated historical data preserving continuity for reporting and compliance.",
+      ],
     },
     splitBlue: {
       title: "Recreate Critical SAP Customizations in Odoo",
-      body: "ABAP logic that still drives revenue gets reimplemented as maintainable Odoo modules with tests and documentation.",
+      body:
+        "Revenue-driving ABAP logic is reimplemented as tested Odoo modules with documentation and unit tests ensuring long-term maintainability. Custom workflows map to Odoo automations and server actions, and stakeholder review confirms functional parity before SAP decommissioning begins.\n\nYour team inherits a sustainable Odoo codebase they can extend without ABAP dependency — reducing vendor lock-in and ongoing maintenance cost.",
     },
     blueGradient: {
       left: {
         title: "Faster Close Cycles After Migration",
-        body: "Simpler posting models and integrated CRM/inventory often shorten month-end close within the first two quarters.",
+        body:
+          "Simpler posting models in Odoo reduce month-end reconciliation effort compared to SAP's complexity, and integrated CRM and inventory eliminate cross-system data delays that slow close cycles. Finance teams often see shorter close cycles within two quarters of stabilization.\n\nReal-time reporting replaces batch exports from legacy SAP reports, and operational efficiency gains become visible soon after the migration stabilization period ends.",
       },
       right: {
         title: "Governance for Multi-Company Setups",
-        body: "Inter-company rules, consolidations, and localized tax configs validated before auditors see the new books.",
+        body:
+          "Inter-company rules and consolidation logic are validated before auditors review, with localized tax configurations mapped accurately per jurisdiction. Multi-entity reporting structures are preserved in Odoo architecture with role-based access aligned to corporate governance requirements.\n\nCompliance-ready setup supports audit and regulatory expectations across subsidiaries, currencies, and regional tax rules your finance team manages daily.",
       },
     },
   },
@@ -499,25 +636,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "NetSuite ERP to Odoo",
     category: "ERP Solutions",
     heroDescription:
-      "NetSuite to Odoo migrations with saved searches, scripts, and workflows accounted for.",
+      "NetSuite to Odoo migrations with full historical data reconciliation, SuiteScript automation replacement, and e-commerce integration reconnection before fulfillment resumes.",
     intro:
-      "Our NetSuite ERP to Odoo migration services map SuiteScript automations, saved searches, and subsidiary structures into Odoo with clear before/after process documentation.",
+      "NetSuite ERP to Odoo migration includes clear before-and-after process documentation with subsidiary structures and multi-currency setups mapped to Odoo equivalents. Critical approval, allocation, and revenue recognition workflows are preserved, and Shopify, Amazon, and warehouse connectors are planned for zero fulfillment downtime. Finance-auditable reconciliation reports throughout the migration lifecycle give leadership confidence at every milestone.",
     blackBand: {
       title: "NetSuite Historical Data in Odoo",
-      body: "Customers, items, transactions, and inventory valuations move with reconciliation reports finance can audit.",
+      body:
+        "Customers, items, transactions, and inventory valuations migrate completely with reconciliation reports finance teams can audit against NetSuite source data. Open orders and WIP balances are validated before production cutover, and historical reporting continuity is maintained for trend analysis and compliance.\n\nData integrity checkpoints at every major migration milestone catch discrepancies early — before they become expensive post-go-live fire drills.",
     },
     splitBlue: {
       title: "Replace SuiteScript with Odoo Automations",
-      body: "Critical workflows — approvals, allocations, rev rec — are rebuilt as tested Odoo server actions and scheduled jobs.",
+      body: [
+        "Approval workflows rebuilt as tested Odoo server actions and scheduled jobs.",
+        "Revenue recognition and allocation logic recreated with stakeholder sign-off.",
+        "Saved search equivalents implemented as Odoo reports and filtered views.",
+        "Automation parity verified before NetSuite decommissioning begins.",
+        "Maintainable Odoo code replacing opaque SuiteScript dependencies.",
+      ],
     },
     blueGradient: {
       left: {
         title: "Ecommerce and WMS Integrations",
-        body: "Shopify, Amazon, and warehouse connectors reconnected so fulfillment does not pause during migration.",
+        body:
+          "Shopify, Amazon, and warehouse connectors are reconnected during migration so fulfillment operations continue without pause through staged cutover. Inventory sync and order routing are tested end-to-end before go-live, and third-party logistics integrations map to Odoo warehouse modules.\n\nOmnichannel operations unify under one ERP after migration completes — eliminating the sync failures and inventory discrepancies that plague multi-system NetSuite setups.",
       },
       right: {
         title: "Cost Model You Can Plan Around",
-        body: "Odoo licensing and hosting costs are forecasted alongside migration effort so ROI is transparent.",
+        body:
+          "Odoo licensing and hosting costs are forecasted alongside migration effort, with ROI analysis comparing NetSuite TCO against Odoo operational expenses over three to five years. Transparent budgeting avoids surprise per-user or module fees that escalate as headcount grows.\n\nScalable cost structure aligns with business growth projections, and financial planning support helps leadership approve migration with confidence in the numbers.",
       },
     },
   },
@@ -526,25 +672,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "ERPNext to Odoo Migration",
     category: "ERP Solutions",
     heroDescription:
-      "Switch from ERPNext to Odoo with DocType mappings, custom fields, and open items preserved.",
+      "ERPNext to Odoo migration preserving DocTypes, manufacturing BOMs, and open items — with edition planning, hosting guidance, and dedicated hypercare after go-live.",
     intro:
-      "Our ERPNext to Odoo migration services help teams outgrow Frappe limitations while keeping manufacturing, projects, and accounting history intact in Odoo.",
+      "ERPNext to Odoo migration serves organizations needing richer ERP capabilities without losing operational history built in Frappe. Every custom DocType is inventoried with essential fields recreated or retired with documented justification. Manufacturing and project continuity is validated on the shop floor before cutover, and post go-live support covers stabilization and user adoption coaching during the critical first weeks.",
     blackBand: {
       title: "ERPNext to Odoo Field and DocType Mapping",
-      body: "Every custom DocType is inventoried; essential fields and scripts are recreated or retired with stakeholder sign-off.",
+      body: [
+        "Complete inventory of custom DocTypes and field-level dependencies.",
+        "Essential fields and scripts recreated in Odoo with stakeholder approval.",
+        "Obsolete customizations retired with documented business justification.",
+        "Data mapping validated through sample loads and user acceptance testing.",
+        "Clean Odoo foundation without carrying unnecessary ERPNext technical debt.",
+      ],
     },
     splitBlue: {
       title: "Manufacturing and Projects Continuity",
-      body: "BOMs, routings, timesheets, and WIP balances transfer with shop-floor validation before cutover.",
+      body:
+        "BOMs, routings, and manufacturing workflows transfer with shop-floor validation, and timesheets, project tasks, and WIP balances are reconciled before cutover. Production teams confirm operational parity during pilot runs, and supply chain and procurement history is preserved for continuity reporting.\n\nActive manufacturing jobs continue without disruption during the migration window — cutover planning respects production schedules, not just IT calendars.",
     },
     blueGradient: {
       left: {
         title: "Community vs Enterprise Odoo Planning",
-        body: "We recommend the right Odoo edition and hosting model based on user count, SLA needs, and compliance.",
+        body:
+          "Edition recommendations are based on user count, SLA needs, and compliance requirements — Community vs Enterprise decisions made before migration begins, not after surprises surface. Hosting model guidance covers cloud, on-premise, and managed Odoo.sh deployments.\n\nFeature comparison maps ERPNext capabilities to Odoo module equivalents with licensing cost projections for leadership budget approval, delivering a right-sized Odoo stack from day one.",
       },
       right: {
         title: "Hypercare After Go-Live",
-        body: "Dedicated support window catches edge cases from legacy ERPNext customizations early.",
+        body:
+          "A dedicated support window immediately following production cutover catches edge cases from legacy ERPNext customizations before they impact daily operations. User questions are triaged with priority response during the stabilization period.\n\nPerformance tuning based on real transactional load post launch builds confidence until teams operate independently in Odoo — hypercare is structured support, not indefinite dependency.",
       },
     },
   },
@@ -553,25 +708,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Agentic AI Services",
     category: "AI/ML Services",
     heroDescription:
-      "Autonomous AI agents that plan, use tools, and complete multi-step business tasks safely.",
+      "Autonomous AI agents that plan, use tools, and complete multi-step business tasks with human-in-the-loop approvals, audit logging, and production-scale deployment.",
     intro:
-      "Our agentic AI services design agents that call APIs, query databases, and collaborate with humans under guardrails. We focus on observable, auditable agent loops — not black-box automation.",
+      "Agentic AI services design agents that collaborate with humans under guardrails — not opaque black-box automation that bypasses accountability. Multi-step task orchestration spans research, procurement, support, and operations with tool use, memory, and retrieval built into reliable architectures. Enterprise security includes PII redaction, tenant isolation, and policy engines, and pilot-to-production pathways include regression testing as models and data evolve.",
     blackBand: {
       title: "Agents That Work With Your Systems",
-      body: "CRM updates, ticket triage, research summaries, and procurement drafts — orchestrated with permissions, logging, and human approval where required.",
+      body: [
+        "CRM updates, ticket triage, and research summaries orchestrated autonomously.",
+        "Procurement drafts and data enrichment tasks completed with human approval gates.",
+        "Permission-scoped tool access preventing agents from exceeding data boundaries.",
+        "Comprehensive logging for audit trails and operational transparency.",
+        "Practical automation that augments teams without replacing accountability.",
+      ],
     },
     splitBlue: {
       title: "Tool Use, Memory, and Evaluation Built In",
-      body: "Retrieval, function calling, and regression test suites keep agents reliable as models and data change.",
+      body:
+        "Function calling and retrieval keep agents grounded in current data rather than hallucinating from stale training sets. Persistent memory enables context-aware multi-turn task completion, and regression test suites validate agent behavior as underlying models update.\n\nEvaluation frameworks measure accuracy, latency, and task success rates — reliable agents maintain quality through changing model landscapes instead of degrading silently in production.",
     },
     blueGradient: {
       left: {
         title: "Enterprise Security and Compliance",
-        body: "PII redaction, tenant isolation, and policy engines prevent agents from overstepping data boundaries.",
+        body:
+          "PII redaction happens before data reaches external model providers, and tenant isolation ensures multi-customer deployments stay separated at the infrastructure level. Policy engines define what agents can access and execute based on role, data classification, and use case risk.\n\nCompliance frameworks align with industry regulatory requirements, delivering secure agent operations suitable for regulated and sensitive environments where audit trails are mandatory.",
       },
       right: {
         title: "From Pilot to Production Scale",
-        body: "Queueing, rate limits, and cost controls so agent workloads survive real traffic spikes.",
+        body:
+          "Queueing and rate limiting handle real traffic spikes gracefully without runaway costs or provider throttling. Cost controls prevent runaway token spend during peak workloads, and horizontal scaling architecture supports high-volume agent deployments.\n\nMonitoring dashboards track agent performance and failure modes, and production infrastructure survives enterprise demand patterns — not demo-day traffic alone.",
       },
     },
   },
@@ -580,25 +744,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Generative AI Services",
     category: "AI/ML Services",
     heroDescription:
-      "GenAI for content, code, images, and product features — grounded in your brand and data policies.",
+      "GenAI for content, code, images, and product features grounded in your brand — with prompt engineering, safety filters, and usage monitoring for trustworthy outputs.",
     intro:
-      "Our generative AI services help you ship LLM-powered features with prompt engineering, fine-tuning, safety filters, and UX that sets clear expectations for users.",
+      "Generative AI services help teams ship LLM-powered features responsibly with UX patterns that set clear expectations when AI generates or suggests content. Brand-safe outputs are encoded through style guides and evaluation datasets, covering support drafts, marketing copy, and code generation tailored to your use cases. Iterative improvement driven by production usage data and quality metrics replaces guesswork about what users actually trust.",
     blackBand: {
       title: "GenAI Features Users Can Trust",
-      body: "Citation, confidence cues, and edit-before-send flows reduce hallucination risk in customer-facing experiences.",
+      body:
+        "Source citations and confidence indicators reduce hallucination risk in user-facing features, and edit-before-send flows give users control over AI-generated content before it reaches customers. Safety filters block harmful, off-brand, or non-compliant outputs at the pipeline level.\n\nTransparent AI disclosure meets emerging regulatory expectations, and customer-facing experiences build confidence rather than skepticism — trust is designed in, not bolted on after launch.",
     },
     splitBlue: {
       title: "Model Selection for Cost and Quality",
-      body: "We benchmark open and closed models against your tasks — support drafts, marketing copy, or code generation — before locking architecture.",
+      body: [
+        "Benchmarking open and closed models against your specific task requirements.",
+        "Architecture decisions locked only after empirical quality and cost comparison.",
+        "Right-sized models avoiding over-provisioning for simple generation tasks.",
+        "Fallback strategies when primary models face latency or availability issues.",
+        "Sustainable unit economics for GenAI features at production scale.",
+      ],
     },
     blueGradient: {
       left: {
         title: "Brand-Safe Outputs",
-        body: "Style guides and tone rules encoded in prompts and evaluation datasets keep generated content on-voice.",
+        body:
+          "Style guides and tone rules are embedded in prompts and evaluation pipelines so generated content is reviewed against brand voice before reaching users. Custom fine-tuning on approved corpora delivers consistent on-voice results across marketing, support, and product copy.\n\nGuardrails prevent off-topic, competitor, or sensitive content generation — marketing and product teams trust AI output without constant manual edits slowing velocity.",
       },
       right: {
         title: "Monitoring Drift and Usage",
-        body: "Dashboards track token spend, latency, and quality scores so product teams can iterate with data.",
+        body:
+          "Dashboards track token spend, latency, and error rates in real time alongside quality scores measured through automated and human evaluation loops. Usage patterns inform which features deserve investment or retirement based on actual adoption.\n\nDrift detection alerts teams when output quality degrades over time, and data-driven iteration replaces guesswork in GenAI product development.",
       },
     },
   },
@@ -607,25 +780,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "RAG Development Services",
     category: "AI/ML Services",
     heroDescription:
-      "Retrieval-augmented generation pipelines that answer from your docs, tickets, and knowledge bases.",
+      "Retrieval-augmented generation pipelines answering from your private documents with hybrid search, access control, and on-prem or VPC deployment options.",
     intro:
-      "Our RAG development services connect LLMs to your private data with chunking, embeddings, reranking, and access control — so answers cite sources users can verify.",
+      "RAG development connects LLMs to your docs, tickets, and knowledge bases so answers cite verifiable sources users can trust and validate. Ingestion pipelines include deduplication, versioning, and scheduled refresh to keep knowledge current. Human feedback loops improve hit rates on domain-specific questions, and analytics surface knowledge gaps and hallucination patterns for targeted improvement.",
     blackBand: {
       title: "Knowledge Bases That Stay Current",
-      body: "Ingestion pipelines sync Confluence, SharePoint, PDFs, and tickets on a schedule with deduplication and version tracking.",
+      body:
+        "Scheduled ingestion syncs Confluence, SharePoint, PDFs, and ticket systems with deduplication and version tracking preventing stale or conflicting answers. Incremental updates avoid full re-indexing on every content change, and access control ensures users only retrieve documents they are permitted to see.\n\nLiving knowledge bases grow alongside organizational documentation — RAG systems that answer from last year's wiki are worse than no system at all.",
     },
     splitBlue: {
       title: "Accuracy Over Generic Chatbots",
-      body: "Hybrid search, metadata filters, and human feedback loops improve hit rate on domain-specific questions.",
+      body: [
+        "Hybrid search combining keyword and semantic retrieval for better recall.",
+        "Metadata filters narrowing results to relevant departments or document types.",
+        "Reranking models surfacing the most pertinent chunks before generation.",
+        "Human feedback loops training retrieval quality on real user questions.",
+        "Domain-specific accuracy that generic chatbots cannot match out of the box.",
+      ],
     },
     blueGradient: {
       left: {
         title: "On-Prem or VPC Deployment Options",
-        body: "Sensitive corpora stay inside your network with local embeddings and air-gapped inference when required.",
+        body:
+          "Sensitive corpora stay inside your network with local embedding models and air-gapped inference options for regulated environments. VPC deployments balance data sovereignty with cloud scalability, and encryption in transit and at rest protects all indexed document content.\n\nCompliance-ready architecture serves healthcare, finance, and government use cases where sending proprietary data to public APIs is not an option.",
       },
       right: {
         title: "Analytics on Gaps and Hallucinations",
-        body: "Unanswered queries feed content improvement backlogs so the knowledge base grows where users struggle.",
+        body:
+          "Unanswered queries feed content improvement backlogs automatically, and hallucination tracking identifies where retrieval or generation fails on real user questions. Usage analytics show which topics users struggle to find answers for.\n\nContinuous improvement cycles driven by real interaction data target knowledge base growth where users need help most — not where documentation happens to be easiest to index.",
       },
     },
   },
@@ -634,25 +816,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "AI Chatbot Development",
     category: "AI/ML Services",
     heroDescription:
-      "Support, sales, and internal chatbots with handoff to humans and CRM logging.",
+      "Support, sales, and internal chatbots with seamless human handoff across web, mobile, Slack, and WhatsApp — integrated with CRM and helpdesk systems.",
     intro:
-      "Our AI chatbot development services deliver conversational interfaces on web, mobile, Slack, and WhatsApp. Bots resolve common intents, collect structured data, and escalate with full context.",
+      "AI chatbot development resolves common intents and collects structured data before escalating complex cases to human agents with full context. Continuous improvement from conversation logs happens without full bot redeployment, and integrations with Zendesk, Salesforce, HubSpot, and custom ticketing systems eliminate copy-paste between channels. Analytics highlight new intents and training opportunities as user needs evolve.",
     blackBand: {
       title: "Chatbots That Know When to Escalate",
-      body: "Intent detection, sentiment signals, and SLA rules route complex cases to agents with transcripts and suggested replies.",
+      body: [
+        "Intent detection routing complex cases to human agents with full context.",
+        "Sentiment signals triggering escalation before customer frustration peaks.",
+        "SLA rules ensuring time-sensitive issues reach the right team promptly.",
+        "Transcripts and suggested replies accelerating agent resolution times.",
+        "Bots handling routine volume so agents focus on high-value interactions.",
+      ],
     },
     splitBlue: {
       title: "Multilingual and Accessible by Default",
-      body: "Locale-aware models and WCAG-conscious UI so global audiences and assistive tech users are included from launch.",
+      body:
+        "Locale-aware models support global customer and employee audiences with right-to-left language support where regional markets require it. WCAG-conscious UI includes keyboard navigation and screen reader compatibility considered from first wireframe — not added post-launch as a compliance checkbox.\n\nAccessible chat experiences meet enterprise procurement requirements and serve users who depend on assistive technology daily.",
     },
     blueGradient: {
       left: {
         title: "Integrations with Zendesk, Salesforce, and More",
-        body: "Tickets, leads, and orders created automatically — no copy-paste between chat and CRM.",
+        body:
+          "Tickets, leads, and orders are created automatically from chat conversations with bi-directional sync keeping CRM records current without manual entry. Custom webhook integrations connect internal tools and approval workflows.\n\nUnified customer history is visible to agents during escalated sessions — chat becomes a first-class channel in your existing support and sales stack rather than an isolated experiment.",
       },
       right: {
         title: "Continuous Improvement from Conversation Logs",
-        body: "Review queues and analytics highlight new intents to train without redeploying the whole bot.",
+        body:
+          "Review queues surface conversations needing human quality assessment, and analytics highlight emerging intents for targeted training updates. A/B testing of prompts and flows happens without redeploying the entire bot.\n\nMonthly quality reports track resolution rates and user satisfaction — bots get smarter through structured feedback, not one-time launches that stagnate.",
       },
     },
   },
@@ -661,25 +852,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "AI App Development",
     category: "AI/ML Services",
     heroDescription:
-      "Full product builds where AI is core — not a bolt-on — from mobile to enterprise SaaS.",
+      "Full product builds where AI is core — from mobile apps to enterprise SaaS with inference pipelines, billing, admin tooling, and UX designed for AI uncertainty.",
     intro:
-      "Our AI app development services ship complete applications with inference pipelines, user-facing AI features, billing, and admin tooling — designed for the latency and cost profile of real users.",
+      "AI app development ships complete applications — not bolt-on AI experiments destined for a rewrite at scale. Auth, subscriptions, model routing, and feedback collection sit in the MVP scope alongside latency and cost profiles engineered for real user volumes from day one. Design patterns handle ambiguous, slow, or partial model responses calmly, and product analytics reveal which AI features drive engagement and revenue.",
     blackBand: {
       title: "Product-Grade AI Applications",
-      body: "Auth, subscriptions, model routing, and feedback collection are part of the MVP — not phase two.",
+      body:
+        "Authentication, subscriptions, and model routing are built into the foundation from sprint one — not added after a prototype impresses stakeholders. Feedback collection loops enable continuous model and UX improvement, and admin tooling covers prompt management, usage monitoring, and access control.\n\nProduction infrastructure replaces prototypes destined for rewrite at scale — ship-ready AI products with the operational depth investors and enterprise users expect.",
     },
     splitBlue: {
       title: "Edge, Cloud, or Hybrid Inference",
-      body: "We place models where privacy, speed, and unit economics make sense for each feature.",
+      body: [
+        "Models placed where privacy, speed, and unit economics make sense per feature.",
+        "On-device inference for latency-sensitive or offline-capable experiences.",
+        "Cloud APIs for complex generation tasks with caching to control costs.",
+        "Hybrid architectures routing requests to optimal inference endpoints dynamically.",
+        "Architecture decisions driven by real usage patterns—not theoretical preferences.",
+      ],
     },
     blueGradient: {
       left: {
         title: "Design for AI Uncertainty",
-        body: "Loading states, partial results, and retry paths keep UX calm when models are slow or ambiguous.",
+        body:
+          "Loading states and skeleton screens keep users informed during inference, with partial results and progressive disclosure when models stream responses. Retry paths and fallback content activate when models are slow or unavailable.\n\nClear expectations upfront help users understand AI limitations, and calm UX maintains trust even when AI performance varies — uncertainty is a design problem, not just an engineering one.",
       },
       right: {
         title: "Ship Metrics That Matter",
-        body: "Activation, retention, and task success tracked per AI feature so you know what to double down on.",
+        body:
+          "Activation rates are tracked per AI feature to identify onboarding friction, and retention cohorts reveal which AI capabilities drive repeat usage. Task success metrics measure whether AI actually solves user problems — not just whether users click the AI button.\n\nFeature-level analytics guide investment toward high-impact capabilities, replacing intuition about AI feature value with data your product team can act on.",
       },
     },
   },
@@ -688,25 +888,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "AI Automation Services",
     category: "AI/ML Services",
     heroDescription:
-      "Automate document processing, email triage, and ops workflows with AI plus traditional integration.",
+      "Automate document processing, email triage, and ops workflows with AI — OCR, LLMs, and integration connectors with auditable confidence thresholds and ROI tracking.",
     intro:
-      "Our AI automation services combine OCR, LLMs, and RPA-style connectors to remove manual steps in finance, HR, and operations — with exception handling humans can audit.",
+      "AI automation combines intelligent extraction with traditional system integration so invoices, contracts, and inbound mail are classified and posted to ERP automatically. Exception handling ensures critical tasks never stall when AI confidence is low, and workflow automation across SaaS tools replaces brittle regex rules with AI that understands unstructured input. Monthly reporting proves automation value to leadership and operations teams with hard numbers.",
     blackBand: {
       title: "Intelligent Document and Email Processing",
-      body: "Invoices, contracts, and inbound mail classified, extracted, and posted to ERP with confidence thresholds and review queues.",
+      body: [
+        "Invoices and contracts classified, extracted, and routed to ERP systems.",
+        "Inbound email triaged by urgency, topic, and required action automatically.",
+        "Confidence thresholds triggering human review only when needed.",
+        "Audit trails documenting every automated decision for compliance review.",
+        "Finance and operations teams freed from repetitive document handling.",
+      ],
     },
     splitBlue: {
       title: "Workflow Automation Across SaaS Tools",
-      body: "Zapier-style flows upgraded with AI steps that understand unstructured input instead of brittle regex.",
+      body:
+        "Multi-step automations connect CRM, ERP, email, and project management tools with AI steps interpreting unstructured input that traditional rules cannot parse. Conditional logic routes workflows based on extracted data and context, and error handling with retry mechanisms prevents silent automation failures.\n\nConnected operations run faster with fewer manual handoffs between systems — automation that breaks silently is worse than no automation at all.",
     },
     blueGradient: {
       left: {
         title: "ROI Tracking Per Automation",
-        body: "Hours saved, error rates, and throughput reported monthly so automations prove their value.",
+        body:
+          "Hours saved are quantified and reported monthly per automation workflow, with error rate comparisons before and after deployment. Throughput metrics show volume handled without additional headcount, and cost-per-transaction analysis validates automation investment decisions.\n\nLeadership dashboards prove automation ROI with hard numbers — not slide decks claiming efficiency without measurement.",
       },
       right: {
         title: "Fallbacks When Models Miss",
-        body: "Rules-based paths and human tasks ensure nothing critical stalls when AI confidence is low.",
+        body:
+          "Rules-based paths ensure critical workflows complete regardless of AI confidence, and human task queues handle exceptions requiring judgment or approval. Alerting fires when automation failure rates exceed configured thresholds.\n\nGraceful degradation maintains operations during model outages — reliable automation never leaves business-critical processes stranded waiting for a model that timed out.",
       },
     },
   },
@@ -715,25 +924,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "AI Consulting",
     category: "AI/ML Services",
     heroDescription:
-      "Strategy, roadmaps, and vendor selection for AI initiatives that align with business outcomes.",
+      "AI strategy, roadmaps, and vendor selection aligned with business outcomes — with responsible AI frameworks and executive dashboards tracking pilot status and impact.",
     intro:
-      "Our AI consulting services help leadership prioritize use cases, assess data readiness, and build governance before large builds. We deliver actionable roadmaps — not slide decks that gather dust.",
+      "AI consulting helps leadership make informed decisions before large investments, with workshops mapping opportunities to regulatory constraints and feasibility realities. Actionable roadmaps replace slide decks that gather dust after the engagement ends, and governance policies are tailored to your industry regulators and risk tolerance. Portfolio views give steering committees visibility across all AI initiatives in one place.",
     blackBand: {
       title: "AI Strategy Grounded in Feasibility",
-      body: "Workshops map opportunities to data availability, regulatory constraints, and team capacity so pilots succeed.",
+      body:
+        "Workshops map AI opportunities to available data and team skills, with regulatory constraints identified early to prevent costly compliance surprises. Pilot designs include clear success criteria and realistic timelines, and capacity planning ensures teams can sustain initiatives after consulting ends.\n\nStrategies produce working pilots — not theoretical transformation visions that never survive contact with your data estate or engineering backlog.",
     },
     splitBlue: {
       title: "Build vs Buy vs Partner Analysis",
-      body: "Honest comparisons of foundation models, SaaS copilots, and custom development for each priority use case.",
+      body: [
+        "Honest comparisons of foundation models, SaaS copilots, and custom development.",
+        "Total cost of ownership modeling across licensing, infrastructure, and talent.",
+        "Vendor evaluation frameworks scoring fit against your specific use cases.",
+        "Partnership recommendations when external expertise accelerates time to value.",
+        "Decisions backed by evidence rather than hype or vendor sales pressure.",
+      ],
     },
     blueGradient: {
       left: {
         title: "Responsible AI Frameworks",
-        body: "Policies for bias testing, disclosure, and human oversight tailored to your industry regulators.",
+        body:
+          "Bias testing protocols run before models reach production users, and disclosure policies meet emerging AI transparency regulations your legal team can review. Human oversight requirements are defined per use case risk level.\n\nData governance rules cover training, inference, and retention — ethical AI practices aligned with your industry and brand values, not generic principles copied from a blog post.",
       },
       right: {
         title: "Executive Dashboards for AI Portfolio",
-        body: "Track pilot status, spend, and impact metrics in one view for steering committees.",
+        body:
+          "Pilot status, spend, and impact metrics appear in one steering committee view with risk indicators flagging initiatives falling behind schedule or budget. ROI tracking spans experiments, pilots, and production deployments.\n\nResource allocation visibility across data science and engineering teams gives leadership confidence through transparent AI program management.",
       },
     },
   },
@@ -742,25 +960,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "AI Integration Services",
     category: "AI/ML Services",
     heroDescription:
-      "Embed OpenAI, Anthropic, Azure AI, and open models into existing products and workflows.",
+      "Embed OpenAI, Anthropic, Azure AI, and open models into existing products with secure API patterns, observability, and abstraction layers for provider flexibility.",
     intro:
-      "Our AI integration services wire LLM and vision APIs into your apps, portals, and backends with caching, key management, and fallbacks — without rewriting everything you already ship.",
+      "AI integration wires LLM and vision APIs into apps, portals, and backends with caching, key management, and fallbacks without rewriting existing codebases. Small, reversible releases upgrade legacy features with AI capabilities, and token usage and error budgets are tracked alongside traditional service metrics. Provider-agnostic architecture adapts as pricing and quality shift over time.",
     blackBand: {
       title: "Secure API Integration Patterns",
-      body: "Proxy layers, rate limiting, and PII scrubbing before payloads hit external model providers.",
+      body: [
+        "Proxy layers keeping API keys off client devices and frontend code.",
+        "Rate limiting preventing cost overruns and provider throttling issues.",
+        "PII scrubbing before payloads reach external model providers.",
+        "Request logging with redaction for security audit and debugging.",
+        "Enterprise-grade integration patterns suitable for regulated environments.",
+      ],
     },
     splitBlue: {
       title: "Upgrade Legacy Features with AI",
-      body: "Search, recommendations, and form fill enhanced incrementally so releases stay small and reversible.",
+      body:
+        "Search, recommendations, and form fill are enhanced incrementally — not through big-bang rewrites that risk months of regression. Small releases stay reversible if AI quality does not meet expectations, and existing user workflows are preserved while AI adds intelligence behind the scenes.\n\nA/B testing compares AI-enhanced features against current baselines, delivering a practical modernization path for products with years of accumulated code.",
     },
     blueGradient: {
       left: {
         title: "Observability for Model Calls",
-        body: "Traces, token usage, and error budgets integrated with your existing APM stack.",
+        body:
+          "Distributed traces show model latency within full request paths, and token usage dashboards integrate with existing monitoring tools your ops team already uses. Error budgets and alerting fire when model failure rates spike.\n\nCost attribution per feature, team, or customer segment delivers operational visibility matching what you expect from traditional APIs — not black-box model calls with no metrics.",
       },
       right: {
         title: "Swap Models Without Rewriting UI",
-        body: "Abstraction layers let you change providers as pricing and quality shift.",
+        body:
+          "Abstraction layers decouple frontend from specific model providers, with configuration-driven model routing for easy provider changes. Quality regression tests validate outputs after model swaps, and gradual rollout mechanisms test new models on traffic subsets.\n\nFuture-proof architecture adapts to the rapidly evolving AI landscape without rewriting user interfaces every time a better model ships.",
       },
     },
   },
@@ -769,25 +996,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "ML Development Services",
     category: "AI/ML Services",
     heroDescription:
-      "Custom machine learning models for forecasting, classification, computer vision, and NLP.",
+      "Custom machine learning for forecasting, classification, vision, and NLP — with production MLOps, drift detection, and explainability for regulated decisions.",
     intro:
-      "Our ML development services cover data labeling strategy, feature engineering, training, deployment, and monitoring — from Jupyter experiments to production endpoints serving millions of predictions.",
+      "ML development spans data labeling strategy through production deployment with feature engineering, training, and monitoring for millions of daily predictions. Custom models outperform generic cloud APIs when your unique data provides competitive advantage, and drift detection triggers retraining before accuracy degrades in production. Human-readable explainability supports regulated and high-stakes decisions your stakeholders can defend.",
     blackBand: {
       title: "Production ML, Not Notebook Demos",
-      body: "Containerized training pipelines, model registries, and A/B tests in production are standard deliverables.",
+      body:
+        "Containerized training pipelines replace one-off Jupyter experiments, and model registries track versions, metrics, and deployment history across your data science team. A/B tests in production validate new models before full rollout, and automated validation gates prevent bad models from reaching users.\n\nInfrastructure your data science team can operate without constant vendor help — production ML that survives beyond the consultant's last day on the project.",
     },
     splitBlue: {
       title: "Domain Models That Beat Generic APIs",
-      body: "When your data is unique, custom models often outperform one-size-fits-all cloud APIs on accuracy and cost.",
+      body: [
+        "Custom models trained on your proprietary data for superior accuracy.",
+        "Lower inference costs when domain specificity reduces model complexity needs.",
+        "Feature engineering capturing business logic generic APIs cannot access.",
+        "Competitive advantage from models competitors cannot replicate with off-the-shelf tools.",
+        "ROI justification through measurable accuracy gains on business-critical tasks.",
+      ],
     },
     blueGradient: {
       left: {
         title: "MLOps and Retraining Schedules",
-        body: "Drift detection triggers retraining with automated validation gates before new models go live.",
+        body:
+          "Drift detection monitors input distributions and prediction quality over time, with automated retraining triggered by configurable degradation thresholds. Validation gates ensure new models meet accuracy bars before deployment, and rollback procedures activate when production models underperform baselines.\n\nSustainable ML operations keep models current without manual heroics — retraining is scheduled discipline, not panic-driven fire drills after accuracy collapses.",
       },
       right: {
         title: "Explainability Where Stakeholders Need It",
-        body: "SHAP, feature importance, and human-readable reports for regulated or high-stakes decisions.",
+        body:
+          "SHAP values and feature importance provide model decision transparency, with human-readable reports suitable for compliance and audit review. Per-prediction explanations appear where regulations require justification for individual decisions.\n\nStakeholder dashboards translate model behavior into business language, building trust for high-stakes financial and healthcare decisions that black-box predictions cannot support.",
       },
     },
   },
@@ -796,25 +1032,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "ML Consulting Services",
     category: "AI/ML Services",
     heroDescription:
-      "Assess ML readiness, audit existing models, and plan roadmaps for data science teams.",
+      "ML readiness assessments, model audits, and data science roadmaps — with platform selection advice, pilot design, and knowledge transfer to your internal team.",
     intro:
-      "Our ML consulting services review your data estate, model portfolio, and team skills — then recommend architecture, tooling, and hiring plans that close gaps without overbuilding.",
+      "ML consulting reviews data estates, model portfolios, and team skills to deliver architecture, tooling, and hiring recommendations that close gaps without overbuilding. Acquisition due diligence evaluates ML technical debt and model quality before deals close, and org structure advice scales data science teams aligned with compliance needs. Documentation and training enable self-sufficiency after consulting ends.",
     blackBand: {
       title: "ML Audits and Technical Due Diligence",
-      body: "We evaluate third-party models, internal pipelines, and technical debt before acquisitions or major investments.",
+      body: [
+        "Third-party model evaluation before acquisitions or major partnerships.",
+        "Internal pipeline review identifying technical debt and reliability risks.",
+        "Data quality assessment revealing gaps that undermine model performance.",
+        "Benchmarking existing models against achievable baselines and alternatives.",
+        "Risk-informed investment decisions backed by thorough technical analysis.",
+      ],
     },
     splitBlue: {
       title: "Platform Selection and Team Design",
-      body: "Snowflake vs Databricks, feature stores, and org structure advice based on scale and compliance needs.",
+      body:
+        "Snowflake vs Databricks recommendations are based on scale and compliance needs, with feature store and experiment tracking tooling aligned to team maturity. Org structure advice covers centralized vs embedded data science models, and hiring plans identify skill gaps and priority roles to fill.\n\nTechnology choices grow with your organization — not against it — avoiding platforms that require a full rewrite when user count doubles.",
     },
     blueGradient: {
       left: {
         title: "Pilot Design with Clear Success Metrics",
-        body: "Hypotheses, baselines, and kill criteria defined upfront so experiments produce decisions.",
+        body:
+          "Hypotheses and baselines are defined before experiments consume budget, with kill criteria preventing sunk-cost continuation of failing initiatives. Success metrics tie to business outcomes — not just model accuracy scores that look impressive in a notebook.\n\nTime-boxed pilots produce go/no-go decisions within weeks, turning data science spend into decisions leadership can act on.",
       },
       right: {
         title: "Knowledge Transfer to Your Team",
-        body: "Workshops and documentation so internal data scientists own the stack after engagement.",
+        body:
+          "Workshops cover architecture decisions, tooling, and best practices with documentation enabling internal data scientists to maintain the stack independently. Pairing sessions during critical implementation phases accelerate learning.\n\nRunbooks for common operational and troubleshooting scenarios ensure self-sufficient teams continue progress after the consulting engagement ends.",
       },
     },
   },
@@ -823,25 +1068,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Social Media Marketing",
     category: "Kick-Off Marketing",
     heroDescription:
-      "Organic and paid social programs that grow audience, engagement, and pipeline.",
+      "Organic and paid social programs growing audience, engagement, and pipeline — with platform-native content, community management, and attribution leaders can trust.",
     intro:
-      "Our social media marketing services combine content calendars, community management, and paid amplification on LinkedIn, Instagram, X, and TikTok — aligned with your brand voice and funnel stages.",
+      "Social media marketing aligns with brand voice and funnel stage objectives rather than one-size-fits-all cross-posting that underperforms on every channel. Content matches platform culture on LinkedIn, Instagram, X, and TikTok, and community and influencer programs extend reach with message control. Paid amplification ties ad spend to leads and revenue, and reporting gives leaders actionable insights for next-month planning.",
     blackBand: {
       title: "Content That Matches Platform Culture",
-      body: "Native formats, hooks, and posting cadences tuned per channel instead of one-size-fits-all cross-posting.",
+      body:
+        "Native formats, hooks, and cadences are optimized per channel — LinkedIn thought leadership is distinct from TikTok entertainment and Instagram visuals. Content pillars align with brand positioning and audience interests, and editorial calendars balance promotional, educational, and engagement content.\n\nSocial presence feels authentic to each platform's user expectations — not a single post blasted everywhere with diminishing returns.",
     },
     splitBlue: {
       title: "Paid Social with Clear Attribution",
-      body: "UTM discipline, pixel setup, and creative testing so ad spend ties to leads and revenue.",
+      body: [
+        "UTM discipline and pixel setup connecting ad spend to downstream conversions.",
+        "Creative testing identifying winning hooks, offers, and audience segments.",
+        "Budget allocation across platforms based on cost-per-lead performance data.",
+        "Retargeting sequences nurturing warm audiences through the funnel.",
+        "Transparent attribution so marketing leaders trust social ROI numbers.",
+      ],
     },
     blueGradient: {
       left: {
         title: "Community and Influencer Programs",
-        body: "Ambassador workflows and UGC campaigns that extend reach without losing message control.",
+        body:
+          "Ambassador workflows activate loyal customers as brand advocates, and UGC campaigns generate authentic content at scale with approval guardrails. Influencer partnerships are vetted for audience fit and brand alignment before contracts are signed.\n\nCommunity management fosters engagement beyond broadcast posting — extended reach through relationships, not just paid media spend that stops when the budget pauses.",
       },
       right: {
         title: "Monthly Reporting Leaders Understand",
-        body: "Reach, engagement, CPL, and pipeline influence — not vanity metrics alone.",
+        body:
+          "Reach, engagement, cost-per-lead, and pipeline influence appear in every report with platform-level breakdowns showing where budget delivers best returns. Content performance rankings guide next month's creative priorities.\n\nActionable recommendations replace data dumps requiring analyst interpretation — leaders see what worked, what didn't, and what to do next.",
       },
     },
   },
@@ -850,25 +1104,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Performance Marketing",
     category: "Kick-Off Marketing",
     heroDescription:
-      "Google, Meta, and LinkedIn campaigns optimized for CPA, ROAS, and qualified leads.",
+      "Google, Meta, and LinkedIn campaigns optimized for CPA, ROAS, and qualified leads — with full-funnel architecture, landing page alignment, and LTV-driven bid strategies.",
     intro:
-      "Our performance marketing services manage search, display, and retargeting with rigorous tracking, landing page alignment, and weekly optimization cycles focused on measurable outcomes.",
+      "Performance marketing runs with rigorous tracking and weekly optimization cycles across search, display, and retargeting campaigns focused on measurable outcomes. Landing page alignment ensures ad clicks convert instead of bouncing, and systematic ad variant rotation identifies top-performing hooks and offers. Long-term customer value informs bid strategies and audience targeting beyond cheap clicks.",
     blackBand: {
       title: "Full-Funnel Campaign Architecture",
-      body: "Awareness, consideration, and conversion campaigns structured with budgets and creatives matched to intent.",
+      body: [
+        "Awareness, consideration, and conversion campaigns structured by intent stage.",
+        "Budgets and creatives matched to where prospects are in the buying journey.",
+        "Audience segmentation preventing budget waste on unqualified traffic.",
+        "Cross-channel coordination so messaging stays consistent across touchpoints.",
+        "Funnel architecture designed for measurable progression toward revenue goals.",
+      ],
     },
     splitBlue: {
       title: "Landing Pages Built for Quality Score",
-      body: "Message match, speed, and form friction tested so ad clicks convert instead of bouncing.",
+      body:
+        "Message match between ad copy and landing page headlines reduces bounce rates, and page speed optimization improves Quality Score and conversion rates simultaneously. Form friction testing balances lead volume against lead quality.\n\nMobile-first layouts address the majority of paid traffic arriving on phones — landing experiences that convert clicks into qualified pipeline opportunities, not just traffic reports that look healthy.",
     },
     blueGradient: {
       left: {
         title: "Creative Testing at Scale",
-        body: "Ad variants, hooks, and offers rotated systematically to find winners before budgets scale.",
+        body:
+          "Ad variants, hooks, and offers rotate systematically for statistical learning, with winning creatives identified before scaling budgets into diminishing returns. Creative fatigue monitoring triggers refresh cycles proactively.\n\nFormat testing across static, video, and carousel ad types keeps campaigns fresh and performant — continuous creative iteration, not set-and-forget ad sets that decay over time.",
       },
       right: {
         title: "Cohort and LTV Analysis",
-        body: "Optimize toward customers who stay — not just cheap clicks that churn.",
+        body:
+          "Customer lifetime value informs bid caps and audience prioritization, and cohort retention reveals which acquisition channels bring loyal customers — not just one-time purchasers. Optimization targets profitable customers rather than lowest cost per click.\n\nPayback period modeling gives leadership budget planning confidence, replacing short-term vanity acquisition numbers with sustainable growth metrics.",
       },
     },
   },
@@ -877,25 +1140,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Graphic Editing",
     category: "Kick-Off Marketing",
     heroDescription:
-      "Photo retouching, compositing, and asset prep for campaigns, ecommerce, and print.",
+      "Photo retouching, compositing, and asset prep for campaigns and ecommerce — pixel-perfect edits with brand guardrails and fast turnaround SLAs for launch weeks.",
     intro:
-      "Our graphic editing services deliver production-ready visuals — background removal, color correction, batch resizing, and brand-consistent touch-ups for marketing and product teams under tight deadlines.",
+      "Graphic editing delivers production-ready visuals under tight deadlines with background removal, color correction, batch resizing, and brand-consistent touch-ups. Marketing and product teams are supported through centralized request queues with version control ensuring the right asset reaches the right channel every time. Repeatable presets enable consistent quality across thousands of catalog images without proportional cost increases.",
     blackBand: {
       title: "Pixel-Perfect Edits for Every Channel",
-      body: "Specs for social, display, packaging, and print handled in one request queue with version control.",
+      body:
+        "Specs for social, display, packaging, and print are handled in one request queue with resolution, color space, and bleed requirements met without back-and-forth revisions. Version control tracks edits across campaign iterations and channel variants.\n\nQuality checks before assets leave the studio prevent costly reprints — channel-ready files delivered the first time, on deadline, every time.",
     },
     splitBlue: {
       title: "High-Volume Catalog Workflows",
-      body: "Ecommerce teams get consistent product shots across thousands of SKUs with repeatable presets.",
+      body: [
+        "Ecommerce teams get consistent product shots across thousands of SKUs.",
+        "Repeatable presets maintaining visual uniformity across entire product lines.",
+        "Batch processing accelerating seasonal catalog updates and new product launches.",
+        "Shadow, background, and color standardization across heterogeneous source photography.",
+        "Scalable workflows that grow with catalog size without proportional cost increases.",
+      ],
     },
     blueGradient: {
       left: {
         title: "Brand Guardrails on Every File",
-        body: "Color profiles, safe zones, and logo usage checked before assets leave the studio.",
+        body:
+          "Color profiles and brand palette compliance are verified before delivery, with safe zones and logo usage rules enforced on every exported asset. Typography and visual hierarchy are checked against brand standards.\n\nConsistent brand presentation across agencies, vendors, and internal teams — guardrails preventing off-brand assets from reaching public channels and damaging credibility.",
       },
       right: {
         title: "Fast Turnaround SLAs",
-        body: "Rush tiers and dedicated editors for launch weeks and seasonal campaigns.",
+        body:
+          "Rush tiers and dedicated editors support launch weeks and seasonal peaks with predictable delivery windows enabling marketing teams to plan campaigns confidently. Priority queuing handles time-sensitive campaign and event assets.\n\nWeekend and after-hours coverage is available for global launch coordination — speed without sacrificing the quality your brand reputation demands.",
       },
     },
   },
@@ -904,25 +1176,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Video Editing",
     category: "Kick-Off Marketing",
     heroDescription:
-      "Short-form, explainers, ads, and event recap edits with motion graphics and sound design.",
+      "Short-form, explainers, ads, and event recap edits with motion graphics — optimized for retention, accessible captions, and delivery in every aspect ratio you need.",
     intro:
-      "Our video editing services turn raw footage into polished stories for ads, social, webinars, and sales decks — with captions, brand intros, and platform-specific aspect ratios included.",
+      "Video editing turns raw footage into polished stories for ads and social with captions, brand intros, and platform-specific aspect ratios included standard. Pacing is tuned for mobile sound-off viewing and short attention spans, and reusable After Effects or Premiere setups accelerate repeatable content series. Sound design and mixing elevate production value without requiring separate vendors.",
     blackBand: {
       title: "Edits Optimized for Retention",
-      body: "Hooks in the first three seconds, pacing for mobile sound-off viewing, and CTAs placed where drop-off data says they work.",
+      body: [
+        "Hooks in the first three seconds capturing attention before scroll-away.",
+        "Pacing calibrated for mobile sound-off viewing habits.",
+        "CTAs placed where drop-off data indicates viewers are most engaged.",
+        "Pattern interrupts and visual variety maintaining interest through longer formats.",
+        "Retention-focused editing backed by platform analytics—not guesswork.",
+      ],
     },
     splitBlue: {
       title: "Motion Graphics and Subtitles",
-      body: "Lower thirds, kinetic type, and accessible captions without separate vendor handoffs.",
+      body:
+        "Lower thirds, kinetic type, and branded overlays are integrated in every edit with accessible captions meeting WCAG guidelines for inclusive content. Motion graphics reinforce key messages without distracting from the core narrative.\n\nConsistent brand animation language spans all video deliverables — single-vendor delivery eliminating handoffs between editors and motion designers that slow turnaround.",
     },
     blueGradient: {
       left: {
         title: "Template Libraries for Repeatable Series",
-        body: "Podcast clips, customer stories, and product updates ship faster with reusable After Effects or Premiere setups.",
+        body:
+          "Podcast clips, customer stories, and product updates ship faster with reusable intro, outro, and lower-third templates maintaining brand consistency. Batch editing workflows support high-volume social content production.\n\nTemplate updates propagate across series without re-editing every episode — content velocity matching the pace modern social algorithms demand.",
       },
       right: {
         title: "Delivery in Every Format You Need",
-        body: "9:16, 1:1, 16:9, and ProRes masters from one edit timeline.",
+        body:
+          "Vertical, square, and landscape exports come from a single master timeline, with ProRes and high-bitrate masters for broadcast and large-screen presentations. Compressed web-ready files are optimized per platform upload requirements.\n\nThumbnail frames and preview GIFs are included for distribution teams — every format needed for multi-channel launch delivered together, on deadline.",
       },
     },
   },
@@ -931,25 +1212,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "App Prototyping",
     category: "App Designing",
     heroDescription:
-      "Clickable prototypes and design sprints to validate ideas before full development.",
+      "Clickable prototypes and design sprints validating ideas before full development — with user testing, handoff-ready specs, and investor-ready interactive demos.",
     intro:
-      "Our app prototyping services produce high-fidelity Figma or ProtoPie flows you can user-test in days. Stakeholders and investors see realistic interactions without committing to a full build.",
+      "App prototyping produces realistic interactions without committing to a full build, letting stakeholders and investors experience product flows that feel shipped — not sketched. User testing synthesizes findings into clear go/no-go recommendations, and components, edge cases, and specs are documented for development handoff. Interactive demos are polished enough for pitch meetings and fundraising conversations.",
     blackBand: {
       title: "Prototypes That Answer Real Questions",
-      body: "We script test tasks around riskiest assumptions — onboarding, pricing, core loop — and synthesize findings into a clear go/no-go recommendation.",
+      body:
+        "Test tasks target riskiest assumptions in onboarding, pricing, and core loops — hypothesis-driven prototyping prevents months of building the wrong product. User research findings are synthesized into actionable go/no-go recommendations with quantitative and qualitative signals combined for confident product decisions.\n\nPrototypes are learning tools, not just visual demonstrations for stakeholders who need to see before they approve budget.",
     },
     splitBlue: {
       title: "Design Sprints with Cross-Functional Teams",
-      body: "Product, design, and engineering aligned in a focused week with tangible artifacts, not endless workshops.",
+      body: [
+        "Product, design, and engineering aligned in a focused one-week sprint.",
+        "Tangible artifacts replacing endless workshop cycles without deliverables.",
+        "Rapid ideation, voting, and prototyping within structured sprint methodology.",
+        "Decision-making accelerated through time-boxed collaboration.",
+        "Cross-functional buy-in built during the sprint—not negotiated after handoff.",
+      ],
     },
     blueGradient: {
       left: {
         title: "Handoff Ready for Development",
-        body: "Components, specs, and edge cases documented so engineers estimate accurately.",
+        body:
+          "Components, spacing, and interaction specs are documented for engineering teams with edge cases and error states designed — not left for developers to invent under deadline pressure. Design tokens and naming conventions match developer expectations.\n\nAccurate estimates are possible because ambiguity is resolved before build starts, reducing rework and timeline slips during design-to-development transition.",
       },
       right: {
         title: "Interactive Demos for Fundraising",
-        body: "Polished flows for pitch meetings that feel like shipped product.",
+        body:
+          "Polished flows for pitch meetings feel like shipped product, demonstrating vision beyond slide deck descriptions. Key user journeys are highlighted for maximum impact in limited meeting time.\n\nBranded, responsive demos work on laptops and phones in the boardroom — fundraising conversations elevated by tangible product experiences investors remember after the meeting ends.",
       },
     },
   },
@@ -958,25 +1248,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Design Audit",
     category: "App Designing",
     heroDescription:
-      "Heuristic reviews and UX audits with prioritized fixes for conversion and accessibility.",
+      "Heuristic reviews and UX audits with prioritized fixes for conversion — evidence-backed findings, competitive analysis, and developer-ready accessibility remediation.",
     intro:
-      "Our design audit services evaluate your app or site against usability heuristics, WCAG guidelines, and conversion best practices — delivering a ranked backlog your team can execute.",
+      "Design audits deliver ranked backlogs your team can execute immediately, replacing vague feedback with specific, actionable recommendations. Accessibility findings are mapped to components and developer-ready tickets, and conversion friction is identified across key funnels and user journeys. Strategic IA recommendations are distinguished from sprint-level quick fixes so product teams sequence improvements realistically.",
     blackBand: {
       title: "Expert Review with Evidence",
-      body: "Screenshots, session replay notes, and severity scores — not vague “make it pop” feedback.",
+      body: [
+        "Screenshots, session replay notes, and severity scores—not vague aesthetic opinions.",
+        "Heuristic evaluation covering learnability, efficiency, and error prevention.",
+        "Findings prioritized by business impact and implementation effort.",
+        "Reproducible issues documented so fixes can be verified after deployment.",
+        "Professional audit reports stakeholders trust for budget and roadmap decisions.",
+      ],
     },
     splitBlue: {
       title: "Competitive and Benchmark Analysis",
-      body: "See how key flows compare to category leaders and where differentiation opportunities exist.",
+      body:
+        "Key flows are compared against category leaders and direct competitors, with differentiation opportunities identified where your UX lags or leads. Industry patterns are documented so improvements feel contemporary — not dated relative to what users expect elsewhere.\n\nBest-in-class examples are referenced for inspiration on specific interaction patterns, grounding recommendations in market reality rather than abstract design theory.",
     },
     blueGradient: {
       left: {
         title: "Accessibility Findings Developers Can Fix",
-        body: "Contrast ratios, focus order, and ARIA issues mapped to components and tickets.",
+        body:
+          "Contrast ratios, focus order, and ARIA issues are mapped to specific components with developer-ready tickets including WCAG criterion references and fix suggestions. Keyboard navigation gaps are identified with reproduction steps.\n\nScreen reader compatibility issues are prioritized by user impact — accessibility remediation plans your engineering team can sprint against, not audit reports that sit unread in a shared drive.",
       },
       right: {
         title: "Quick Wins vs Strategic Redesigns",
-        body: "We separate fixes you can ship this sprint from structural IA changes worth planning.",
+        body:
+          "Sprint-level fixes are separated from structural information architecture changes, with effort estimates helping product teams sequence improvements realistically. High-impact, low-effort wins are identified for immediate conversion gains.\n\nStrategic redesigns are scoped for quarterly planning — not hidden in audit noise — delivering an actionable roadmap balancing momentum with meaningful UX transformation.",
       },
     },
   },
@@ -985,25 +1284,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Illustrations",
     category: "App Designing",
     heroDescription:
-      "Custom illustration systems for products, marketing, and empty states.",
+      "Custom illustration systems for products, marketing, and empty states — cohesive visual languages with inclusive representation and animation-ready layers.",
     intro:
-      "Our illustration services create cohesive visual languages — spot illustrations, hero scenes, and iconography — that make your brand memorable across app, web, and print.",
+      "Illustration services make your brand memorable across app, web, and print with style guides locking visual direction before scaling production. Source files are organized for consistent reuse without breaking brand cohesion, and characters and scenes reflect your audience thoughtfully and inclusively. Lottie-ready layer structure supports movement when planned for later campaigns.",
     blackBand: {
       title: "Illustration Styles Matched to Your Brand",
-      body: "Flat, isometric, 3D, or hand-drawn — we explore directions quickly and lock a style guide before full production.",
+      body:
+        "Flat, isometric, 3D, or hand-drawn directions are explored before production begins, with style guides ensuring consistency across all illustration touchpoints. Visual language aligns with brand personality — not generic stock aesthetics competitors share.\n\nRapid concept rounds accelerate alignment before committing to full libraries, delivering a distinctive illustration identity competitors cannot easily replicate.",
     },
     splitBlue: {
       title: "Scalable Asset Libraries",
-      body: "Source files organized for marketing, product, and dev teams to reuse without breaking consistency.",
+      body: [
+        "Source files organized for marketing, product, and development team reuse.",
+        "Naming conventions and folder structures developers and designers expect.",
+        "Modular components enabling new scenes without redrawing from scratch.",
+        "Version control preventing teams from using outdated illustration assets.",
+        "Asset libraries that scale with product growth—not one-off deliverables.",
+      ],
     },
     blueGradient: {
       left: {
         title: "Inclusive and Diverse Representation",
-        body: "Characters and scenes reflect your audience thoughtfully, not as an afterthought.",
+        body:
+          "Characters and scenes reflect your audience with thoughtful intention, with diversity considered in concept phase — not patched in during final review. Cultural sensitivity is reviewed for global product and marketing deployments.\n\nRepresentation builds connection rather than checking compliance boxes, strengthening brand trust across diverse user bases who see themselves in your visual language.",
       },
       right: {
         title: "Animation-Ready Layers",
-        body: "Illustrations structured for Lottie or motion campaigns when you need movement later.",
+        body:
+          "Illustrations are structured for Lottie or motion campaigns when movement is needed later, with separated layers enabling animators to work without redrawing assets. Consistent style is maintained between static and animated deliverables.\n\nFuture-proofed assets reduce cost when video or micro-animation is added — illustration investment that pays dividends across static and motion channels.",
       },
     },
   },
@@ -1012,25 +1320,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Brand Guideline",
     category: "App Designing",
     heroDescription:
-      "Brand books covering logo, color, typography, voice, and application examples.",
+      "Brand books covering logo, color, typography, voice, and application examples — guidelines people actually reference, not 80-page PDFs nobody opens.",
     intro:
-      "Our brand guideline services document how your identity shows up everywhere — digital, print, social, and partner co-marketing — so internal and external teams stay aligned.",
+      "Brand guideline services document identity across digital, print, and social with clear do/don't examples, downloadable assets, and Figma libraries. Tone ladders, boilerplate copy, and naming rules ensure writing sounds like one company, and internal and external teams align on how the brand shows up everywhere. Versioned updates support evolution without losing core identity coherence.",
     blackBand: {
       title: "Guidelines People Actually Reference",
-      body: "Clear do/don't examples, downloadable assets, and Figma libraries — not 80-page PDFs nobody opens.",
+      body: [
+        "Clear do/don't examples replacing abstract brand theory with visual proof.",
+        "Downloadable assets and Figma libraries integrated into daily workflows.",
+        "Searchable, scannable format—not dense PDFs buried in shared drives.",
+        "Practical rules designers, marketers, and partners apply without asking permission.",
+        "Brand consistency driven by usable documentation—not enforcement meetings.",
+      ],
     },
     splitBlue: {
       title: "Voice and Messaging Frameworks",
-      body: "Tone ladders, boilerplate copy, and naming rules so writing sounds like one company.",
+      body:
+        "Tone ladders define how voice shifts across contexts and audiences, with boilerplate copy and naming rules ensuring one-company communication. Messaging pillars align marketing, sales, and product language so every channel sounds coherent.\n\nBefore/after examples show voice principles applied to real copy — writing consistency that strengthens brand recognition across every touchpoint.",
     },
     blueGradient: {
       left: {
         title: "Partner and Vendor Kits",
-        body: "Logo packs, co-brand lockups, and approval workflows for affiliates and agencies.",
+        body:
+          "Logo packs, co-brand lockups, and usage rules for affiliates and agencies include approval workflows preventing off-brand partner materials from publishing. Templates let partners customize within defined brand guardrails.\n\nOnboarding materials get external teams productive quickly — controlled brand extension through structured partner enablement rather than ad-hoc logo usage.",
       },
       right: {
         title: "Living Documents That Evolve",
-        body: "Versioned updates as you launch sub-brands or enter new markets.",
+        body:
+          "Versioned updates accommodate sub-brand launches and market expansion, with change logs documenting what shifted and why for internal alignment. Modular structure allows section updates without full guideline rewrites.\n\nGovernance process covers proposing and approving brand evolution — brand systems that grow with the company, not frozen at launch date.",
       },
     },
   },
@@ -1039,25 +1356,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Logo Design",
     category: "App Designing",
     heroDescription:
-      "Distinctive logos and mark systems that work from favicon to billboard.",
+      "Distinctive logos and mark systems working from favicon to billboard — with trademark-aware process, motion marks, and complete source files for every team.",
     intro:
-      "Our logo design services explore strategic directions, refine chosen concepts, and deliver full logo kits — primary, secondary, monochrome, and responsive variants for every touchpoint.",
+      "Logo design explores strategic directions before refining chosen concepts into primary, secondary, monochrome, and responsive variants for all applications. Real-world testing on app icons, embroidery, dark backgrounds, and small sizes ensures marks perform beyond presentation mockups. Preliminary trademark clearance checks reduce rename risk, and complete handoff includes SVG, PNG, PDF, and Figma components.",
     blackBand: {
       title: "Logos Built for Real-World Use",
-      body: "Clear space, minimum sizes, and misuse examples tested on app icons, embroidery, and dark backgrounds.",
+      body:
+        "Clear space, minimum sizes, and misuse examples are documented for every variant, tested on app icons, embroidery, merchandise, and dark-mode interfaces. Responsive logo systems adapt gracefully across size constraints where detail must simplify without losing recognition.\n\nPrint and digital specifications ensure quality at every scale — logos that perform in the real world, not just in hero images on a pitch deck.",
     },
     splitBlue: {
       title: "Trademark-Aware Process",
-      body: "Preliminary clearance checks and distinctiveness reviews reduce rename risk after launch.",
+      body: [
+        "Preliminary clearance checks reducing rename risk after public launch.",
+        "Distinctiveness reviews ensuring marks stand apart in crowded categories.",
+        "Search across trademark databases in key markets before finalization.",
+        "Legal collaboration support when deeper clearance is required.",
+        "Confident brand launches without costly intellectual property surprises.",
+      ],
     },
     blueGradient: {
       left: {
         title: "Motion and Social Avatars Included",
-        body: "Animated marks and profile crops so launch day looks cohesive everywhere.",
+        body:
+          "Animated marks for video intros, app loading, and social presence include profile crops and favicon variants optimized for every platform. Cohesive launch-day presence spans digital touchpoints from day one.\n\nMotion guidelines ensure animations feel on-brand — not generic — completing the logo system from static identity through dynamic brand moments.",
       },
       right: {
         title: "Source Files for Every Team",
-        body: "SVG, PNG, PDF, and Figma components handed off with naming conventions devs expect.",
+        body:
+          "SVG, PNG, PDF, and Figma components are delivered with consistent naming and developer-ready assets matching the conventions engineering teams expect. Print-ready files include correct color profiles for vendor handoff.\n\nOrganized file structure prevents teams from using wrong variants — a complete logo kit enabling immediate deployment across all channels.",
       },
     },
   },
@@ -1066,25 +1392,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Design Systems",
     category: "App Designing",
     heroDescription:
-      "Component libraries, tokens, and documentation for consistent product UI at scale.",
+      "Component libraries, tokens, and documentation for consistent product UI at scale — with Figma-code sync, adoption plans, and accessibility baked into primitives.",
     intro:
-      "Our design systems services unify buttons, forms, tables, and patterns in Figma and code — with Storybook docs and contribution models so design and engineering scale together.",
+      "Design systems unify buttons, forms, tables, and patterns in Figma and code with Storybook documentation and contribution models scaling design and engineering together. Color, spacing, and typography tokens flow from design tools to production, and legacy screen migration is supported incrementally — not requiring a big-bang rewrite. Component-level accessibility ensures consistency without per-screen audits.",
     blackBand: {
       title: "Tokens and Components That Sync",
-      body: "Color, spacing, and typography tokens flow from Figma to React (or your stack) with automated checks for drift.",
+      body: [
+        "Color, spacing, and typography tokens flowing from Figma to React or your stack.",
+        "Automated checks detecting drift between design files and production code.",
+        "Single source of truth preventing designers and developers from diverging.",
+        "Component APIs documented for consistent implementation across teams.",
+        "Design-development parity maintained as the system evolves over time.",
+      ],
     },
     splitBlue: {
       title: "Adoption Plans, Not Drop-and-Run Libraries",
-      body: "Migration guides, office hours, and lint rules help legacy screens move to the system incrementally.",
+      body:
+        "Migration guides help legacy screens move to the system incrementally, with office hours supporting teams during initial adoption phases. Lint rules enforce system usage in code reviews automatically.\n\nChampions programs identify power users who accelerate org-wide adoption — sustainable adoption, not a library that sits unused in a shared folder while teams keep building one-off components.",
     },
     blueGradient: {
       left: {
         title: "Accessibility Baked into Primitives",
-        body: "Focus states, contrast, and keyboard patterns defined once at the component level.",
+        body:
+          "Focus states, contrast ratios, and keyboard patterns are defined at component level with screen reader behavior consistent across every instance. Accessibility fixes propagate system-wide — not per-page patchwork.\n\nWCAG compliance built into foundations reduces audit remediation scope, delivering inclusive product UI by default rather than as a retrofit project six months after launch.",
       },
       right: {
         title: "Governance for Contributions",
-        body: "RFC process and review cadence so the system grows without becoming chaos.",
+        body:
+          "RFC process governs proposing new components or token changes, with review cadence preventing duplicate or conflicting pattern proliferation. Versioning strategy communicates breaking changes to consuming teams clearly.\n\nContribution guidelines enable scale without sacrificing quality — living systems that grow organized, not chaotic, as product complexity increases.",
       },
     },
   },
@@ -1093,25 +1428,34 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Pitch Deck",
     category: "App Designing",
     heroDescription:
-      "Investor and sales decks with narrative, data viz, and design that closes meetings.",
+      "Investor and sales decks with narrative, data viz, and design that closes meetings — structured for how investors read, with editable templates for future rounds.",
     intro:
-      "Our pitch deck services shape your story arc, tighten copy, and design slides that survive forward — clear at a glance on a laptop screen or projected in a boardroom.",
+      "Pitch deck services shape narrative, tighten copy, and design investor-ready slides that survive forwarding — clear at a glance on laptop or projector. Each slide earns the next with evidence rather than adjectives, and charts are simplified with sources cited for diligence-ready presentations. Master files enable updates between fundraising conversations without starting from scratch.",
     blackBand: {
       title: "Decks Structured for How Investors Read",
-      body: "Problem, solution, traction, market, team, and ask — each slide earning the next with evidence not adjectives.",
+      body:
+        "Problem, solution, traction, market, team, and ask follow the sequence investors expect, with each slide earning the next through evidence — not unsubstantiated claims. Narrative flow guides readers toward the investment thesis naturally.\n\nRedundant slides are eliminated so decks respect busy reviewers' time — fundraising conversations start ahead because structure matches what investors look for first.",
     },
     splitBlue: {
       title: "Data Visualization That Supports the Thesis",
-      body: "Charts simplified, sources cited, and comparisons framed honestly so diligence conversations start ahead.",
+      body: [
+        "Charts simplified for instant comprehension in forwarded email reviews.",
+        "Sources cited so diligence conversations start with trust—not skepticism.",
+        "Comparisons framed honestly avoiding misleading axis or scale choices.",
+        "Key metrics highlighted while supporting context remains accessible.",
+        "Data stories reinforcing the investment case with visual clarity.",
+      ],
     },
     blueGradient: {
       left: {
         title: "Speaker Notes and Appendix Slides",
-        body: "Deep dives ready for Q&A without cluttering the main flow.",
+        body:
+          "Deep-dive detail is ready for Q&A without cluttering the main narrative flow, with speaker notes coaching founders on delivery pacing and emphasis. Appendix is organized for quick reference during live investor meetings.\n\nTechnical and financial detail is available on demand — not forced upfront — so presenters handle questions confidently with prepared supporting material.",
       },
       right: {
         title: "Editable Templates for Future Rounds",
-        body: "Master files your team can update as metrics change between meetings.",
+        body:
+          "Master files let your team update metrics and milestones as they change, with modular slide structure enabling quick refreshes between fundraising cycles. Brand-consistent templates are reusable for Series A, B, and beyond.\n\nNon-designer team members can update numbers without breaking layout — a long-term deck asset, not a one-time deliverable that goes stale after the first meeting.",
       },
     },
   },
@@ -1120,29 +1464,39 @@ const SERVICE_META: ServiceMeta[] = [
     title: "Presentations",
     category: "App Designing",
     heroDescription:
-      "Keynotes, sales decks, and internal templates on-brand and ready to present.",
+      "Keynotes, sales decks, and internal templates on-brand and ready to present — with modular enablement libraries and training on template maintenance.",
     intro:
-      "Our presentation design services transform rough outlines into polished slide decks — consistent typography, imagery, and layouts that help speakers focus on delivery, not fixing formatting.",
+      "Presentation design transforms rough outlines into polished, on-brand slide decks with consistent typography, imagery, and layouts that free speakers to focus on delivery. Animation is used sparingly for emphasis — not distraction — and sales reps assemble vertical-specific pitches without breaking brand rules. Templates your marketing team maintains with confidence after handoff reduce dependency on external designers for routine updates.",
     blackBand: {
       title: "Presentations for Conferences and Boardrooms",
-      body: "Aspect ratios, legible type at the back of the room, and animation used sparingly for emphasis.",
+      body:
+        "Aspect ratios and typography are optimized for projection and large-screen visibility, with legible type sizes ensuring readability from the back of the room. Animation is used sparingly for emphasis — not distracting from speaker delivery.\n\nVisual hierarchy guides audience attention to key messages per slide, delivering professional presentations that match the caliber of your organization's reputation.",
     },
     splitBlue: {
       title: "Sales Enablement Deck Libraries",
-      body: "Modular slides reps can assemble for vertical-specific pitches without breaking brand rules.",
+      body: [
+        "Modular slides reps assemble for vertical-specific pitches independently.",
+        "Brand rules enforced through template structure—not post-hoc marketing review.",
+        "Case studies, product overviews, and pricing sections mixable per opportunity.",
+        "Consistent messaging across distributed sales teams and regions.",
+        "Faster deal cycles through self-serve deck customization within guardrails.",
+      ],
     },
     blueGradient: {
       left: {
         title: "PowerPoint and Google Slides Deliverables",
-        body: "Files your team already uses — not locked proprietary formats.",
+        body:
+          "Files arrive in formats your team already uses — no proprietary lock-in — with editable masters enabling non-designers to update content safely. Cross-platform compatibility serves teams split between Microsoft and Google workspaces.\n\nFont embedding and asset packaging prevent broken layouts on share, delivering immediate usability without conversion tools or compatibility workarounds.",
       },
       right: {
         title: "Training on Template Maintenance",
-        body: "Short guides so marketing can refresh stats and case studies between engagements.",
+        body:
+          "Short guides teach marketing to refresh stats and case studies independently, with best practices for adding slides without breaking brand consistency. Office hours during handoff cover questions about template structure.\n\nDocumentation reduces dependency on external designers for routine updates — self-sufficient teams keep presentations current between design engagements.",
       },
     },
   },
 ];
+
 
 function buildServicesData(): Record<ServiceSlug, ServiceTemplateData> {
   const data = {} as Record<ServiceSlug, ServiceTemplateData>;
