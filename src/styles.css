@@ -123,7 +123,7 @@
   max-width: 96rem;
   padding-inline: 1.5rem;
   @media (min-width: 768px) { padding-inline: 2.5rem; }
-  @media (min-width: 1280px) { padding-inline: 3.5rem; }
+  @media (min-width: 1280px) { padding-inline: 9rem; }
 }
 @utility container-narrow {
   width: 100%;
@@ -131,7 +131,7 @@
   max-width: 60rem;
   padding-inline: 1.5rem;
   @media (min-width: 768px) { padding-inline: 2.5rem; }
-  @media (min-width: 1280px) { padding-inline: 3.5rem; }
+  @media (min-width: 1280px) { padding-inline: 9rem; }
 }
 
 @utility btn-primary {
@@ -282,4 +282,15 @@
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+
+.logo-slider .slick-track {
+  transition-timing-function: linear !important;
+  will-change: transform;
+}
+
+.logo-slider .slick-slide {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }

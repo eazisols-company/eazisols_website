@@ -66,7 +66,22 @@ export const SERVICE_SLUGS = [
   "design-systems",
   "pitch-deck",
   "presentations",
+  "software-development",
+  "erp-solutions",
+  "ai-ml-services",
+  "kick-off-marketing",
+  "app-designing",
 ] as const;
+
+export const CATEGORY_SLUGS = [
+  "software-development",
+  "erp-solutions",
+  "ai-ml-services",
+  "kick-off-marketing",
+  "app-designing",
+] as const;
+
+export type CategorySlug = (typeof CATEGORY_SLUGS)[number];
 
 export type ServiceSlug = (typeof SERVICE_SLUGS)[number];
 
@@ -82,6 +97,8 @@ interface ServiceMeta {
     left: { title: string; body: ServiceSectionContent };
     right: { title: string; body: ServiceSectionContent };
   };
+  isCategoryPage?: boolean;
+  showOurProcess?: boolean;
 }
 
 function expectationsForService(meta: Pick<ServiceMeta, "slug" | "title" | "category">) {
@@ -140,8 +157,10 @@ function toServiceTemplateData(meta: ServiceMeta): ServiceTemplateData {
       },
       images: [...imageSet],
     },
-    breadcrumb: [meta.category, meta.title],
+    slug: meta.slug,
+    breadcrumb: meta.isCategoryPage ? [meta.title] : [meta.category, meta.title],
     intro: meta.intro,
+    showOurProcess: meta.showOurProcess,
     blackBand: {
       ...meta.blackBand,
       image: sectionImage,
@@ -1495,6 +1514,196 @@ const SERVICE_META: ServiceMeta[] = [
       },
     },
   },
+  {
+    slug: "software-development",
+    title: "Software Development",
+    category: "Software Development",
+    isCategoryPage: true,
+    showOurProcess: true,
+    heroDescription:
+      "Full-cycle software development — custom web apps, mobile apps, desktop software, and blockchain solutions built for scale, security, and long-term growth.",
+    intro:
+      "From MVPs to enterprise platforms, our software development teams deliver end-to-end solutions across web, mobile, desktop, and emerging platforms. We combine product strategy, UI/UX design, and full-stack engineering under one roof so your product ships faster with fewer handoffs. Whether you need a customer-facing SaaS product, an internal operations tool, or a cross-platform mobile app, we architect for maintainability and integrate with your existing systems. Every engagement follows a proven discovery-to-launch process with transparent milestones and regular demos.",
+    blackBand: {
+      title: "Why Choose Our Software Development Services",
+      body: [
+        "Six-plus years building production software for startups, scale-ups, and enterprises.",
+        "Full-stack squads cover design, engineering, QA, and deployment in one team.",
+        "Scalable architecture that grows with your user base and feature roadmap.",
+        "Seamless integration with CRM, ERP, payment gateways, and third-party APIs.",
+        "Transparent delivery with sprint demos, shared documentation, and predictable timelines.",
+      ],
+    },
+    splitBlue: {
+      title: "Software Development Capabilities",
+      body:
+        "Our software development practice spans custom web applications, native and cross-platform mobile apps, desktop software for Windows and macOS, smartwatch experiences, marketing websites, no-code accelerators, and blockchain solutions.\n\nEach project starts with discovery to define scope and priorities, followed by iterative design and development cycles. We select the right tech stack for your requirements — React, Node.js, Flutter, Python, and more — rather than forcing a one-size-fits-all approach.",
+    },
+    blueGradient: {
+      left: {
+        title: "Who We Serve",
+        body:
+          "Startups validating product-market fit rely on us for rapid MVP delivery that balances speed with code quality. Growing SaaS companies need engineering partners who understand subscription models, multi-tenancy, and scaling challenges.\n\nEnterprises modernizing legacy systems benefit from our experience integrating new software with existing ERP, CRM, and data infrastructure. Teams with compliance requirements receive security-first architecture with audit trails and role-based access built in from day one.",
+      },
+      right: {
+        title: "Engagement Models & Pricing",
+        body:
+          "MVP projects typically range from $5,000 to $50,000 USD depending on scope, integrations, and platform targets. Full-scale product development engagements generally fall between $50,000 and $200,000 USD based on complexity and timeline.\n\nHourly consulting is available at $30 USD per hour for flexible scope or ongoing enhancement work. Every quote is based on documented features and clear milestones — no surprise costs mid-project.",
+      },
+    },
+  },
+  {
+    slug: "erp-solutions",
+    title: "ERP Solutions",
+    category: "ERP Solutions",
+    isCategoryPage: true,
+    showOurProcess: true,
+    heroDescription:
+      "Odoo ERP implementation, custom ERP development, and seamless migrations from Oracle, SAP, NetSuite, Dynamics 365, and ERPNext.",
+    intro:
+      "Streamline operations, automate workflows, and gain real-time visibility across finance, inventory, sales, and HR with ERP solutions tailored to your business. We specialize in Odoo ERP — the world's fastest-growing open-source platform — alongside custom ERP builds and migrations from legacy systems. Our consultants map your processes, configure modules, and train your team for self-sufficiency. From manufacturing and distribution to services and retail, we deliver ERP implementations that reduce manual work and improve decision-making.",
+    blackBand: {
+      title: "Why Choose Our ERP Solutions",
+      body: [
+        "Certified Odoo expertise with implementations across manufacturing, retail, and services.",
+        "Proven migration playbooks for Oracle, SAP, NetSuite, Dynamics 365, and ERPNext.",
+        "Custom module development when off-the-shelf features don't fit your workflows.",
+        "End-to-end delivery: discovery, configuration, data migration, training, and support.",
+        "Transparent project scoping with phased rollouts that minimize business disruption.",
+      ],
+    },
+    splitBlue: {
+      title: "ERP Services We Offer",
+      body:
+        "Our ERP practice covers Odoo implementation and customization, greenfield custom ERP development, and structured migrations from Oracle ERP, SAP, Microsoft Dynamics 365, NetSuite, and ERPNext.\n\nWe configure finance, inventory, CRM, manufacturing, HR, and project management modules to match your operations. Data migration, user training, and post-go-live support ensure your team adopts the new system confidently.",
+    },
+    blueGradient: {
+      left: {
+        title: "Industries We Serve",
+        body:
+          "Manufacturing and distribution companies use our ERP solutions for inventory tracking, production planning, and supply chain visibility. Retail and e-commerce teams benefit from unified order management, POS integration, and multi-channel sales.\n\nProfessional services firms streamline project billing, resource allocation, and client management. Growing businesses replacing spreadsheets and disconnected tools gain a single source of truth for operations.",
+      },
+      right: {
+        title: "Implementation Approach",
+        body:
+          "Every ERP engagement begins with process mapping and gap analysis to define the right module configuration and customization scope. Phased rollouts let critical departments go live first while we refine workflows based on real usage.\n\nTraining and documentation empower your team to manage day-to-day operations independently, with our support available for enhancements, upgrades, and new module rollouts as your business evolves.",
+      },
+    },
+  },
+  {
+    slug: "ai-ml-services",
+    title: "AI/ML Services",
+    category: "AI/ML Services",
+    isCategoryPage: true,
+    showOurProcess: true,
+    heroDescription:
+      "Agentic AI, generative AI, RAG systems, AI chatbots, automation, and machine learning solutions that turn data into intelligent products.",
+    intro:
+      "Harness the power of artificial intelligence and machine learning to automate workflows, enhance customer experiences, and unlock insights from your data. Our AI/ML practice covers agentic AI systems, generative AI applications, retrieval-augmented generation (RAG), conversational chatbots, AI-powered apps, and end-to-end ML model development. We help you identify high-impact use cases, build production-ready AI features, and integrate them into your existing products and operations. From strategy and prototyping to deployment and monitoring, we deliver AI that works reliably in the real world.",
+    blackBand: {
+      title: "Why Choose Our AI/ML Services",
+      body: [
+        "Production-focused AI delivery — not just prototypes and proof-of-concepts.",
+        "Expertise across LLMs, RAG, agentic workflows, computer vision, and classical ML.",
+        "Secure, compliant architectures with data privacy and access controls built in.",
+        "Integration with your existing apps, APIs, databases, and cloud infrastructure.",
+        "Iterative approach with measurable KPIs so you see ROI from AI investments.",
+      ],
+    },
+    splitBlue: {
+      title: "AI/ML Capabilities",
+      body:
+        "We build agentic AI systems that autonomously complete multi-step tasks, generative AI applications for content and code creation, and RAG pipelines that ground LLM responses in your proprietary data.\n\nOur chatbot and conversational AI services cover customer support, internal knowledge assistants, and sales enablement. ML development includes predictive models, recommendation engines, and anomaly detection tailored to your domain.",
+    },
+    blueGradient: {
+      left: {
+        title: "Use Cases We Deliver",
+        body:
+          "Customer support teams deploy AI chatbots that resolve common queries and escalate complex issues intelligently. Operations teams automate document processing, data extraction, and workflow routing with AI agents.\n\nProduct teams embed generative AI features — smart search, content generation, and personalized recommendations — directly into their applications. Data teams unlock predictive analytics and forecasting models trained on their business data.",
+      },
+      right: {
+        title: "From Strategy to Production",
+        body:
+          "We start with an AI readiness assessment to identify high-value use cases and data requirements before writing code. Rapid prototyping validates feasibility and user experience before full development investment.\n\nProduction deployment includes monitoring, fallback strategies, and cost optimization so your AI features remain reliable and affordable at scale. Ongoing support covers model updates, prompt refinement, and feature expansion.",
+      },
+    },
+  },
+  {
+    slug: "kick-off-marketing",
+    title: "Kick-Off Marketing",
+    category: "Kick-Off Marketing",
+    isCategoryPage: true,
+    showOurProcess: true,
+    heroDescription:
+      "Social media marketing, performance marketing, graphic editing, and video editing to launch your brand and drive measurable growth.",
+    intro:
+      "Get your brand in front of the right audience with marketing services designed for startups and growing businesses ready to make an impact. Our kick-off marketing practice covers social media strategy and management, performance marketing across Google and Meta, professional graphic editing, and polished video content. We help you define your brand voice, create scroll-stopping visuals, and run campaigns that convert. Whether you're launching a new product or scaling an existing brand, we deliver marketing assets and campaigns that align with your business goals.",
+    blackBand: {
+      title: "Why Choose Our Marketing Services",
+      body: [
+        "Full-funnel marketing from brand visuals to paid acquisition campaigns.",
+        "Data-driven performance marketing with clear ROI tracking and optimization.",
+        "Professional graphic and video editing that elevates your brand presence.",
+        "Platform expertise across Instagram, LinkedIn, Google Ads, Meta Ads, and more.",
+        "Flexible engagement models for startups testing channels and brands scaling spend.",
+      ],
+    },
+    splitBlue: {
+      title: "Marketing Services We Offer",
+      body:
+        "Social media marketing includes content strategy, calendar planning, community management, and analytics reporting across your key platforms. Performance marketing covers campaign setup, audience targeting, A/B testing, and conversion optimization on Google and Meta.\n\nGraphic editing delivers on-brand visuals for ads, social posts, presentations, and web assets. Video editing produces polished reels, explainers, ads, and product demos that capture attention and drive action.",
+    },
+    blueGradient: {
+      left: {
+        title: "Who We Help",
+        body:
+          "Startups launching their first product need brand assets and initial campaigns that establish credibility without enterprise budgets. Growing D2C brands scale paid acquisition with optimized creatives and landing page alignment.\n\nB2B companies build thought leadership through LinkedIn content and targeted ad campaigns. App and SaaS teams drive installs and signups with performance marketing tuned to their funnel metrics.",
+      },
+      right: {
+        title: "Our Approach",
+        body:
+          "Every marketing engagement starts with understanding your audience, positioning, and goals. We audit existing assets and channels, then build a focused plan that prioritizes quick wins and measurable outcomes.\n\nCreative production and campaign management run in parallel with weekly reporting so you see what's working and where to invest next. We iterate on creatives, copy, and targeting based on real performance data.",
+      },
+    },
+  },
+  {
+    slug: "app-designing",
+    title: "App Designing",
+    category: "App Designing",
+    isCategoryPage: true,
+    showOurProcess: true,
+    heroDescription:
+      "App prototyping, design audits, illustrations, brand guidelines, logo design, design systems, pitch decks, and presentations.",
+    intro:
+      "Create products and brands that users love with design services spanning UX research, visual design, brand identity, and presentation design. Our app designing practice covers interactive prototypes, comprehensive design audits, custom illustrations, brand guidelines, logo design, scalable design systems, investor pitch decks, and boardroom-ready presentations. We combine user-centered thinking with visual craft so every screen, asset, and slide reinforces your brand and drives clarity. From early-stage startups to established companies refreshing their identity, we deliver design that converts and impresses.",
+    blackBand: {
+      title: "Why Choose Our Design Services",
+      body: [
+        "User-centered design process grounded in research, testing, and iteration.",
+        "Full brand identity capabilities from logo to comprehensive guidelines.",
+        "Scalable design systems that keep products consistent as teams grow.",
+        "Investor-ready pitch decks and presentations that communicate with clarity.",
+        "Collaborative handoff with developer-ready specs and asset packages.",
+      ],
+    },
+    splitBlue: {
+      title: "Design Services We Offer",
+      body:
+        "App prototyping transforms ideas into clickable flows that validate UX before development investment. Design audits identify usability issues, accessibility gaps, and visual inconsistencies in existing products.\n\nBrand services include logo design, illustration, and comprehensive brand guidelines. Design systems provide reusable components and documentation for consistent product development across teams.",
+    },
+    blueGradient: {
+      left: {
+        title: "Who We Design For",
+        body:
+          "Startups preparing for fundraising need pitch decks and brand identity that communicate vision with confidence. Product teams launching new apps rely on prototypes and design systems for developer handoff.\n\nEstablished companies refreshing their brand or auditing existing products benefit from structured design reviews and updated visual systems. Marketing teams need presentation templates and illustration assets that scale across campaigns.",
+      },
+      right: {
+        title: "Our Design Process",
+        body:
+          "Discovery workshops align stakeholders on goals, users, and success criteria before any pixels are pushed. We explore concepts through wireframes and mood boards, then refine high-fidelity designs through collaborative feedback cycles.\n\nDeliverables include developer-ready specs, asset exports, and documentation so your team can build and maintain the design independently. Post-delivery support covers iteration based on user testing and launch feedback.",
+      },
+    },
+  },
 ];
 
 
@@ -1529,10 +1738,15 @@ export function getServiceBySlug(slug: string): ServiceTemplateData | undefined 
   return SERVICES_DATA[slug as ServiceSlug];
 }
 
+export function isCategorySlug(slug: string): slug is CategorySlug {
+  return (CATEGORY_SLUGS as readonly string[]).includes(slug);
+}
+
 /** Navbar mega menu structure with slugs for detail routes. */
 export const SERVICE_NAV_GROUPS = [
   {
     title: "Software Development",
+    slug: "software-development" as const,
     items: [
       { label: "Custom Web App Development", slug: "custom-web-app-development" as const },
       { label: "Mobile App Development", slug: "mobile-app-development" as const },
@@ -1546,6 +1760,7 @@ export const SERVICE_NAV_GROUPS = [
   },
   {
     title: "ERP Solutions",
+    slug: "erp-solutions" as const,
     items: [
       { label: "Odoo ERP Solutions", slug: "odoo-erp-solutions" as const },
       { label: "Custom ERP Development", slug: "custom-erp-development" as const },
@@ -1558,6 +1773,7 @@ export const SERVICE_NAV_GROUPS = [
   },
   {
     title: "AI/ML Services",
+    slug: "ai-ml-services" as const,
     items: [
       { label: "Agentic AI Services", slug: "agentic-ai-services" as const },
       { label: "Generative AI Services", slug: "generative-ai-services" as const },
@@ -1573,6 +1789,7 @@ export const SERVICE_NAV_GROUPS = [
   },
   {
     title: "Kick-Off Marketing",
+    slug: "kick-off-marketing" as const,
     items: [
       { label: "Social Media Marketing", slug: "social-media-marketing" as const },
       { label: "Performance Marketing", slug: "performance-marketing" as const },
@@ -1582,6 +1799,7 @@ export const SERVICE_NAV_GROUPS = [
   },
   {
     title: "App Designing",
+    slug: "app-designing" as const,
     items: [
       { label: "App Prototyping", slug: "app-prototyping" as const },
       { label: "Design Audit", slug: "design-audit" as const },
@@ -1594,3 +1812,29 @@ export const SERVICE_NAV_GROUPS = [
     ],
   },
 ] as const;
+
+export interface CategorySubServiceItem {
+  label: string;
+  slug: ServiceSlug;
+  description: string;
+  image: string;
+}
+
+export function getCategorySubServices(categorySlug: CategorySlug): CategorySubServiceItem[] {
+  const group = SERVICE_NAV_GROUPS.find((g) => g.slug === categorySlug);
+  if (!group) return [];
+
+  return group.items.map((item) => {
+    const service = SERVICES_DATA[item.slug];
+    const slugIndex = SERVICE_SLUGS.indexOf(item.slug);
+    return {
+      label: item.label,
+      slug: item.slug,
+      description: service?.hero.content.description ?? "",
+      image:
+        service?.hero.images[0] ??
+        SECTION_IMAGES[slugIndex % SECTION_IMAGES.length] ??
+        "/images/web1.jpg",
+    };
+  });
+}

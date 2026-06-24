@@ -2,20 +2,13 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUp } from "lucide-react";
 import { Logo } from "./Logo";
 import { CAL_BOOKING_URL } from "@/lib/cal";
+import { scrollPageToTop } from "@/lib/scroll";
+import { SERVICE_NAV_GROUPS } from "@/data/services-data";
 
 const COMPANY = [
-  { label: "Contact us", to: "/#contact" },
-  { label: "About Us", to: "/" },
   { label: "Portfolio", to: "/portfolio" },
   { label: "App Cost Calculator", to: "/app-cost-calculator" },
-  { label: "Privacy Policy", to: "/" },
-];
-const SERVICES = [
-  "Software Development",
-  "ERP Solutions",
-  "AI/ML Services",
-  "Kick-Off Marketing",
-  "App Designing",
+  { label: "Privacy Policy", to: "/privacy-policy" },
 ];
 const SOCIAL = [
   { label: "Facebook", href: "https://www.facebook.com/eazisols" },
@@ -27,7 +20,7 @@ const SOCIAL = [
 
 export function Footer() {
   return (
-    <footer id="contact" className="relative bg-footer text-footer-foreground">
+    <footer className="relative bg-footer text-footer-foreground">
       <div className="container-page py-20 md:py-28">
         <div className="grid gap-12 lg:grid-cols-[1.55fr_0.85fr_0.9fr_1.25fr_0.8fr] xl:gap-20">
           <div>
@@ -60,13 +53,14 @@ export function Footer() {
           </Col>
 
           <Col title="Services">
-            {SERVICES.map((s) => (
-              <li key={s}>
+            {SERVICE_NAV_GROUPS.map((group) => (
+              <li key={group.slug}>
                 <Link
-                  to="/services"
+                  to="/services/$slug"
+                  params={{ slug: group.slug }}
                   className="text-footer-foreground/45 transition hover:text-[#418ed6]"
                 >
-                  {s}
+                  {group.title}
                 </Link>
               </li>
             ))}
@@ -90,10 +84,10 @@ export function Footer() {
                   +92 321 8881156
                 </p>
                 <p className="text-footer-foreground/45 underline underline-offset-4">
-                  +92 313 8484 008
+                  +92 313 8484008
                 </p>
                 <p className="text-footer-foreground/45 underline underline-offset-4">
-                  +971 54 424 4629
+                  +971 54 4244629
                 </p>
               </div>
               <div>
@@ -125,7 +119,7 @@ export function Footer() {
         <div className="mt-20 flex items-center justify-between border-t border-footer-foreground/55 pt-14 text-base text-footer-foreground/45">
           <p>© {new Date().getFullYear()} eazisols. All rights reserved.</p>
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => scrollPageToTop("smooth")}
             className="inline-flex items-center gap-2 font-extrabold text-footer-foreground transition hover:text-[#418ed6]"
           >
             Back to the top <ArrowUp className="h-4 w-4" />

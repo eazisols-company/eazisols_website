@@ -80,9 +80,9 @@ export function ChallengesSection() {
             <img
               src="/images/challange.png"
               alt="Challenges Illustration"
-              width={400}
-              height={400}
-              className="h-auto max-w-full"
+              width={600}
+              height={600}
+              className=" max-w-full"
             />
           </div>
         </div>

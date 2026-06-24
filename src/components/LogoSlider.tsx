@@ -82,7 +82,7 @@ export function LogoSlider({ logos = CLIENT_LOGOS }: { logos?: ClientLogo[] }) {
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="max-h-[80px] max-w-[120px] object-contain"
+                  className="max-h-[140px] max-w-[120px] object-contain"
                   loading="lazy"
                 />
               </div>

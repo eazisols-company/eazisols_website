@@ -16,6 +16,25 @@ const NAV = [
   { to: "/careers", label: "Careers" },
 ] as const;
 
+const NAV_ACTIVE = "text-[#418ED6]";
+
+function isNavItemActive(pathname: string, to: string): boolean {
+  if (to === "/") return pathname === "/";
+  return pathname === to || pathname.startsWith(`${to}/`);
+}
+
+function isServiceSlugActive(pathname: string, slug: string): boolean {
+  return pathname === `/services/${slug}`;
+}
+
+function isCategoryGroupActive(
+  pathname: string,
+  group: { slug: string; items: readonly { slug: string }[] },
+): boolean {
+  if (pathname === `/services/${group.slug}`) return true;
+  return group.items.some((it) => pathname === `/services/${it.slug}`);
+}
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
@@ -62,15 +81,17 @@ export function Navbar() {
         </div>
 
         <nav className="hidden items-center justify-self-center gap-1 lg:flex xl:gap-3">
-          {NAV.map((n) =>
-            n.to === "/services" ? (
+          {NAV.map((n) => {
+            const active = isNavItemActive(pathname, n.to);
+            return n.to === "/services" ? (
               <div key={`${n.label}-${n.to}`} onMouseEnter={openMega} onMouseLeave={closeMega} className="relative">
                 <Link
                   to={n.to}
-                  className={`flex items-center gap-1 rounded-full px-5 py-3 text-[18px]  transition-colors ${
-                    mega ? "bg-brand/5 text-brand" : "text-ink hover:bg-brand/5 hover:text-brand"
+                  className={`flex items-center gap-1 rounded-full px-5 py-3 text-[18px] transition-colors ${
+                    mega || active
+                      ? `bg-brand/5 ${NAV_ACTIVE}`
+                      : "text-ink hover:bg-brand/5 hover:text-brand"
                   }`}
-                  activeProps={{ className: "text-brand" }}
                 >
                   {n.label}
                   <ChevronDown className={`h-4 w-4 transition-transform ${mega ? "rotate-180" : ""}`} />
@@ -80,14 +101,14 @@ export function Navbar() {
               <Link
                 key={`${n.label}-${n.to}`}
                 to={n.to}
-                className="px-2 py-2 text-[18px]  text-ink transition-colors hover:text-brand xl:px-3"
-                // activeProps={n.label === "Partnerships" || n.label === "Odoo Cost Calculator" ? undefined : { className: "text-brand" }}
-                activeOptions={{ exact: n.label === "Home" }}
+                className={`px-2 py-2 text-[18px] transition-colors xl:px-3 ${
+                  active ? NAV_ACTIVE : "text-ink hover:text-brand"
+                }`}
               >
                 {n.label}
               </Link>
-            )
-          )}
+            );
+          })}
         </nav>
 
         <div className="hidden items-center justify-self-end lg:flex">
@@ -120,29 +141,62 @@ export function Navbar() {
         <div className="container-page pb-8">
           <div className="max-h-[78vh] overflow-y-auto rounded-[28px] border border-border bg-card p-10 shadow-[0_28px_70px_-24px_rgb(0_0_0_/_0.28)] xl:p-14">
             <div className="grid grid-cols-5 gap-6 xl:gap-10">
-              {SERVICE_NAV_GROUPS.map((col) => (
+              {SERVICE_NAV_GROUPS.map((col) => {
+                const categoryActive = isCategoryGroupActive(pathname, col);
+                return (
                 <div key={col.title}>
-                  <Link to="/services" onClick={closeMegaNow} className="group flex items-start justify-between gap-2">
-                    <h4 className="text-[16px] font-bold leading-tight text-ink xl:text-[20px]">{col.title}</h4>
-                    <ChevronRight className="mt-1 h-6 w-6 text-ink-soft transition-transform group-hover:translate-x-0.5" />
+                  <Link
+                    to="/services/$slug"
+                    params={{ slug: col.slug }}
+                    onClick={closeMegaNow}
+                    className={`group flex cursor-pointer items-start justify-between gap-2 transition-colors ${
+                      categoryActive ? NAV_ACTIVE : "hover:text-brand"
+                    }`}
+                  >
+                    <h4
+                      className={`text-[16px] font-bold leading-tight xl:text-[20px] ${
+                        categoryActive ? NAV_ACTIVE : "text-ink group-hover:text-brand"
+                      }`}
+                    >
+                      {col.title}
+                    </h4>
+                    <ChevronRight
+                      className={`mt-1 h-6 w-6 shrink-0 transition-transform group-hover:translate-x-0.5 ${
+                        categoryActive ? "text-[#418ED6]" : "text-ink-soft group-hover:text-brand"
+                      }`}
+                    />
                   </Link>
                   <ul className="mt-8 space-y-6">
-                    {col.items.map((it) => (
-                      <li key={it.slug}>
-                        <Link
-                          to="/services/$slug"
-                          params={{ slug: it.slug }}
-                          onClick={closeMegaNow}
-                          className="flex items-start gap-4 text-[8px] leading-tight text-ink-soft transition-colors hover:text-brand xl:text-[16px]"
-                        >
-                          <span className="text-1xl leading-none text-ink-soft/70">↳</span>
-                          <span>{it.label}</span>
-                        </Link>
-                      </li>
-                    ))}
+                    {col.items.map((it) => {
+                      const serviceActive = isServiceSlugActive(pathname, it.slug);
+                      return (
+                        <li key={it.slug}>
+                          <Link
+                            to="/services/$slug"
+                            params={{ slug: it.slug }}
+                            onClick={closeMegaNow}
+                            className={`flex items-start gap-4 text-[8px] leading-tight transition-colors xl:text-[16px] ${
+                              serviceActive
+                                ? `${NAV_ACTIVE} rounded-md bg-[#418ED6]/10`
+                                : "text-ink-soft hover:text-brand"
+                            }`}
+                          >
+                            <span
+                              className={`text-1xl leading-none ${
+                                serviceActive ? "text-[#418ED6]/70" : "text-ink-soft/70"
+                              }`}
+                            >
+                              ↳
+                            </span>
+                            <span>{it.label}</span>
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
-              ))}
+              );
+              })}
             </div>
           </div>
         </div>
@@ -157,18 +211,21 @@ export function Navbar() {
         <div className="container-page pb-6 pt-2">
           <div className="rounded-2xl border border-border bg-card p-3 shadow-card">
             <nav className="flex flex-col">
-              {NAV.map((n) => (
-                <Link
-                  key={`${n.label}-${n.to}`}
-                  to={n.to}
-                  onClick={() => setOpen(false)}
-                  className="flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium text-ink hover:bg-surface transition"
-                  activeProps={{ className: "text-brand" }}
-                  activeOptions={{ exact: n.to === "/" }}
-                >
-                  <span>{n.label}</span>
-                </Link>
-              ))}
+              {NAV.map((n) => {
+                const active = isNavItemActive(pathname, n.to);
+                return (
+                  <Link
+                    key={`${n.label}-${n.to}`}
+                    to={n.to}
+                    onClick={() => setOpen(false)}
+                    className={`flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition ${
+                      active ? NAV_ACTIVE : "text-ink hover:bg-surface"
+                    }`}
+                  >
+                    <span>{n.label}</span>
+                  </Link>
+                );
+              })}
               <button
                 type="button"
                 onClick={() => {

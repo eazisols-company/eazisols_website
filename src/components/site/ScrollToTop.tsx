@@ -1,37 +1,27 @@
-import { useRouterState } from "@tanstack/react-router";
-import { useLayoutEffect } from "react";
-
-function scrollToHashTarget(hash: string) {
-  const id = hash.replace(/^#/, "");
-  if (!id) return false;
-
-  const target = document.getElementById(id);
-  if (!target) return false;
-
-  target.scrollIntoView({ block: "start" });
-  return true;
-}
+import { useRouter, useRouterState } from "@tanstack/react-router";
+import { useEffect, useLayoutEffect } from "react";
+import { resetScrollAfterNavigation } from "@/lib/scroll";
 
 export function ScrollToTop() {
-  const { pathname, hash } = useRouterState({
+  const router = useRouter();
+  const { pathname, hash, status } = useRouterState({
     select: (state) => ({
       pathname: state.location.pathname,
       hash: state.location.hash,
+      status: state.status,
     }),
   });
 
   useLayoutEffect(() => {
-    if (hash) {
-      if (scrollToHashTarget(hash)) return;
+    if (status !== "idle") return;
+    resetScrollAfterNavigation(hash);
+  }, [pathname, hash, status]);
 
-      requestAnimationFrame(() => {
-        scrollToHashTarget(hash);
-      });
-      return;
-    }
-
-    window.scrollTo(0, 0);
-  }, [pathname, hash]);
+  useEffect(() => {
+    return router.subscribe("onResolved", ({ toLocation }) => {
+      resetScrollAfterNavigation(toLocation.hash);
+    });
+  }, [router]);
 
   return null;
 }

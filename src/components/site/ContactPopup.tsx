@@ -10,7 +10,7 @@ const PHONES = [
   { code: "UAE", country: "Dubai", number: "+971 54 4244629" },
 ] as const;
 
-const WHATSAPP_NUMBER = "92 321 8881 156";
+const WHATSAPP_NUMBER = "92 321 8881156";
 const WHATSAPP_LINK = "https://wa.me/923218881156";
 const EMAIL = "info@eazisols.com";
 
@@ -69,7 +69,7 @@ export function ContactPopup({ open, onOpenChange }: Props) {
         >
           <DialogPrimitive.Title className="sr-only">Contact us</DialogPrimitive.Title>
 
-          <header className="flex items-center justify-between border-b border-gray-200 pb-3">
+          <header className="flex items-center justify-between border-b border-gray-200 ">
             <Logo />
             <DialogPrimitive.Close
               aria-label="Close"

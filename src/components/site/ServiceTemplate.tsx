@@ -8,8 +8,14 @@ import { ServicesHero } from "./ServicesHero";
 import { ExpectationsSection } from "./ExpectationsSection";
 import { ServiceClosingSection } from "./ServiceClosingSection";
 import { CTASection } from "./CTASection";
+import { OurProcessSection } from "./OurProcessSection";
+import { CategorySubServicesSection } from "./CategorySubServicesSection";
+import { isCategorySlug } from "@/data/services-data";
+import type { CategorySlug } from "@/data/services-data";
 
 export interface ServiceTemplateData {
+  /** Route slug for this service page */
+  slug?: string;
   /** Hero title, e.g. "Custom ERP Development" */
   title: string;
   /** Hero content and background images — sourced from static data or API */
@@ -48,6 +54,8 @@ export interface ServiceTemplateData {
     body: ServiceSectionContent;
     images: string[];
   }[];
+  /** Show the Our Process section (category overview pages only) */
+  showOurProcess?: boolean;
 }
 
 const PLACEHOLDER = "/placeholder.svg";
@@ -121,6 +129,15 @@ export function ServiceTemplate({ data }: { data: ServiceTemplateData }) {
           <p className="mt-5 max-w-[1100px] text-sm leading-relaxed text-ink-soft">{data.intro}</p>
         </ScrollReveal>
       </section>
+
+      {data.showOurProcess ? <OurProcessSection /> : null}
+
+      {data.showOurProcess && data.slug && isCategorySlug(data.slug) ? (
+        <CategorySubServicesSection
+          categorySlug={data.slug as CategorySlug}
+          title={data.title}
+        />
+      ) : null}
 
       {/* c. Black band + attached image */}
       <section className="container-page pb-16 ">

@@ -39,7 +39,7 @@ const processSteps = [
     title: "Launch Day",
     description:
       "With everything tested and approved, it's time to go live. Mobile apps are submitted to Apple and Google for review, while websites are deployed directly to servers. We handle the technical side, you get to celebrate your first release.",
-    image: "/images/Launch.png",
+    image: "/images/tlaunch.png",
   },
   {
     number: "07",
@@ -76,14 +76,14 @@ export function ProcessTimeline() {
                   <div className="grid items-center gap-8 md:grid-cols-2">
                     {isEven ? (
                       <>
-                        <div className="order-2 hidden justify-center md:flex">
+                        <div className="order-2 hidden w-full justify-center md:flex">
                           <div className="p-5 transition-transform duration-300 hover:-translate-y-1">
                             <img
                               src={step.image}
                               alt={step.title}
                               className="h-auto max-w-full drop-shadow-[0_4px_8px_rgba(14,165,233,0.15)]"
-                              width={300}
-                              height={200}
+                              width={600}
+                              height={400}
                             />
                           </div>
                         </div>
@@ -94,15 +94,17 @@ export function ProcessTimeline() {
                       </>
                     ) : (
                       <>
-                        <div className="hidden justify-start md:flex">
-                          <div className=" transition-transform duration-300 hover:-translate-y-1">
-                            <img
-                              src={step.image}
-                              alt={step.title}
-                              className="h-auto max-w-full drop-shadow-[0_4px_8px_rgba(14,165,233,0.15)]"
-                              width={300}
-                              height={200}
-                            />
+                        <div className="hidden w-full justify-start md:flex md:pr-20">
+                          <div className="flex w-full max-w-[400px] justify-center px-2">
+                            <div className="transition-transform duration-300 hover:-translate-y-1">
+                              <img
+                                src={step.image}
+                                alt={step.title}
+                                className="h-auto max-w-full drop-shadow-[0_4px_8px_rgba(14,165,233,0.15)]"
+                                width={600}
+                                height={400}
+                              />
+                            </div>
                           </div>
                         </div>
 
