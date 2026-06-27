@@ -108,9 +108,9 @@ export function OurProcessSection() {
                     />
                   </p>
 
-                  <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 md:block">
+                  <div className="absolute right-0 top-1/2 hidden h-[120px] w-[120px] -translate-y-1/2 md:block lg:h-[160px] lg:w-[160px]">
                     <div
-                      className={`h-[88px] w-[88px] overflow-hidden rounded-full border-4 border-background shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 lg:h-[100px] lg:w-[100px] ${
+                      className={`relative h-full w-full overflow-hidden rounded-full border-4 border-background shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 ${
                         isActive
                           ? "scale-100 opacity-100"
                           : "pointer-events-none scale-90 opacity-0"
@@ -119,7 +119,7 @@ export function OurProcessSection() {
                       <img
                         src={step.image}
                         alt={step.title}
-                        className="h-full w-full object-cover"
+                        className="absolute inset-0 block h-full w-full object-cover object-center"
                       />
                     </div>
                   </div>

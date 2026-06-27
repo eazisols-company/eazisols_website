@@ -1,17 +1,9 @@
 import { ArrowRight, Clock } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
-export interface BlogPost {
-  slug?: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  readTime: string;
-  gradient?: string;
-  author?: string;
-  tags?: string[];
-}
+import type { BlogPost } from "@/data/blog-data";
+
+export type { BlogPost };
 
 export function BlogCard({ post, image }: { post: BlogPost; image?: string }) {
   const slug = post.slug ?? "supply-chain-management-in-erp";
