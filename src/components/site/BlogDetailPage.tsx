@@ -173,7 +173,13 @@ function BlogDetailActions() {
   );
 }
 
-function BlogContent({ blocks }: { blocks: BlogContentBlock[] }) {
+function BlogContent({
+  blocks,
+  contentImage,
+}: {
+  blocks: BlogContentBlock[];
+  contentImage: string;
+}) {
   return (
     <div className="mt-10 md:mt-12">
       {blocks.map((block, index) => {
@@ -249,7 +255,7 @@ function BlogContent({ blocks }: { blocks: BlogContentBlock[] }) {
             <BlogAdvantagesSection
               key={index}
               heading={block.heading}
-              image={block.image}
+              image={contentImage}
               paragraphs={block.paragraphs}
             />
           );
@@ -309,7 +315,7 @@ export function BlogDetailPage({ post }: { post: BlogPostDetail }) {
           />
         </div>
 
-        <BlogContent blocks={post.content} />
+        <BlogContent blocks={post.content} contentImage={post.contentImage} />
         <BlogDetailActions />
       </div>
     </article>

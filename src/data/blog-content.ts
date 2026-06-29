@@ -12,6 +12,18 @@ export const BLOG_IMAGES: Record<string, string> = {
   "app-cost-usa-2": "/images/blog8.png",
 };
 
+export const BLOG_CONTENT_IMAGES: Record<string, string> = {
+  "supply-chain-management-in-erp": "/images/blog-chain.jfif",
+  "erp-vs-crm": "/images/blog-CRM.jfif",
+  "erp-inventory-management": "/images/blog-Inventory.png",
+  "erp-hr-module": "/images/blog-HR.png",
+  "app-cost-usa": "/images/blog-cost.png",
+  "erp-finance-module": "/images/blog-Finance.png",
+  "types-of-erp": "/images/blog-types.png",
+  "what-is-erp": "/images/blog-Enterprise.jfif",
+  "app-cost-usa-2": "/images/blog-AppDev.jfif",
+};
+
 type LeadParagraph = { lead: string; text: string };
 type ExampleItem = { name: string; description: string };
 
@@ -19,15 +31,10 @@ function afterTable(text: string): BlogContentBlock {
   return { type: "paragraph", text };
 }
 
-function advantages(
-  slug: string,
-  heading: string,
-  paragraphs: LeadParagraph[],
-): BlogContentBlock {
+function advantages(heading: string, paragraphs: LeadParagraph[]): BlogContentBlock {
   return {
     type: "advantages-section",
     heading,
-    image: BLOG_IMAGES[slug] ?? "/images/blog.png",
     paragraphs,
   };
 }
@@ -106,7 +113,7 @@ export const BLOG_CONTENT: Record<string, BlogContentBlock[]> = {
     afterTable(
       "Strong supply chain ERP setups also cover returns, drop-ship workflows, landed cost calculations, and multi-entity transfers — the operational edges that usually break when teams rely on disconnected tools.",
     ),
-    advantages("supply-chain-management-in-erp", "Advantages of ERP Supply Chain Management", [
+    advantages("Advantages of ERP Supply Chain Management", [
       {
         lead: "One version of the truth.",
         text: "When planning, warehouse, and finance read the same numbers, teams stop debating spreadsheets and start fixing bottlenecks.",
@@ -224,7 +231,7 @@ export const BLOG_CONTENT: Record<string, BlogContentBlock[]> = {
     afterTable(
       "Many growing companies eventually need both. The practical question is which problem is costing you more right now — lost deals because follow-up is messy, or delayed shipments because operations and finance do not agree on the numbers.",
     ),
-    advantages("erp-vs-crm", "Advantages of Getting the CRM vs ERP Decision Right", [
+    advantages("Advantages of Getting the CRM vs ERP Decision Right", [
       {
         lead: "Clearer priorities.",
         text: "Choosing the system that matches your current bottleneck avoids spending six months on software that does not fix the problem you actually feel day to day.",
@@ -337,7 +344,7 @@ export const BLOG_CONTENT: Record<string, BlogContentBlock[]> = {
     afterTable(
       "Advanced setups also support consignment stock, drop-ship workflows, kitting, and multi-currency landed costs — the edge cases that usually break when inventory lives outside the ERP.",
     ),
-    advantages("erp-inventory-management", "Advantages of ERP Inventory Management", [
+    advantages("Advantages of ERP Inventory Management", [
       {
         lead: "Real-time visibility.",
         text: "Sales, warehouse, and finance teams see the same stock numbers instead of waiting for end-of-day updates.",
@@ -470,7 +477,7 @@ export const BLOG_CONTENT: Record<string, BlogContentBlock[]> = {
     afterTable(
       "Most modules also handle the messier edges of the employee lifecycle: shift management, leave allocation and encashment, loan applications, expense claims, travel requests, exit interviews, and full-and-final settlements.",
     ),
-    advantages("erp-hr-module", "Advantages of an ERP HR Module", [
+    advantages("Advantages of an ERP HR Module", [
       {
         lead: "Cleaner data.",
         text: "When everyone reads from the same database, payroll, attendance, and employee records stop drifting apart across tools.",
@@ -573,7 +580,7 @@ export const BLOG_CONTENT: Record<string, BlogContentBlock[]> = {
     afterTable(
       "Most founders get the best outcome by scoping a focused MVP first, validating with real users, and expanding in phases instead of building every feature before launch.",
     ),
-    advantages("app-cost-usa", "Advantages of Planning App Cost the Right Way", [
+    advantages("Advantages of Planning App Cost the Right Way", [
       {
         lead: "Realistic budgeting.",
         text: "Understanding cost drivers upfront prevents surprise change orders halfway through development.",
@@ -686,7 +693,7 @@ export const BLOG_CONTENT: Record<string, BlogContentBlock[]> = {
     afterTable(
       "Larger deployments also cover budgeting, inter-company transactions, multi-currency consolidation, and project accounting — areas where finance teams lose days when systems are disconnected.",
     ),
-    advantages("erp-finance-module", "Advantages of an ERP Finance Module", [
+    advantages("Advantages of an ERP Finance Module", [
       {
         lead: "Faster close.",
         text: "Operational transactions post to the ledger automatically, reducing manual journal entries at month-end.",
@@ -794,7 +801,7 @@ export const BLOG_CONTENT: Record<string, BlogContentBlock[]> = {
     afterTable(
       "Within each category, vendors also differ by modular pricing, implementation partner ecosystem, and how well they connect with existing CRM, ecommerce, or BI tools.",
     ),
-    advantages("types-of-erp", "Advantages of Choosing the Right ERP Type", [
+    advantages("Advantages of Choosing the Right ERP Type", [
       {
         lead: "Lower implementation risk.",
         text: "Matching ERP tier and deployment model to company size avoids overbuying complex software too early.",
@@ -907,7 +914,7 @@ export const BLOG_CONTENT: Record<string, BlogContentBlock[]> = {
     afterTable(
       "Many ERPs also include project management, ecommerce, quality control, and maintenance modules depending on industry and vendor roadmap.",
     ),
-    advantages("what-is-erp", "Advantages of ERP for Growing Businesses", [
+    advantages("Advantages of ERP for Growing Businesses", [
       {
         lead: "Unified operations.",
         text: "Sales, warehouse, finance, and HR stop working from conflicting versions of the same business data.",
@@ -1010,7 +1017,7 @@ export const BLOG_CONTENT: Record<string, BlogContentBlock[]> = {
     afterTable(
       "Founders get the most accurate estimate by defining user roles, must-have workflows, and launch platform before requesting proposals — not after choosing a vendor.",
     ),
-    advantages("app-cost-usa-2", "Advantages of a Structured Cost Planning Approach", [
+    advantages("Advantages of a Structured Cost Planning Approach", [
       {
         lead: "Scope clarity.",
         text: "Breaking features into phases prevents vague quotes and keeps teams aligned on what launch actually includes.",

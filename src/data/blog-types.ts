@@ -15,7 +15,6 @@ export type BlogContentBlock =
   | {
       type: "advantages-section";
       heading: string;
-      image: string;
       paragraphs: { lead: string; text: string }[];
     }
   | {

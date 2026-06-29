@@ -1,4 +1,4 @@
-import { BLOG_CONTENT, BLOG_IMAGES } from "@/data/blog-content";
+import { BLOG_CONTENT, BLOG_CONTENT_IMAGES, BLOG_IMAGES } from "@/data/blog-content";
 
 export type { BlogContentBlock, BlogInline } from "@/data/blog-types";
 
@@ -16,6 +16,7 @@ export interface BlogPost {
 
 export interface BlogPostDetail extends BlogPost {
   image: string;
+  contentImage: string;
   content: BlogContentBlock[];
 }
 
@@ -122,10 +123,14 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
-export { BLOG_IMAGES };
+export { BLOG_IMAGES, BLOG_CONTENT_IMAGES };
 
 function getBlogImage(slug: string): string {
   return BLOG_IMAGES[slug] ?? "/images/blog.png";
+}
+
+function getBlogContentImage(slug: string): string {
+  return BLOG_CONTENT_IMAGES[slug] ?? "/images/blog.png";
 }
 
 export function getBlogBySlug(slug: string): BlogPostDetail | undefined {
@@ -146,6 +151,7 @@ export function getBlogBySlug(slug: string): BlogPostDetail | undefined {
   return {
     ...post,
     image: getBlogImage(slug),
+    contentImage: getBlogContentImage(slug),
     content,
   };
 }
