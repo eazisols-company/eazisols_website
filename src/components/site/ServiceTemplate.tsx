@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { openCalBookingTab } from "@/lib/cal";
 import type { ServiceHeroContent } from "@/data/services-hero-slides";
+import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ServiceBulletList, ServiceSectionBody, type ServiceSectionContent } from "@/components/site/ServiceBulletList";
 // import { ServiceCTA } from "./ServiceCTA";
@@ -112,20 +113,21 @@ export function ServiceTemplate({ data }: { data: ServiceTemplateData }) {
       {/* b. Intro text */}
       <section className="container-page pt-14 pb-10">
         <ScrollReveal>
-          <div className="flex items-center justify-between gap-6">
-            <h2 className="text-2xl font-extrabold text-ink md:text-3xl">{data.title}</h2>
-            <nav aria-label="Breadcrumb" className="hidden text-xs text-ink-soft md:block">
-              <Link to="/" className="hover:text-brand">
-                Home
-              </Link>
-              {data.breadcrumb.map((b) => (
-                <span key={b}>
-                  <span className="mx-2">›</span>
-                  <span className="text-brand">{b}</span>
-                </span>
-              ))}
-            </nav>
-          </div>
+          <nav
+            aria-label="Breadcrumb"
+            className="mb-4 hidden text-center text-xs text-ink-soft md:block"
+          >
+            <Link to="/" className="hover:text-brand">
+              Home
+            </Link>
+            {data.breadcrumb.map((b) => (
+              <span key={b}>
+                <span className="mx-2">›</span>
+                <span className="text-brand">{b}</span>
+              </span>
+            ))}
+          </nav>
+          <h2 className="text-2xl font-extrabold text-ink md:text-3xl">{data.title}</h2>
           <p className="mt-5 max-w-[1100px] text-sm leading-relaxed text-ink-soft">{data.intro}</p>
         </ScrollReveal>
       </section>
@@ -184,13 +186,14 @@ export function ServiceTemplate({ data }: { data: ServiceTemplateData }) {
                 listClassName="mt-6 text-base text-primary-foreground/95 md:text-lg"
                 itemClassName="text-primary-foreground/95 md:leading-[1.75]"
               />
-              <button
+              <Button
                 type="button"
+                variant="outline-light"
+                className="mt-8"
                 onClick={openCalBookingTab}
-                className="mt-8 inline-flex w-fit items-center rounded-full border border-primary-foreground/80 px-6 py-2.5 text-sm font-bold transition hover:bg-primary-foreground/10"
               >
                 Book a free call
-              </button>
+              </Button>
             </div>
             <div className="relative min-h-[300px] md:min-h-full">
               <img
@@ -253,13 +256,9 @@ function TwoColBlock({
       />
 
       {showButton ? (
-        <button
-          type="button"
-          onClick={openCalBookingTab}
-          className="mt-7 inline-flex w-fit items-center rounded-full border border-primary-foreground/80 px-6 py-2.5 text-sm font-bold transition hover:bg-primary-foreground/10"
-        >
+        <Button type="button" variant="outline-light" className="mt-7" onClick={openCalBookingTab}>
           Book a free call
-        </button>
+        </Button>
       ) : null}
     </div>
   );

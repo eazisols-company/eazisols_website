@@ -294,3 +294,97 @@
   align-items: center;
   justify-content: center;
 }
+
+/* LinkedIn & WhatsApp floating action buttons only */
+.floating-action-btn {
+  position: relative;
+  overflow: visible;
+  outline: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.floating-action-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% + 12px);
+  height: calc(100% + 12px);
+  border: 3px solid transparent;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.floating-action-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+  animation: floating-action-ring 1.5s ease-out infinite;
+}
+
+.floating-action-btn--linkedin::before {
+  border-color: rgba(77, 163, 255, 0.9);
+  box-shadow: 0 0 40px rgba(10, 102, 194, 0.5);
+}
+
+.floating-action-btn--linkedin::after {
+  border-color: rgba(10, 102, 194, 0.65);
+}
+
+.floating-action-btn--whatsapp::before {
+  border-color: rgba(94, 235, 139, 0.9);
+  box-shadow: 0 0 40px rgba(37, 211, 102, 0.5);
+}
+
+.floating-action-btn--whatsapp::after {
+  border-color: rgba(37, 211, 102, 0.65);
+}
+
+.floating-action-btn:hover,
+.floating-action-btn:focus-visible {
+  transform: translateY(-4px);
+}
+
+.floating-action-btn:hover::before,
+.floating-action-btn:focus-visible::before {
+  opacity: 1;
+}
+
+.floating-action-btn:hover::after,
+.floating-action-btn:focus-visible::after {
+  animation: none;
+  opacity: 0;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .floating-action-btn::before,
+  .floating-action-btn::after {
+    border-width: 4px;
+  }
+}
+
+@keyframes floating-action-ring {
+  0% {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+  100% {
+    width: 125%;
+    height: 125%;
+    opacity: 0;
+  }
+}

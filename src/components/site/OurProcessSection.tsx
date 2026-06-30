@@ -50,7 +50,7 @@ const PROCESS_STEPS = [
     title: "Maintenance & Upgrades",
     description:
       "We handle hosting, updates, bug fixes, and new features so your users always get the best experience.",
-    image: "/images/Maintenance.png",
+    image: "/images/Growth.png",
   },
 ] as const;
 

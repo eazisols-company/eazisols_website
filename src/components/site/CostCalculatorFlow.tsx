@@ -346,31 +346,33 @@ function Stepper({ current }: { current: number }) {
         const done = i < current;
         const active = i === current;
         return (
-          <div key={label} className="flex flex-1 flex-col items-center">
+          <div key={label} className="flex flex-1 flex-col items-center pb-6">
             <div className="flex w-full items-center">
               {i > 0 && (
                 <div className={`h-px flex-1 ${i <= current ? "bg-ink" : "bg-gray-200"}`} />
               )}
-              <div
-                className={`grid h-9 w-9 place-items-center rounded-full text-xs font-bold ${
-                  done
-                    ? "bg-ink text-white"
-                    : active
+              <div className="relative shrink-0">
+                <div
+                  className={`grid h-9 w-9 place-items-center rounded-full text-xs font-bold ${
+                    done
                       ? "bg-ink text-white"
-                      : "bg-gray-100 text-ink-soft"
-                }`}
-              >
-                {done ? <Check className="h-4 w-4" /> : i + 1}
+                      : active
+                        ? "bg-ink text-white"
+                        : "bg-gray-100 text-ink-soft"
+                  }`}
+                >
+                  {done ? <Check className="h-4 w-4" /> : i + 1}
+                </div>
+                <span
+                  className={`absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold ${active || done ? "text-ink" : "text-ink-soft"}`}
+                >
+                  {label}
+                </span>
               </div>
               {i < STEPS.length - 1 && (
                 <div className={`h-px flex-1 ${i < current ? "bg-ink" : "bg-gray-200"}`} />
               )}
             </div>
-            <span
-              className={`mt-2 text-xs font-semibold ${active || done ? "text-ink" : "text-ink-soft"}`}
-            >
-              {label}
-            </span>
           </div>
         );
       })}

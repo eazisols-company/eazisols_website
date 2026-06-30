@@ -1,4 +1,5 @@
 import { openCalBookingTab } from "@/lib/cal";
+import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function ServiceClosingSection() {
@@ -10,13 +11,9 @@ export function ServiceClosingSection() {
             Committed to delivering tangible value, we focus on achieving measurable outcomes for
             your business.
           </p>
-          <button
-            type="button"
-            onClick={openCalBookingTab}
-            className="btn-brand mt-8 px-6 py-3.5 text-sm md:px-8 md:py-4 md:text-base"
-          >
+          <Button type="button" variant="brand" className="mt-8" onClick={openCalBookingTab}>
             Book a free call
-          </button>
+          </Button>
         </div>
       </ScrollReveal>
     </section>

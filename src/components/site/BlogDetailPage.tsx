@@ -1,7 +1,10 @@
 import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 
 import type { BlogContentBlock, BlogInline, BlogPostDetail } from "@/data/blog-data";
+import { ContactFormModal } from "@/components/site/ContactFormModal";
+import { Button } from "@/components/ui/button";
 import { openCalBookingTab } from "@/lib/cal";
 
 function BlogInlineContent({ segments }: { segments: BlogInline[] }) {
@@ -143,32 +146,29 @@ function BlogExamplesSection({
 }
 
 function BlogDetailActions() {
+  const [contactOpen, setContactOpen] = useState(false);
+
   return (
     <>
       <div className="mt-14 flex flex-wrap items-center justify-center gap-4 md:mt-16">
-        <button type="button" onClick={openCalBookingTab} className="btn-brand px-8 py-3.5">
+        <Button type="button" variant="brand" onClick={openCalBookingTab}>
           Book a free call
-        </button>
-        <Link
-          to="/"
-          hash="contact"
-          className="inline-flex items-center justify-center rounded-full border-2 border-brand px-8 py-3.5 text-sm font-bold text-brand transition hover:bg-brand/5"
-        >
+        </Button>
+        <Button type="button" variant="outline-brand" onClick={() => setContactOpen(true)}>
           Request a query
-        </Link>
+        </Button>
       </div>
 
       <div className="mt-10 rounded-2xl bg-[#418ED6]/10 px-6 py-8 text-center md:mt-12 md:px-10 md:py-10">
         <p className="text-[18px] font-bold text-ink md:text-[20px]">
           Ready to estimate your app cost?
         </p>
-        <Link
-          to="/app-cost-calculator"
-          className="mt-5 inline-flex items-center justify-center rounded-full bg-[#418ED6] px-8 py-3.5 text-sm font-bold text-white transition hover:brightness-105"
-        >
-          Calculate Your App Cost
-        </Link>
+        <Button variant="brand" asChild className="mt-5">
+          <Link to="/app-cost-calculator">Calculate Your App Cost</Link>
+        </Button>
       </div>
+
+      <ContactFormModal open={contactOpen} onOpenChange={setContactOpen} />
     </>
   );
 }
@@ -336,9 +336,9 @@ export function BlogNotFound() {
       <p className="mt-3 max-w-lg text-sm text-ink-soft md:text-base">
         The article you are looking for does not exist or may have been moved.
       </p>
-      <Link to="/blog" className="btn-primary mt-8">
-        View all articles
-      </Link>
+      <Button variant="dark" asChild className="mt-8">
+        <Link to="/blog">View all articles</Link>
+      </Button>
     </section>
   );
 }

@@ -1,23 +1,66 @@
 import type { ServiceTemplateData } from "@/components/site/ServiceTemplate";
 import type { ServiceSectionContent } from "@/components/site/ServiceBulletList";
 
-const HERO_IMAGE_SETS = [
-  ["/images/web1.jpg", "/images/web2.jpg", "/images/web3.jpg"],
-  ["/images/web4.jpg", "/images/web5.jpg", "/images/web6.jpg"],
-  ["/images/web7.jpg", "/images/web1.jpg", "/images/web4.jpg"],
-  ["/images/web2.jpg", "/images/web3.jpg", "/images/web5.jpg"],
-  ["/images/web6.jpg", "/images/web7.jpg", "/images/web2.jpg"],
-] as const;
+const SERVICES_IMAGE_BASE = "/images/services";
 
-const SECTION_IMAGES = [
-  "/images/web5.jpg",
-  "/images/web6.jpg",
-  "/images/web7.jpg",
-  "/images/web4.jpg",
-  "/images/web3.jpg",
-  "/images/web2.jpg",
-  "/images/web1.jpg",
-] as const;
+const SERVICE_IMAGE_POOLS = {
+  web: [
+    "web.jpg",
+    "web1.jpg",
+    "web3.jpg",
+    "web4.jpg",
+    "web5.jpg",
+    "web-app.jpg",
+    "web2.webp",
+  ],
+  mobile: [
+    "mobile-app1.jpg",
+    "mobile-app2.jpg",
+    "mobile-app4.jpg",
+    "mobile-app5.jpg",
+    "mobile-app6.jpg",
+    "mobile-app8.jpg",
+    "mobile-app.png",
+    "mobile-app7.webp",
+    "mobile-app9.avif",
+    "mobile-app13.avif",
+  ],
+  app: [
+    "app.jpg",
+    "app1.jpg",
+    "app2.jpg",
+    "app3.jpg",
+    "app.png",
+    "app-dev.jpg",
+    "app-dev1.jpg",
+    "app-dev2.avif",
+    "code.jpg",
+    "code1.jpg",
+    "code2.jpg",
+  ],
+  watch: ["Swatch.jpg", "Swatch1.jpg", "Swatch3.jpg"],
+  nocode: [
+    "no-code.jpg",
+    "no-code1.jpg",
+    "no-code4.jpg",
+    "no-code2.png",
+    "no-code3.png",
+  ],
+  nft: ["nft.jpg", "nft1.jpg", "nft2.jpg", "nft3.jpg", "nft4.jpg"],
+  erp: [
+    "erp.jpg",
+    "erp1.jpg",
+    "erp2.webp",
+    "odoo1.jpg",
+    "odoo2.jpg",
+    "odoo3.jpg",
+    "odoo4.jpg",
+    "odoo5.jpg",
+    "odoo6.jpg",
+    "odo-erp.jpg",
+    "odoo.webp",
+  ],
+} as const;
 
 const EXPECTATION_IMAGES = [
   "/images/img.png",
@@ -27,6 +70,80 @@ const EXPECTATION_IMAGES = [
   "/images/img4.png",
   "/images/img.png",
 ] as const;
+
+type ServiceImageCategory = keyof typeof SERVICE_IMAGE_POOLS;
+
+const SERVICE_IMAGE_CATEGORIES: Record<ServiceSlug, ServiceImageCategory> = {
+  "custom-web-app-development": "web",
+  "mobile-app-development": "mobile",
+  "desktop-app-development": "app",
+  "smart-watch-app-development": "watch",
+  "marketing-website-development": "web",
+  "no-code-development": "nocode",
+  blockchain: "nft",
+  nfts: "nft",
+  "odoo-erp-solutions": "erp",
+  "custom-erp-development": "erp",
+  "oracle-erp-to-odoo-migration": "erp",
+  "ms-dynamics-365-to-odoo": "erp",
+  "sap-to-odoo-migration": "erp",
+  "netsuite-erp-to-odoo": "erp",
+  "erpnext-to-odoo-migration": "erp",
+  "agentic-ai-services": "app",
+  "generative-ai-services": "app",
+  "rag-development-services": "app",
+  "ai-chatbot-development": "app",
+  "ai-app-development": "app",
+  "ai-automation-services": "app",
+  "ai-consulting": "app",
+  "ai-integration-services": "app",
+  "ml-development-services": "app",
+  "ml-consulting-services": "app",
+  "social-media-marketing": "web",
+  "performance-marketing": "web",
+  "graphic-editing": "app",
+  "video-editing": "app",
+  "app-prototyping": "app",
+  "design-audit": "app",
+  illustrations: "app",
+  "brand-guideline": "app",
+  "logo-design": "app",
+  "design-systems": "app",
+  "pitch-deck": "app",
+  presentations: "app",
+  "software-development": "app",
+  "erp-solutions": "erp",
+  "ai-ml-services": "app",
+  "kick-off-marketing": "web",
+  "app-designing": "app",
+};
+
+function serviceImagePath(filename: string): string {
+  return `${SERVICES_IMAGE_BASE}/${filename}`;
+}
+
+function pickServiceImages(pool: readonly string[], count: number, offset: number): string[] {
+  const paths = pool.map(serviceImagePath);
+  return Array.from({ length: count }, (_, index) => paths[(offset + index) % paths.length]!);
+}
+
+interface ServiceImages {
+  hero: string[];
+  blackBand: string;
+  splitBlue: string;
+}
+
+function getServiceImages(slug: ServiceSlug): ServiceImages {
+  const category = SERVICE_IMAGE_CATEGORIES[slug];
+  const pool = SERVICE_IMAGE_POOLS[category];
+  const offset = SERVICE_SLUGS.indexOf(slug);
+
+  return {
+    hero: pickServiceImages(pool, 3, offset),
+    blackBand: serviceImagePath(pool[offset % pool.length]!),
+    splitBlue: serviceImagePath(pool[(offset + 1) % pool.length]!),
+  };
+}
 
 export const SERVICE_SLUGS = [
   "custom-web-app-development",
@@ -141,9 +258,7 @@ function expectationsForService(meta: Pick<ServiceMeta, "slug" | "title" | "cate
 }
 
 function toServiceTemplateData(meta: ServiceMeta): ServiceTemplateData {
-  const slugIndex = SERVICE_SLUGS.indexOf(meta.slug);
-  const imageSet = HERO_IMAGE_SETS[slugIndex % HERO_IMAGE_SETS.length]!;
-  const sectionImage = SECTION_IMAGES[slugIndex % SECTION_IMAGES.length]!;
+  const images = getServiceImages(meta.slug);
   const expectations = expectationsForService(meta);
 
   return {
@@ -155,7 +270,7 @@ function toServiceTemplateData(meta: ServiceMeta): ServiceTemplateData {
         primaryBtnText: "Book a free call",
         secondaryBtnText: "Request a query",
       },
-      images: [...imageSet],
+      images: [...images.hero],
     },
     slug: meta.slug,
     breadcrumb: meta.isCategoryPage ? [meta.title] : [meta.category, meta.title],
@@ -163,11 +278,11 @@ function toServiceTemplateData(meta: ServiceMeta): ServiceTemplateData {
     showOurProcess: meta.showOurProcess,
     blackBand: {
       ...meta.blackBand,
-      image: sectionImage,
+      image: images.blackBand,
     },
     splitBlue: {
       ...meta.splitBlue,
-      image: SECTION_IMAGES[(slugIndex + 1) % SECTION_IMAGES.length],
+      image: images.splitBlue,
     },
     blueGradient: {
       left: { ...meta.blueGradient.left },
@@ -1826,15 +1941,12 @@ export function getCategorySubServices(categorySlug: CategorySlug): CategorySubS
 
   return group.items.map((item) => {
     const service = SERVICES_DATA[item.slug];
-    const slugIndex = SERVICE_SLUGS.indexOf(item.slug);
+    const fallbackImages = getServiceImages(item.slug);
     return {
       label: item.label,
       slug: item.slug,
       description: service?.hero.content.description ?? "",
-      image:
-        service?.hero.images[0] ??
-        SECTION_IMAGES[slugIndex % SECTION_IMAGES.length] ??
-        "/images/web1.jpg",
+      image: service?.hero.images[0] ?? fallbackImages.hero[0]!,
     };
   });
 }

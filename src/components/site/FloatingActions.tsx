@@ -11,9 +11,9 @@ export function FloatingActions() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"
-        className="grid h-12 w-12 place-items-center rounded-full bg-[#0A66C2] text-white shadow-[0_10px_25px_rgba(10,102,194,0.35)] transition-transform hover:scale-110 md:h-16 md:w-16"
+        className="floating-action-btn floating-action-btn--linkedin grid h-12 w-12 place-items-center rounded-full bg-[#0A66C2] text-white shadow-[0_10px_25px_rgba(10,102,194,0.35)] md:h-16 md:w-16"
       >
-        <FaLinkedinIn className="h-5 w-5 md:h-7 md:w-7" />
+        <FaLinkedinIn className="relative z-10 h-5 w-5 md:h-7 md:w-7" />
       </a>
 
       <a
@@ -21,9 +21,9 @@ export function FloatingActions() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="WhatsApp"
-        className="grid h-12 w-12 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_10px_25px_rgba(37,211,102,0.35)] transition-transform hover:scale-110 md:h-16 md:w-16"
+        className="floating-action-btn floating-action-btn--whatsapp grid h-12 w-12 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_10px_25px_rgba(37,211,102,0.35)] md:h-16 md:w-16"
       >
-        <FaWhatsapp className="h-6 w-6 md:h-8 md:w-8" />
+        <FaWhatsapp className="relative z-10 h-6 w-6 md:h-8 md:w-8" />
       </a>
     </div>
   );

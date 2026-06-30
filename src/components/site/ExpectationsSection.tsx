@@ -135,7 +135,7 @@ function ExpectationPanel({
           <ScrollRevealImage src={item.images[0]!} reducedMotion={reducedMotion} />
         </div>
 
-        <div className="mt-8 flex justify-start pl-[22%] md:mt-10 md:pl-[70%]">
+        <div className="mt-8 flex justify-start pl-[22%] md:mt-10 md:pl-[55%]">
           <ScrollRevealImage
             src={item.images[1] ?? item.images[0]!}
             reducedMotion={reducedMotion}

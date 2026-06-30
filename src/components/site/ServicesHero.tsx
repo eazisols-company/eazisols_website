@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import type { ServiceHeroContent } from "@/data/services-hero-slides";
+import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { CAL_BOOKING_URL } from "@/lib/cal";
 
@@ -73,21 +74,15 @@ export function ServicesHero({
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a
-              href={CAL_BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-brand"
-            >
-              {content.primaryBtnText}
-            </a>
+            <Button variant="brand" asChild>
+              <a href={CAL_BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                {content.primaryBtnText}
+              </a>
+            </Button>
             <span className="text-xs font-medium text-primary-foreground/60">or</span>
-            <Link
-              to="/app-cost-calculator"
-              className="inline-flex items-center rounded-full border border-primary-foreground/80 px-5 py-3 text-xs font-bold text-primary-foreground transition hover:bg-primary-foreground/10"
-            >
-              {content.secondaryBtnText}
-            </Link>
+            <Button variant="outline-light" asChild>
+              <Link to="/app-cost-calculator">{content.secondaryBtnText}</Link>
+            </Button>
           </div>
         </ScrollReveal>
       </div>

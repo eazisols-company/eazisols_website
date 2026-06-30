@@ -15,6 +15,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { FloatingActions } from "@/components/site/FloatingActions";
 import { ScrollToTop } from "@/components/site/ScrollToTop";
+import { Button } from "@/components/ui/button";
 
 function NotFoundComponent() {
   return (
@@ -26,7 +27,9 @@ function NotFoundComponent() {
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
-          <Link to="/" className="btn-primary">Go home</Link>
+          <Button variant="dark" asChild>
+            <Link to="/">Go home</Link>
+          </Button>
         </div>
       </div>
     </div>
@@ -50,13 +53,18 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button
-            onClick={() => { router.invalidate(); reset(); }}
-            className="btn-primary"
+          <Button
+            variant="dark"
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
           >
             Try again
-          </button>
-          <a href="/" className="btn-ghost">Go home</a>
+          </Button>
+          <Button variant="soft" asChild>
+            <a href="/">Go home</a>
+          </Button>
         </div>
       </div>
     </div>

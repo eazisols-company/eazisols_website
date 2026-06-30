@@ -82,8 +82,8 @@ export function ProcessTimeline() {
                               src={step.image}
                               alt={step.title}
                               className="h-auto max-w-full drop-shadow-[0_4px_8px_rgba(14,165,233,0.15)]"
-                              width={600}
-                              height={400}
+                              width={300}
+                              height={200}
                             />
                           </div>
                         </div>
@@ -101,8 +101,8 @@ export function ProcessTimeline() {
                                 src={step.image}
                                 alt={step.title}
                                 className="h-auto max-w-full drop-shadow-[0_4px_8px_rgba(14,165,233,0.15)]"
-                                width={600}
-                                height={400}
+                                width={300}
+                                height={200}
                               />
                             </div>
                           </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowRight, Check, ChevronDown, Globe, Layers, Smartphone, Sparkles } from "lucide-react";
 import { CostCalculatorFlow } from "@/components/site/CostCalculatorFlow";
+import { Button } from "@/components/ui/button";
 
 const appTypes = [
   {
@@ -43,12 +44,9 @@ function Landing({ onStart }: { onStart: () => void }) {
             </p>
             <p className="mt-4 max-w-[760px] text-[14px] leading-relaxed text-ink">Building an app in the United Kingdom typically costs between £4,000 and £120,000+ depending on the type, platform, and features. The cost to develop an app varies based on whether you need iOS, Android, or a web app, the complexity of features, and whether you use a freelancer, an agency, or a dedicated development company like eazisols. Complete our 2-minute calculator to get a personalised cost breakdown and project roadmap sent directly to your inbox.</p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <button
-                onClick={onStart}
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-sm transition hover:bg-[var(--brand-2)]"
-              >
+              <Button variant="brand" onClick={onStart}>
                 Get Your Personalised Report <ArrowRight className="h-4 w-4" />
-              </button>
+              </Button>
               <span className="text-xs font-medium text-ink-soft">
                 Free · 2 minutes · No signup
               </span>
@@ -141,12 +139,9 @@ function Landing({ onStart }: { onStart: () => void }) {
       </div>
     </div>
 
-    <button
-      onClick={onStart}
-      className="mt-12 inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[var(--brand-2)]"
-    >
+    <Button variant="brand" className="mt-12" onClick={onStart}>
       Get Your Personalised Report <ArrowRight className="h-4 w-4" />
-    </button>
+    </Button>
 
     <p className="mt-3 text-xs text-ink-soft">Takes less than 2 minutes</p>
   </div>
@@ -266,18 +261,12 @@ function Landing({ onStart }: { onStart: () => void }) {
             Takes 2 minutes · report sent to your email and WhatsApp
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <button
-              onClick={onStart}
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[var(--brand-2)]"
-            >
+            <Button variant="brand" onClick={onStart}>
               Get Your Personalised Report <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-bold text-ink transition hover:bg-surface"
-            >
-              Talk to Our Team
-            </a>
+            </Button>
+            {/* <Button variant="soft" asChild>
+              <a href="/contact">Talk to Our Team</a>
+            </Button> */}
           </div>
         </div>
       </section>

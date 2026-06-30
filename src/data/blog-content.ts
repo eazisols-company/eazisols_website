@@ -13,15 +13,15 @@ export const BLOG_IMAGES: Record<string, string> = {
 };
 
 export const BLOG_CONTENT_IMAGES: Record<string, string> = {
-  "supply-chain-management-in-erp": "/images/blog-chain.jfif",
-  "erp-vs-crm": "/images/blog-CRM.jfif",
-  "erp-inventory-management": "/images/blog-Inventory.png",
+  "supply-chain-management-in-erp": "/images/blog-chain.webp",
+  "erp-vs-crm": "/images/blog-CRM.webp",
+  "erp-inventory-management": "/images/blog-Inventory.webp",
   "erp-hr-module": "/images/blog-HR.png",
-  "app-cost-usa": "/images/blog-cost.png",
-  "erp-finance-module": "/images/blog-Finance.png",
-  "types-of-erp": "/images/blog-types.png",
-  "what-is-erp": "/images/blog-Enterprise.jfif",
-  "app-cost-usa-2": "/images/blog-AppDev.jfif",
+  "app-cost-usa": "/images/blog-cost.webp",
+  "erp-finance-module": "/images/blog-Finance.webp",
+  "types-of-erp": "/images/blog-types.webp",
+  "what-is-erp": "/images/blog-Inventory.webp",
+  "app-cost-usa-2": "/images/blog-AppDev.webp",
 };
 
 type LeadParagraph = { lead: string; text: string };

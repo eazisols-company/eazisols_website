@@ -22,6 +22,7 @@ import { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/careers")({
   head: () => ({
@@ -207,15 +208,16 @@ function Hero() {
           if you love turning crazy ideas into real products, experimenting boldly, and leaving your
           mark on every pixel and line of code.
         </p>
-        <Link
-          to="/job-openings"
-          className="btn-brand mt-8 group relative inline-flex items-center justify-center rounded-full px-5 py-3 text-sm sm:text-base font-semibold min-w-[130px] 
-        sm:min-w-[140px] lg:min-w-[160px] overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 
-        transition-colors duration-400 cursor-pointer text-white lg:px-7 lg:py-3.5"
+        <Button
+          variant="brand"
+          asChild
+          className="group relative mt-8 min-w-[130px] overflow-hidden sm:min-w-[140px] lg:min-w-[160px]"
         >
-          <BriefcaseBusiness className="h-4 w-4" />
-          Job openings
-        </Link>
+          <Link to="/job-openings">
+            <BriefcaseBusiness className="h-4 w-4" />
+            Job openings
+          </Link>
+        </Button>
         <InteractiveTimeline />
       </div>
     </section>

@@ -29,6 +29,7 @@ import {
 } from "@/data/portfolio-data";
 import { ServiceBulletList } from "@/components/site/ServiceBulletList";
 import { CTASection } from "@/components/site/CTASection";
+import { Button } from "@/components/ui/button";
 import { openCalBookingTab } from "@/lib/cal";
 import { cn } from "@/lib/utils";
 
@@ -458,13 +459,9 @@ function PortfolioBlueSection({ item }: { item: PortfolioItem }) {
             className="mt-5 text-sm text-primary-foreground/90 md:text-[15px]"
             itemClassName="text-primary-foreground/90 leading-[1.7]"
           />
-          <button
-            type="button"
-            onClick={openCalBookingTab}
-            className="mt-7 inline-flex w-fit items-center rounded-full border border-primary-foreground/80 px-6 py-2.5 text-sm font-bold transition hover:bg-primary-foreground/10"
-          >
+          <Button type="button" variant="outline-light" className="mt-7" onClick={openCalBookingTab}>
             Book a free call
-          </button>
+          </Button>
         </div>
       </div>
     </section>
@@ -578,9 +575,9 @@ export function PortfolioNotFound() {
       <p className="mt-3 max-w-lg text-sm text-ink-soft md:text-base">
         The portfolio project you are looking for does not exist or may have been moved.
       </p>
-      <Link to="/portfolio" className="btn-primary mt-8">
-        View all projects
-      </Link>
+      <Button variant="dark" asChild className="mt-8">
+        <Link to="/portfolio">View all projects</Link>
+      </Button>
     </section>
   );
 }
