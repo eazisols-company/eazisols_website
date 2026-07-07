@@ -18,7 +18,15 @@ export function PortfolioGridCard({ item }: { item: PortfolioItem }) {
 
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4 opacity-0 transition duration-500 group-hover:opacity-100">
         <div className="grid h-14 w-14 place-items-center rounded-lg bg-white shadow-card">
-          <span className="text-lg font-black text-ink">{item.title.charAt(0)}</span>
+          {item.logo ? (
+            <img
+              src={item.logo}
+              alt={`${item.title} logo`}
+              className="h-10 w-10 object-contain"
+            />
+          ) : (
+            <span className="text-lg font-black text-ink">{item.title.charAt(0)}</span>
+          )}
         </div>
         <p className="mt-3 text-center text-base font-bold tracking-tight text-white md:text-lg">
           {item.title}
