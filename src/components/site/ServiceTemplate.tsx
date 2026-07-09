@@ -157,7 +157,7 @@ export function ServiceTemplate({ data }: { data: ServiceTemplateData }) {
             </div>
             <div className="aspect-[16/8] overflow-hidden">
               <img
-                src="/images/web6.jpg"
+                src={data.blackBand.image ?? "/images/web6.jpg"}
                 alt={data.blackBand.title}
                 className="h-full w-full object-cover"
               />

@@ -133,16 +133,44 @@ interface ServiceImages {
   splitBlue: string;
 }
 
+type ServiceImageOverride = Partial<ServiceImages> & {
+  /** Replaces only the first (front) hero slide image. */
+  heroFront?: string;
+};
+
+const DEFAULT_BLACK_BAND_IMAGE = "/images/web6.jpg";
+
+const SERVICE_IMAGE_OVERRIDES: Partial<Record<ServiceSlug, ServiceImageOverride>> = {
+  "custom-web-app-development": {
+    heroFront: serviceImagePath("web-hero.png"),
+    blackBand: serviceImagePath("web-black.png"),
+    splitBlue: serviceImagePath("web-red.png"),
+  },
+};
+
 function getServiceImages(slug: ServiceSlug): ServiceImages {
   const category = SERVICE_IMAGE_CATEGORIES[slug];
   const pool = SERVICE_IMAGE_POOLS[category];
   const offset = SERVICE_SLUGS.indexOf(slug);
 
-  return {
+  const images: ServiceImages = {
     hero: pickServiceImages(pool, 3, offset),
-    blackBand: serviceImagePath(pool[offset % pool.length]!),
+    blackBand: DEFAULT_BLACK_BAND_IMAGE,
     splitBlue: serviceImagePath(pool[(offset + 1) % pool.length]!),
   };
+
+  const override = SERVICE_IMAGE_OVERRIDES[slug];
+  if (!override) return images;
+
+  if (override.hero) {
+    images.hero = override.hero;
+  } else if (override.heroFront) {
+    images.hero = [override.heroFront, ...images.hero.slice(1)];
+  }
+  if (override.blackBand) images.blackBand = override.blackBand;
+  if (override.splitBlue) images.splitBlue = override.splitBlue;
+
+  return images;
 }
 
 export const SERVICE_SLUGS = [
