@@ -142,9 +142,147 @@ const DEFAULT_BLACK_BAND_IMAGE = "/images/web6.jpg";
 
 const SERVICE_IMAGE_OVERRIDES: Partial<Record<ServiceSlug, ServiceImageOverride>> = {
   "custom-web-app-development": {
-    heroFront: serviceImagePath("web-hero.png"),
-    blackBand: serviceImagePath("web-black.png"),
-    splitBlue: serviceImagePath("web-red.png"),
+    hero: [
+      serviceImagePath("custom-webH1.png"),
+      serviceImagePath("custom-webH2.png"),
+      serviceImagePath("custom-webH3.png"),
+    ],
+    blackBand: serviceImagePath("custom-web-black.png"),
+    splitBlue: serviceImagePath("custom-web-red.png"),
+  },
+  "mobile-app-development": {
+    hero: [
+      serviceImagePath("mobileH1.png"),
+      serviceImagePath("mobileH2.png"),
+      serviceImagePath("mobileH3.png"),
+    ],
+    blackBand: serviceImagePath("mobile-black.png"),
+    splitBlue: serviceImagePath("mobile-red.png"),
+  },
+  "desktop-app-development": {
+    hero: [
+      serviceImagePath("desktopH1.png"),
+      serviceImagePath("desktopH2.png"),
+      serviceImagePath("desktopH3.png"),
+    ],
+    blackBand: serviceImagePath("desktop-black.png"),
+    splitBlue: serviceImagePath("desktop-red.png"),
+  },
+  "smart-watch-app-development": {
+    hero: [
+      serviceImagePath("watchH1.png"),
+      serviceImagePath("watchH2.png"),
+      serviceImagePath("watchH3.png"),
+    ],
+    blackBand: serviceImagePath("watch-black.png"),
+    splitBlue: serviceImagePath("watch-red.png"),
+  },
+  "marketing-website-development": {
+    hero: [
+      serviceImagePath("marketingH1.png"),
+      serviceImagePath("marketingH2.png"),
+      serviceImagePath("marketingH3.png"),
+    ],
+    blackBand: serviceImagePath("marketing-black.png"),
+    splitBlue: serviceImagePath("marketing-red.png"),
+  },
+  "no-code-development": {
+    hero: [
+      serviceImagePath("nocodeH1.png"),
+      serviceImagePath("nocodeH2.png"),
+      serviceImagePath("nocodeH3.png"),
+    ],
+    blackBand: serviceImagePath("nocode-black.png"),
+    splitBlue: serviceImagePath("nocode-red.png"),
+  },
+  blockchain: {
+    hero: [
+      serviceImagePath("blockchainH1.png"),
+      serviceImagePath("blockchainH2.png"),
+      serviceImagePath("blockchainH3.png"),
+    ],
+    blackBand: serviceImagePath("blockchain-black.png"),
+    splitBlue: serviceImagePath("blockchain-red.png"),
+  },
+  nfts: {
+    hero: [
+      serviceImagePath("nftsH1.png"),
+      serviceImagePath("nftsH2.png"),
+      serviceImagePath("nftsH3.png"),
+    ],
+    blackBand: serviceImagePath("nfts-black.png"),
+    splitBlue: serviceImagePath("nfts-red.png"),
+  },
+  "agentic-ai-services": {
+    hero: [
+      serviceImagePath("AIHero.jpg"),
+      serviceImagePath("AIHero1.jpg"),
+      serviceImagePath("AIHero2.jpg"),
+    ],
+    blackBand: serviceImagePath("Ai-black.jpg"),
+    splitBlue: serviceImagePath("AI-red.jpg"),
+  },
+  "erp-solutions": {
+    hero: [
+      serviceImagePath("erpH1.png"),
+      serviceImagePath("erpH2.png"),
+      serviceImagePath("erpH3.png"),
+    ],
+    blackBand: serviceImagePath("erp-black.png"),
+  },
+  "custom-erp-development": {
+    hero: [
+      serviceImagePath("customerpH1.png"),
+      serviceImagePath("customerpH2.png"),
+      serviceImagePath("customerpH3.png"),
+    ],
+    blackBand: serviceImagePath("customerp-black.png"),
+    splitBlue: serviceImagePath("customerp-red.png"),
+  },
+  "oracle-erp-to-odoo-migration": {
+    hero: [
+      serviceImagePath("odoerpH1.png"),
+      serviceImagePath("odoerpH2.png"),
+      serviceImagePath("odoerpH3.png"),
+    ],
+    blackBand: serviceImagePath("odoerp-black.png"),
+    splitBlue: serviceImagePath("odoerp-red.png"),
+  },
+  "ms-dynamics-365-to-odoo": {
+    hero: [
+      serviceImagePath("MSH1.png"),
+      serviceImagePath("MSH2.png"),
+      serviceImagePath("MSH3.png"),
+    ],
+    blackBand: serviceImagePath("MS-black.png"),
+    splitBlue: serviceImagePath("MS-red.png"),
+  },
+  "sap-to-odoo-migration": {
+    hero: [
+      serviceImagePath("SAPH1.png"),
+      serviceImagePath("SAPH2.png"),
+      serviceImagePath("SAPH3.png"),
+    ],
+    blackBand: serviceImagePath("SAP-black.png"),
+    splitBlue: serviceImagePath("SAP-red.png"),
+  },
+  "netsuite-erp-to-odoo": {
+    hero: [
+      serviceImagePath("NetSuiteH1.png"),
+      serviceImagePath("NetSuiteH2.png"),
+      serviceImagePath("NetSuiteH3.png"),
+    ],
+    blackBand: serviceImagePath("NetSuite-black.png"),
+    splitBlue: serviceImagePath("NetSuite-red.png"),
+  },
+  "erpnext-to-odoo-migration": {
+    hero: [
+      serviceImagePath("ERPNextH1.png"),
+      serviceImagePath("ERPNextH2.png"),
+      serviceImagePath("ERPNextH3.png"),
+    ],
+    blackBand: serviceImagePath("ERPNext-black.png"),
+    splitBlue: serviceImagePath("ERPNext-red.png"),
   },
 };
 
