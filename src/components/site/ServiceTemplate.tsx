@@ -195,11 +195,11 @@ export function ServiceTemplate({ data }: { data: ServiceTemplateData }) {
                 Book a free call
               </Button>
             </div>
-            <div className="relative min-h-[300px] md:min-h-full">
+            <div className="relative flex min-h-[300px] min-w-0 items-center justify-center md:min-h-full">
               <img
                 src={data.splitBlue.image ?? "/images/web5.jpg"}
                 alt=""
-                className="absolute inset-0 h-full w-full object-cover"
+                className="h-full w-full object-contain object-center"
               />
             </div>
           </div>
