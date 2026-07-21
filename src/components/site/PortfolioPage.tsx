@@ -11,7 +11,7 @@ import {
 import { PortfolioGridCard } from "@/components/site/PortfolioGridCard";
 
 const filterSelectClass =
-  "appearance-none rounded-full border border-gray-200 bg-white py-2 pl-3.5 pr-8 text-xs font-medium text-ink focus:outline-none cursor-pointer";
+  "appearance-none rounded-full border border-gray-200 bg-white py-1.5 pl-3 pr-7 text-xs font-medium text-ink focus:outline-none cursor-pointer";
 
 type FilterSelectProps = {
   label: string;
@@ -101,14 +101,14 @@ export function PortfolioPage() {
           Our <span className="text-ink/35">portfolio</span>
         </h1>
 
-        <div className="mt-8 flex items-center gap-2 overflow-x-auto mb-8 md:gap-3">
+        <div className="mt-8 mb-8 flex flex-wrap items-center gap-2 md:gap-2.5">
           <div className="inline-flex shrink-0 items-center rounded-full bg-gray-100 p-1">
             {portfolioTypeTabs.map((tab) => (
               <button
                 key={tab}
                 type="button"
                 onClick={() => setActiveTab(tab)}
-                className={`rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide transition md:px-4 ${
+                className={`rounded-full px-2.5 py-1.5 text-[11px] font-bold uppercase tracking-wide transition md:px-3.5 ${
                   activeTab === tab
                     ? "bg-white text-ink shadow-sm"
                     : "text-ink-soft hover:text-ink"
@@ -119,7 +119,7 @@ export function PortfolioPage() {
             ))}
           </div>
 
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
             <FilterSelect
               label="Industries"
               value={industry}

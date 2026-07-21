@@ -185,7 +185,7 @@ function PortfolioOverview({ item }: { item: PortfolioItem }) {
 
       <div className="mt-8 overflow-hidden rounded-2xl bg-ink">
         <img
-          src={item.bannerImage}
+          src={item.detailImage ?? item.bannerImage}
           alt={`${item.title} project banner`}
           className="aspect-[16/7] w-full object-cover"
         />
